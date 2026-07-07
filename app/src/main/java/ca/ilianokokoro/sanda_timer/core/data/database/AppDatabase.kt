@@ -4,15 +4,18 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import ca.ilianokokoro.sanda_timer.core.Constants
+import ca.ilianokokoro.sanda_timer.models.Timer
 import java.util.concurrent.Executors
 
 
 @Database(
-    entities = [Song::class, PlaylistInfo::class, PlaylistSongCrossRef::class, Version::class],
+    entities = [Timer::class],
     version = Constants.Database.VERSION,
     exportSchema = false
 )
+@TypeConverters(RoomConverters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     companion object {
