@@ -1,4 +1,4 @@
-package com.example.sanda_timer.presentation.theme
+package ca.ilianokokoro.sanda_timer.modules.application.theme
 
 import androidx.compose.runtime.Composable
 import androidx.wear.compose.material3.MaterialTheme

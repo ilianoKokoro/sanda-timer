@@ -1,4 +1,4 @@
-package com.example.sanda_timer.complication
+package ca.ilianokokoro.sanda_timer.modules.complication
 
 import androidx.wear.watchface.complications.data.ComplicationData
 import androidx.wear.watchface.complications.data.ComplicationType

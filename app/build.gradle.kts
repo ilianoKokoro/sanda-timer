@@ -1,32 +1,37 @@
+val versionMajor = 0
+val versionMinor = 0
+val versionPatch = 1
+
+val beta: Boolean = (project.findProperty("beta") as String?)?.toBoolean() ?: true
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
 }
 
 android {
-    namespace = "com.example.sanda_timer"
+    namespace = "ca.ilianokokoro.sanda_timer"
     compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
+        version = release(37)
     }
+    ndkVersion = "30.0.14904198"
+    buildToolsVersion = "37.0.0"
 
     defaultConfig {
-        applicationId = "com.example.sanda_timer"
+        applicationId = "ca.ilianokokoro.sanda_timer"
         minSdk = 30
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
-
+        targetSdk = 37
+        versionCode = versionMajor * 10000 + versionMinor * 100 + versionPatch
+        versionName = "${versionMajor}.${versionMinor}.${versionPatch}${if (beta) "-beta" else ""}"
     }
 
     buildTypes {
         release {
-            optimization {
-                enable = false
-            }
+            isMinifyEnabled = true
+            isShrinkResources = true
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -56,9 +61,9 @@ dependencies {
     implementation(libs.watchface.complications.data.source.ktx)
     implementation(libs.wear.tooling.preview)
     androidTestImplementation(platform(libs.compose.bom))
-    androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.tiles.renderer)
     debugImplementation(libs.tiles.tooling)
     debugImplementation(libs.ui.test.manifest)
     debugImplementation(libs.ui.tooling)
+
 }
