@@ -7,6 +7,7 @@ val beta: Boolean = (project.findProperty("beta") as String?)?.toBoolean() ?: tr
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -65,5 +66,11 @@ dependencies {
     debugImplementation(libs.tiles.tooling)
     debugImplementation(libs.ui.test.manifest)
     debugImplementation(libs.ui.tooling)
+
+    // Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+    
 
 }
