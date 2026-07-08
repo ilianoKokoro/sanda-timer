@@ -80,8 +80,9 @@ dependencies {
     // Navigation 3
     implementation(libs.nav3.runtime)
     implementation(libs.nav3.ui)
+    implementation(libs.nav3.wear)
 
-    implementation(libs.androidx.compose.navigation3)
+    implementation(libs.nav3.viewmodel)
 
     // Viewmodel
     implementation(libs.androidx.lifecycle.runtime.compose)

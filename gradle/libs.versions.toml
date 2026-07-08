@@ -25,7 +25,8 @@ lifecycleRuntimeKtx = "2.11.0"
 kotlinSerialization = "2.4.0"
 kotlinxSerializationCore = "1.11.0"
 nav3 = "1.1.4"
-composeNavigation3 = "1.6.2"
+wearNav3 = "1.6.2"
+nav3Viewmodel = "2.11.0"
 materialIconsExtended = "1.7.8"
 
 [libraries]
@@ -59,7 +60,8 @@ kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationCore" }
 nav3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3" }
 nav3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3" }
-androidx-compose-navigation3 = { module = "androidx.wear.compose:compose-navigation3", version.ref = "composeNavigation3" }
+nav3-wear = { module = "androidx.wear.compose:compose-navigation3", version.ref = "wearNav3" }
+nav3-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "nav3Viewmodel" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleRuntimeKtx" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
 androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }

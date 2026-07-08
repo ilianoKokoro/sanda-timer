@@ -23,6 +23,7 @@ import ca.ilianokokoro.sanda_timer.modules.application.screens.main.component.Ti
 
 @Composable
 fun MainScreen(
+    onCreateTimer: () -> Unit,
     mainViewModel: MainViewModel = viewModel()
 ) {
     val uiState = mainViewModel.uiState.collectAsStateWithLifecycle().value
@@ -36,7 +37,7 @@ fun MainScreen(
             ) {
                 item {
                     Button(
-                        onClick = mainViewModel::createTimer,
+                        onClick = onCreateTimer,
                         modifier = Modifier
                             .fillMaxWidth()
                             .transformedHeight(this, transformationSpec),
@@ -61,3 +62,5 @@ fun MainScreen(
         }
     }
 }
+
+

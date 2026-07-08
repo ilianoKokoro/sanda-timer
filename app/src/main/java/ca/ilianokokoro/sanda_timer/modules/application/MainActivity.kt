@@ -3,7 +3,7 @@ package ca.ilianokokoro.sanda_timer.modules.application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import ca.ilianokokoro.sanda_timer.modules.application.screens.main.MainScreen
+import ca.ilianokokoro.sanda_timer.modules.application.navigation.NavigationRoot
 import ca.ilianokokoro.sanda_timer.modules.application.theme.SandaTimerTheme
 
 class MainActivity : ComponentActivity() {
@@ -11,7 +11,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SandaTimerTheme {
-                MainScreen()
+                NavigationRoot()
             }
         }
     }
