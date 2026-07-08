@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import ca.ilianokokoro.sanda_timer.core.Constants
+import ca.ilianokokoro.sanda_timer.core.data.datasources.TimerDataSource
 import ca.ilianokokoro.sanda_timer.models.Timer
 import java.util.concurrent.Executors
 
@@ -17,6 +18,7 @@ import java.util.concurrent.Executors
 )
 @TypeConverters(RoomConverters::class)
 abstract class AppDatabase : RoomDatabase() {
+    abstract fun timerDataSource(): TimerDataSource
 
     companion object {
         @Volatile

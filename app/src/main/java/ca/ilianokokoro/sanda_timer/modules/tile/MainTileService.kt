@@ -15,7 +15,6 @@ import androidx.wear.tiles.TileService
 import androidx.wear.tiles.tooling.preview.Preview
 import androidx.wear.tiles.tooling.preview.TilePreviewData
 import androidx.wear.tooling.preview.devices.WearDevices
-import ca.ilianokokoro.sanda_timer.R
 import com.google.common.util.concurrent.Futures
 import com.google.common.util.concurrent.ListenableFuture
 
@@ -47,7 +46,7 @@ private fun tile(
                     primaryLayout(
                         mainSlot = {
                             text(
-                                context.getString(R.string.hello_world, "Tile").layoutString,
+                                "".layoutString,
                                 typography = BODY_LARGE
                             )
                         }
