@@ -6,9 +6,16 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import ca.ilianokokoro.sanda_timer.models.Timer
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TimerDataSource {
+    @Query("SELECT * FROM timers")
+    fun getAllFlow(): Flow<List<Timer>>
+
+    @Query("SELECT * FROM timers WHERE id = :id")
+    fun getFlow(id: Long): Flow<Timer?>
+
     @Query("SELECT * FROM timers")
     suspend fun getAll(): List<Timer>
 

@@ -1,7 +1,6 @@
 package ca.ilianokokoro.sanda_timer.modules.application.screens.main
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.runtime.Composable
@@ -10,8 +9,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.wear.compose.foundation.lazy.TransformingLazyColumn
 import androidx.wear.compose.foundation.lazy.items
+import androidx.wear.compose.foundation.lazy.rememberTransformingLazyColumnState
 import androidx.wear.compose.material3.AppScaffold
-import androidx.wear.compose.material3.Button
+import androidx.wear.compose.material3.FilledIconButton
 import androidx.wear.compose.material3.Icon
 import androidx.wear.compose.material3.ScreenScaffold
 import androidx.wear.compose.material3.SurfaceTransformation
@@ -28,39 +28,42 @@ fun MainScreen(
 ) {
     val uiState = mainViewModel.uiState.collectAsStateWithLifecycle().value
     val transformationSpec = rememberTransformationSpec()
+    val listState = rememberTransformingLazyColumnState()
+    val timers = uiState.timers
 
     AppScaffold {
-        ScreenScaffold {
-            val timers = uiState.timers
+        ScreenScaffold(scrollState = listState) { contentPadding ->
             TransformingLazyColumn(
+                state = listState,
+                contentPadding = contentPadding,
                 modifier = Modifier.fillMaxSize()
             ) {
+                if (timers.isNotEmpty()) {
+                    items(timers, key = { it.id }) { timer ->
+                        TimerPill(
+                            timer,
+                            modifier = Modifier.transformedHeight(this, transformationSpec),
+                            transformation = SurfaceTransformation(transformationSpec)
+                        )
+                    }
+                } else {
+                    item {
+                        Text(
+                            "No timers",
+                            modifier = Modifier.transformedHeight(this, transformationSpec)
+                        )
+                    }
+                }
                 item {
-                    Button(
+                    FilledIconButton(
                         onClick = onCreateTimer,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .transformedHeight(this, transformationSpec),
-                        transformation = SurfaceTransformation(transformationSpec),
+                        modifier = Modifier.transformedHeight(this, transformationSpec),
                     ) {
                         Icon(Icons.Rounded.Add, contentDescription = Icons.Rounded.Add.name)
                     }
                 }
-
-                if (timers.isNotEmpty()) {
-                    items(uiState.timers) { timer ->
-                        TimerPill(timer)
-                    }
-                } else {
-                    item {
-                        Text("No timers")
-                    }
-                }
-
             }
-
         }
     }
 }
-
 
