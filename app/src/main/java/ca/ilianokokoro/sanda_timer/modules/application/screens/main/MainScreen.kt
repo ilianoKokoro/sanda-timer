@@ -5,6 +5,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.wear.compose.foundation.lazy.TransformingLazyColumn
@@ -18,6 +19,8 @@ import androidx.wear.compose.material3.SurfaceTransformation
 import androidx.wear.compose.material3.Text
 import androidx.wear.compose.material3.lazy.rememberTransformationSpec
 import androidx.wear.compose.material3.lazy.transformedHeight
+import ca.ilianokokoro.sanda_timer.R
+import ca.ilianokokoro.sanda_timer.models.Timer
 import ca.ilianokokoro.sanda_timer.modules.application.screens.main.component.TimerPill
 
 
@@ -29,8 +32,9 @@ fun MainScreen(
     val uiState = mainViewModel.uiState.collectAsStateWithLifecycle().value
     val transformationSpec = rememberTransformationSpec()
     val listState = rememberTransformingLazyColumnState()
-    val timers = uiState.timers
+    val timers = listOf<Timer>()
 
+    uiState.timers
     AppScaffold {
         ScreenScaffold(scrollState = listState) { contentPadding ->
             TransformingLazyColumn(
@@ -49,7 +53,7 @@ fun MainScreen(
                 } else {
                     item {
                         Text(
-                            "No timers",
+                            stringResource(R.string.no_timers),
                             modifier = Modifier.transformedHeight(this, transformationSpec)
                         )
                     }
