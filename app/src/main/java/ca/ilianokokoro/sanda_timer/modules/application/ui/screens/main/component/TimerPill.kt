@@ -18,6 +18,6 @@ fun TimerPill(
         modifier = modifier,
         transformation = transformation,
     ) {
-        Text(timer.remainingDuration().toString())
+        Text(timer.toString())
     }
 }

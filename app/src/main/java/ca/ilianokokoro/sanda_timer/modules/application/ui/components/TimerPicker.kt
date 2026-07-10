@@ -1,99 +1,141 @@
 package ca.ilianokokoro.sanda_timer.modules.application.ui.components
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material3.MaterialTheme
-import androidx.wear.compose.material3.Picker
+import androidx.wear.compose.material3.PickerGroup
 import androidx.wear.compose.material3.Text
 import androidx.wear.compose.material3.rememberPickerState
-
-enum class TimerField {
-    HOURS, MINUTES, SECONDS
-}
+import ca.ilianokokoro.sanda_timer.R
+import java.util.Locale
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun TimerPicker(
     modifier: Modifier = Modifier,
     maxHours: Int = 99,
-    onTimeChanged: (hours: Int, minutes: Int, seconds: Int) -> Unit = { _, _, _ -> }
+    onTimeChanged: (Duration) -> Unit = { _ -> },
 ) {
+    val showHours = maxHours > 0
+    val columnWidth = 36.dp
+    val columnHeight = 46.dp
+
     val hourState = rememberPickerState(
         initialNumberOfOptions = maxHours + 1,
         initiallySelectedIndex = 0
     )
-
     val minuteState = rememberPickerState(
         initialNumberOfOptions = 60,
         initiallySelectedIndex = 0
     )
-
     val secondState = rememberPickerState(
         initialNumberOfOptions = 60,
         initiallySelectedIndex = 0
     )
 
-    var focusedField by remember { mutableStateOf(TimerField.MINUTES) }
+    var focusedColumn by remember {
+        mutableIntStateOf(
+            if (showHours) {
+                0
+            } else {
+                1
+            }
+        )
+    }
 
     LaunchedEffect(
         hourState.selectedOptionIndex,
         minuteState.selectedOptionIndex,
         secondState.selectedOptionIndex
     ) {
-        onTimeChanged(
-            hourState.selectedOptionIndex,
-            minuteState.selectedOptionIndex,
-            secondState.selectedOptionIndex
-        )
+        val duration =
+            hourState.selectedOptionIndex.hours + minuteState.selectedOptionIndex.minutes + secondState.selectedOptionIndex.seconds
+
+        onTimeChanged(duration)
     }
 
-    Row(
-        modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Picker(
-            state = hourState,
-            contentDescription = { "Hours" },
-            readOnly = focusedField != TimerField.HOURS,
-            onSelected = { focusedField = TimerField.HOURS },
-        ) { option ->
-            PickerText("%02d".format(option))
-        }
+    val selectedState = when (focusedColumn) {
+        0 -> hourState
+        1 -> minuteState
+        else -> secondState
+    }
 
-        Picker(
-            state = minuteState,
-            contentDescription = { "Minutes" },
-            readOnly = focusedField != TimerField.MINUTES,
-            onSelected = { focusedField = TimerField.MINUTES },
-
-            ) { option ->
-            PickerText("%02d".format(option))
-        }
-
-        Picker(
-            state = secondState,
-            contentDescription = { "Seconds" },
-            readOnly = focusedField != TimerField.SECONDS,
-            onSelected = { focusedField = TimerField.SECONDS },
-        ) { option ->
-            PickerText("%02d".format(option))
+    Box(modifier = modifier.fillMaxSize()) {
+        PickerGroup(
+            modifier = Modifier.align(Alignment.Center),
+            selectedPickerState = selectedState,
+            autoCenter = false
+        ) {
+            if (showHours) {
+                PickerGroupItem(
+                    pickerState = hourState,
+                    selected = focusedColumn == 0,
+                    onSelected = { focusedColumn = 0 },
+                    option = { index, selected -> DigitColumn(index, selected) },
+                    contentDescription = { "Hours" },
+                    modifier = Modifier.size(width = columnWidth, height = columnHeight)
+                )
+                Colon()
+            }
+            PickerGroupItem(
+                pickerState = minuteState,
+                selected = focusedColumn == 1,
+                onSelected = { focusedColumn = 1 },
+                option = { index, selected -> DigitColumn(index, selected) },
+                contentDescription = { "Minutes" },
+                modifier = Modifier.size(width = columnWidth, height = columnHeight)
+            )
+            Colon()
+            PickerGroupItem(
+                pickerState = secondState,
+                selected = focusedColumn == 2,
+                onSelected = { focusedColumn = 2 },
+                option = { index, selected -> DigitColumn(index, selected) },
+                contentDescription = { "Seconds" },
+                modifier = Modifier.size(width = columnWidth, height = columnHeight)
+            )
         }
     }
 }
 
 @Composable
-private fun PickerText(text: String) {
+private fun DigitColumn(optionIndex: Int, selected: Boolean) {
     Text(
-        text = text,
-        style = MaterialTheme.typography.titleLarge
+        text = String.format(Locale.ROOT, "%02d", optionIndex),
+        style = MaterialTheme.typography.numeralSmall,
+        color = if (selected) {
+            MaterialTheme.colorScheme.onBackground
+        } else {
+            MaterialTheme.colorScheme.onSurfaceVariant
+        },
+        textAlign = TextAlign.Center,
+        modifier = Modifier.fillMaxWidth()
+    )
+}
+
+@Composable
+private fun Colon() {
+    Text(
+        text = stringResource(R.string.colon),
+        style = MaterialTheme.typography.numeralSmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = Modifier.padding(horizontal = 2.dp)
     )
 }

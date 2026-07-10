@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Sanda Timer</string>
     <string name="no_timers">No timers</string>
+    <string name="colon">:</string>
 </resources>

@@ -16,7 +16,6 @@ import androidx.wear.compose.material3.EdgeButton
 import androidx.wear.compose.material3.EdgeButtonSize
 import androidx.wear.compose.material3.Icon
 import androidx.wear.compose.material3.ScreenScaffold
-import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper
 import ca.ilianokokoro.sanda_timer.modules.application.ui.components.TimerPicker
 
 
@@ -34,9 +33,7 @@ fun NewScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center) {
-                TimerPicker { hours, minutes, seconds ->
-                    LogHelper.printd("$hours:$minutes:$seconds")
-                }
+                TimerPicker()
             }
             EdgeButton(onClick = {
                 newViewModel.createTimer()

@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlin.time.Clock
-import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration
 
 class NewViewModel(application: Application) : AndroidViewModel(application) {
     private val _uiState = MutableStateFlow(NewState())
@@ -17,10 +17,14 @@ class NewViewModel(application: Application) : AndroidViewModel(application) {
 
     val timerDataSource = AppDatabase.getInstance(application).timerDataSource()
 
-
     fun createTimer() {
         viewModelScope.launch {
-            val newTimer = Timer(endTime = Clock.System.now() + 2.hours)
+            val duration = uiState.value.duration
+            if (duration == Duration.ZERO) {
+                return@launch
+            }
+
+            val newTimer = Timer(endTime = Clock.System.now() + duration)
             timerDataSource.insert(newTimer) // TEMP
         }
     }
