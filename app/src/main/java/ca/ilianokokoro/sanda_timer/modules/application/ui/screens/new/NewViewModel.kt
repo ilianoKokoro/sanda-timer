@@ -1,4 +1,4 @@
-package ca.ilianokokoro.sanda_timer.modules.application.screens.new
+package ca.ilianokokoro.sanda_timer.modules.application.ui.screens.new
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

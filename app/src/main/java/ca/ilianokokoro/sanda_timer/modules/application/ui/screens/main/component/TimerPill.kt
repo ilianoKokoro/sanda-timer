@@ -1,4 +1,4 @@
-package ca.ilianokokoro.sanda_timer.modules.application.screens.main.component
+package ca.ilianokokoro.sanda_timer.modules.application.ui.screens.main.component
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

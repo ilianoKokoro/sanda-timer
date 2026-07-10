@@ -1,4 +1,4 @@
-package ca.ilianokokoro.sanda_timer.modules.application.screens.main
+package ca.ilianokokoro.sanda_timer.modules.application.ui.screens.main
 
 import ca.ilianokokoro.sanda_timer.models.Timer
 
