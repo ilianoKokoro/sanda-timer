@@ -8,6 +8,7 @@ import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.time.Clock
 
 class BootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
@@ -18,8 +19,8 @@ class BootReceiver : BroadcastReceiver() {
         val timerDataSource = AppDatabase.getInstance(context).timerDataSource()
 
         CoroutineScope(Dispatchers.IO).launch {
-            LogHelper.printd("Deleting all timers")
-            timerDataSource.deleteAll()
+            LogHelper.printd("Deleting all expired timers")
+            timerDataSource.deleteExpired(Clock.System.now())
         }
     }
 }

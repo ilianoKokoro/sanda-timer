@@ -48,14 +48,8 @@
             android:name=".modules.application.ui.screens.new.TimerExpiredReceiver"
             android:exported="false" />
 
-        <receiver
-            android:name=".core.receivers.BootReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <!--                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />-->
-            </intent-filter>
-        </receiver>
+
+
 
         <uses-library
             android:name="com.google.android.wearable"

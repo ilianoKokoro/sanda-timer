@@ -32,6 +32,9 @@ interface TimerDataSource {
     @Delete
     suspend fun delete(timer: Timer)
 
+    @Query("DELETE FROM timers WHERE id = :id")
+    suspend fun deleteById(id: Long)
+
     @Query("DELETE FROM timers")
     suspend fun deleteAll()
 

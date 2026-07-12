@@ -64,6 +64,7 @@ fun MainScreen(
                 items(timers, key = { it.id }) { timer ->
                     TimerPill(
                         timer,
+                        now = uiState.now,
                         modifier = Modifier.transformedHeight(this, transformationSpec),
                         transformation = SurfaceTransformation(transformationSpec)
                     )
