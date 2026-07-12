@@ -33,7 +33,9 @@ fun NewScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center) {
-                TimerPicker()
+                TimerPicker(onTimeChanged = {
+                    newViewModel.updateDuration(it)
+                })
             }
             EdgeButton(onClick = {
                 newViewModel.createTimer()

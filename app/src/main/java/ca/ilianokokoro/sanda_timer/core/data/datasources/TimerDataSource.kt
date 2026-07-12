@@ -7,6 +7,7 @@ import androidx.room.Query
 import androidx.room.Update
 import ca.ilianokokoro.sanda_timer.models.Timer
 import kotlinx.coroutines.flow.Flow
+import kotlin.time.Instant
 
 @Dao
 interface TimerDataSource {
@@ -30,4 +31,10 @@ interface TimerDataSource {
 
     @Delete
     suspend fun delete(timer: Timer)
+
+    @Query("DELETE FROM timers")
+    suspend fun deleteAll()
+
+    @Query("DELETE FROM timers WHERE endTime <= :now")
+    suspend fun deleteExpired(now: Instant)
 }
