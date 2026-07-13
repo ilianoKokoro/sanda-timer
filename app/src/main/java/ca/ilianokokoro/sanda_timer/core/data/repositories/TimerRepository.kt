@@ -7,8 +7,8 @@ import android.content.Intent
 import android.os.Build
 import ca.ilianokokoro.sanda_timer.core.Constants
 import ca.ilianokokoro.sanda_timer.core.data.database.AppDatabase
-import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper
 import ca.ilianokokoro.sanda_timer.core.receivers.TimerExpiredReceiver
+import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper
 import ca.ilianokokoro.sanda_timer.models.Timer
 import kotlin.time.Clock
 import kotlin.time.Duration
@@ -48,6 +48,9 @@ class TimerRepository(
     }
 
     suspend fun clearTimers() {
+        getAllTimers().forEach {
+            cancelAlarm(it.id)
+        }
         timerDataSource.deleteAll()
     }
 
@@ -69,17 +72,17 @@ class TimerRepository(
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
-            !alarmManager.canScheduleExactAlarms()
-        ) {
-            return
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (!alarmManager.canScheduleExactAlarms()) {
+                LogHelper.printd("SCHEDULE_EXACT_ALARM not granted, skipping alarm")
+                return
+            }
         }
 
-        LogHelper.printd("alarmManager.setExactAndAllowWhileIdle")
         alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
             endTime.toEpochMilliseconds(),
-            pendingIntent
+            pendingIntent,
         )
     }
 
