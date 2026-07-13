@@ -12,7 +12,7 @@ data class Timer(
     val id: Long = 0,
     val duration: Duration = Duration.ZERO,
     val endTime: Instant? = null,
-    val running: Boolean = false,
+    val running: Boolean = true,
     val pausedRemaining: Duration = Duration.ZERO,
 ) {
     fun remainingDuration(now: Instant): Duration {

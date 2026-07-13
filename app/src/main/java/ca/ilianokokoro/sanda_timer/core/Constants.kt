@@ -6,4 +6,8 @@ object Constants {
         const val VERSION = 1
         const val TIMER_TABLE = "timers"
     }
+
+    object TimerReceiver {
+        const val TIMER_ID = "timerId"
+    }
 }

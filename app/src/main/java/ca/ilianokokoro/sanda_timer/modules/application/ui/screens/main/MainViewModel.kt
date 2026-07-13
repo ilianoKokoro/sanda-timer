@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import ca.ilianokokoro.sanda_timer.core.data.database.AppDatabase
+import ca.ilianokokoro.sanda_timer.core.data.repositories.TimerRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,6 +22,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val timerDataSource = AppDatabase.getInstance(application).timerDataSource()
 
     init {
+        viewModelScope.launch {
+            TimerRepository(getApplication()).deleteExpiredTimers()
+        }
+
         timerDataSource.getAllFlow()
             .onEach { timers ->
                 _uiState.update { it.copy(timers = timers) }

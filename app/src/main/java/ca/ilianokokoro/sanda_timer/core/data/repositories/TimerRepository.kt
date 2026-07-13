@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import ca.ilianokokoro.sanda_timer.core.Constants
 import ca.ilianokokoro.sanda_timer.core.data.database.AppDatabase
 import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper
 import ca.ilianokokoro.sanda_timer.core.receivers.TimerExpiredReceiver
@@ -23,7 +24,7 @@ class TimerRepository(
 
     suspend fun createTimer(duration: Duration): Long {
         val endTime = Clock.System.now() + duration
-        val timer = Timer(endTime = endTime)
+        val timer = Timer(endTime = endTime, duration = duration)
 
         val id = timerDataSource.insert(timer)
 
@@ -37,6 +38,19 @@ class TimerRepository(
         timerDataSource.delete(timer)
     }
 
+    suspend fun deleteTimerById(id: Long) {
+        cancelAlarm(id)
+        timerDataSource.deleteById(id)
+    }
+
+    suspend fun deleteExpiredTimers() {
+        timerDataSource.deleteExpired(Clock.System.now())
+    }
+
+    suspend fun clearTimers() {
+        timerDataSource.deleteAll()
+    }
+
     suspend fun getAllTimers(): List<Timer> =
         timerDataSource.getAll()
 
@@ -45,7 +59,7 @@ class TimerRepository(
         endTime: Instant
     ) {
         val intent = Intent(context, TimerExpiredReceiver::class.java).apply {
-            putExtra("timerId", timerId)
+            putExtra(Constants.TimerReceiver.TIMER_ID, timerId)
         }
 
         val pendingIntent = PendingIntent.getBroadcast(

@@ -1,12 +1,14 @@
 package ca.ilianokokoro.sanda_timer.modules.application.ui.screens.main
 
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.wear.compose.foundation.lazy.TransformingLazyColumn
@@ -65,7 +67,9 @@ fun MainScreen(
                     TimerPill(
                         timer,
                         now = uiState.now,
-                        modifier = Modifier.transformedHeight(this, transformationSpec),
+                        modifier = Modifier
+                            .padding(horizontal = 12.dp)
+                            .transformedHeight(this, transformationSpec),
                         transformation = SurfaceTransformation(transformationSpec)
                     )
                 }
