@@ -68,6 +68,10 @@ dependencies {
     debugImplementation(libs.ui.test.manifest)
     debugImplementation(libs.ui.tooling)
 
+    // Notification compatibility
+    implementation(libs.androidx.appcompat)
+    implementation(libs.activity.ktx)
+
     // Room
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
