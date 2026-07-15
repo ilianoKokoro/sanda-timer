@@ -7,8 +7,8 @@ import android.content.Intent
 import android.os.Build
 import ca.ilianokokoro.sanda_timer.core.Constants
 import ca.ilianokokoro.sanda_timer.core.data.database.AppDatabase
-import ca.ilianokokoro.sanda_timer.core.receivers.TimerExpiredReceiver
 import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper
+import ca.ilianokokoro.sanda_timer.core.receivers.TimerExpiredReceiver
 import ca.ilianokokoro.sanda_timer.models.Timer
 import kotlin.time.Clock
 import kotlin.time.Duration
@@ -61,6 +61,11 @@ class TimerRepository(
         timerId: Long,
         endTime: Instant
     ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !alarmManager.canScheduleExactAlarms()) {
+            LogHelper.printd("SCHEDULE_EXACT_ALARM not granted, cannot set timer")
+            return
+        }
+
         val intent = Intent(context, TimerExpiredReceiver::class.java).apply {
             putExtra(Constants.TimerReceiver.TIMER_ID, timerId)
         }
@@ -71,13 +76,6 @@ class TimerRepository(
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            if (!alarmManager.canScheduleExactAlarms()) {
-                LogHelper.printd("SCHEDULE_EXACT_ALARM not granted, skipping alarm")
-                return
-            }
-        }
 
         alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,

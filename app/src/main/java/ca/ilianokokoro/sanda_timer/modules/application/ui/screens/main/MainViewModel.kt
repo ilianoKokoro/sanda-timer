@@ -23,7 +23,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         viewModelScope.launch {
-            TimerRepository(getApplication()).deleteExpiredTimers()
+            TimerRepository(application).deleteExpiredTimers()
         }
 
         timerDataSource.getAllFlow()

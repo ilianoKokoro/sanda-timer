@@ -3,7 +3,6 @@
 
     <uses-feature android:name="android.hardware.type.watch" />
 
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -77,6 +76,7 @@
             android:name=".modules.application.TimerDoneActivity"
             android:exported="false"
             android:showWhenLocked="true"
+            android:taskAffinity=".timerdone"
             android:turnScreenOn="true" />
 
         <activity

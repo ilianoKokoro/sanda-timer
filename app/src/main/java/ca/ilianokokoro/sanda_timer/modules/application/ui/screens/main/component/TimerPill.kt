@@ -35,14 +35,14 @@ fun TimerPill(
         ) {
             Text(
                 text = timer.remainingDuration(now).toFormattedString(),
-                style = MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.numeralExtraSmall,
                 textAlign = TextAlign.Center,
                 overflow = TextOverflow.Clip,
                 maxLines = 1,
             )
             Text(
                 text = timer.duration.toFormattedString(),
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.titleSmall,
                 textAlign = TextAlign.Center,
                 overflow = TextOverflow.Clip,
                 maxLines = 1,

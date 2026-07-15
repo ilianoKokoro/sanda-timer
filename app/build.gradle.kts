@@ -95,4 +95,8 @@ dependencies {
     // Icons
     implementation(libs.androidx.material.icons.extended)
 
+    // Ongoing
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.wear.ongoing)
+
 }

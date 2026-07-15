@@ -10,17 +10,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class BootReceiver : BroadcastReceiver() {
+    val scope = CoroutineScope(Dispatchers.IO)
+
     override fun onReceive(context: Context, intent: Intent) {
-        LogHelper.printd(intent.action.toString())
         if (intent.action != Intent.ACTION_LOCKED_BOOT_COMPLETED) {
             return
         }
-        LogHelper.printd("Received boot event")
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val timerRepository = TimerRepository(context)
-            LogHelper.printd("Deleting all timers")
-            timerRepository.clearTimers()
+        scope.launch {
+            LogHelper.printd("Received boot event, deleting all timers")
+            TimerRepository(context).clearTimers()
         }
     }
 }

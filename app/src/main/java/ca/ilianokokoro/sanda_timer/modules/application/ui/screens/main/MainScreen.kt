@@ -1,7 +1,8 @@
 package ca.ilianokokoro.sanda_timer.modules.application.ui.screens.main
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.plus
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
@@ -60,7 +61,7 @@ fun MainScreen(
     ) { contentPadding ->
         TransformingLazyColumn(
             state = listState,
-            contentPadding = contentPadding,
+            contentPadding = contentPadding.plus(PaddingValues(top = 12.dp)),
         ) {
             if (timers.isNotEmpty()) {
                 items(timers, key = { it.id }) { timer ->
@@ -68,7 +69,6 @@ fun MainScreen(
                         timer,
                         now = uiState.now,
                         modifier = Modifier
-                            .padding(horizontal = 12.dp)
                             .transformedHeight(this, transformationSpec),
                         transformation = SurfaceTransformation(transformationSpec)
                     )
