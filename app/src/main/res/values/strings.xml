@@ -2,4 +2,8 @@
     <string name="app_name">Sanda Timer</string>
     <string name="no_timers">No timers</string>
     <string name="colon">:</string>
+    <string name="timer_ongoing_name">Ongoing Timer</string>
+    <string name="timer_done_name">Timer Finished</string>
+    <string name="timer_done_description">Get notified when a timer is finished</string>
+    <string name="timer_ongoing_description">Shows the progress of the next timer</string>
 </resources>

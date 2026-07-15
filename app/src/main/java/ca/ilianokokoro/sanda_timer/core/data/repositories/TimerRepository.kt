@@ -8,6 +8,7 @@ import android.os.Build
 import ca.ilianokokoro.sanda_timer.core.Constants
 import ca.ilianokokoro.sanda_timer.core.data.database.AppDatabase
 import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper
+import ca.ilianokokoro.sanda_timer.core.managers.NotificationManager
 import ca.ilianokokoro.sanda_timer.core.receivers.TimerExpiredReceiver
 import ca.ilianokokoro.sanda_timer.models.Timer
 import kotlin.time.Clock
@@ -27,8 +28,9 @@ class TimerRepository(
         val timer = Timer(endTime = endTime, duration = duration)
 
         val id = timerDataSource.insert(timer)
+        val savedTimer = getTimerById(id) ?: return -1L
 
-        scheduleAlarm(id, endTime)
+        scheduleAlarm(savedTimer, endTime)
 
         return id
     }
@@ -57,8 +59,12 @@ class TimerRepository(
     suspend fun getAllTimers(): List<Timer> =
         timerDataSource.getAll()
 
+    suspend fun getTimerById(id: Long): Timer? {
+        return timerDataSource.get(id)
+    }
+
     private fun scheduleAlarm(
-        timerId: Long,
+        timer: Timer,
         endTime: Instant
     ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !alarmManager.canScheduleExactAlarms()) {
@@ -67,12 +73,13 @@ class TimerRepository(
         }
 
         val intent = Intent(context, TimerExpiredReceiver::class.java).apply {
-            putExtra(Constants.TimerReceiver.TIMER_ID, timerId)
+            putExtra(Constants.TimerReceiver.TIMER_ID, timer.id)
         }
+
 
         val pendingIntent = PendingIntent.getBroadcast(
             context,
-            timerId.toInt(),
+            timer.id.toInt(),
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
@@ -82,6 +89,8 @@ class TimerRepository(
             endTime.toEpochMilliseconds(),
             pendingIntent,
         )
+
+        NotificationManager.startTimerOngoingNotification(context, timer)
     }
 
     private fun cancelAlarm(timerId: Long) {
