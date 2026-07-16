@@ -1,10 +1,10 @@
 package ca.ilianokokoro.sanda_timer.core.data.repositories
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import ca.ilianokokoro.sanda_timer.core.Constants
 import ca.ilianokokoro.sanda_timer.core.data.database.AppDatabase
 import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper
@@ -67,7 +67,7 @@ class TimerRepository(
         timer: Timer,
         endTime: Instant
     ) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !alarmManager.canScheduleExactAlarms()) {
+        if (!alarmManager.canScheduleExactAlarms()) {
             LogHelper.printd("SCHEDULE_EXACT_ALARM not granted, cannot set timer")
             return
         }
@@ -84,6 +84,7 @@ class TimerRepository(
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
+        @SuppressLint("MissingPermission") // USE_EXACT_ALARM is the permission
         alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
             endTime.toEpochMilliseconds(),

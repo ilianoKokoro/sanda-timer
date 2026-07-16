@@ -28,7 +28,7 @@ android {
 
     defaultConfig {
         applicationId = "ca.ilianokokoro.sanda_timer"
-        minSdk = 30
+        minSdk = 31
         targetSdk = 37
         versionCode = versionMajor * 10000 + versionMinor * 100 + versionPatch
         versionName = "${versionMajor}.${versionMinor}.${versionPatch}${if (beta) "-beta" else ""}"
