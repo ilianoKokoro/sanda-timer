@@ -76,13 +76,11 @@ object NotificationManager {
         context: Context,
         timer: Timer
     ) {
-
-
         val notificationBuilder = // TEMP
             getBaseNotification(context, NotificationChannels.TIMER_ONGOING)
                 .setContentTitle("Always On Service")
                 .setContentText("Service is running in background")
-                .setSmallIcon(android.R.drawable.ic_lock_lock)
+                .setSmallIcon(android.R.drawable.ic_lock_idle_alarm)
                 .setCategory(NotificationCompat.CATEGORY_ALARM)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setOngoing(true)

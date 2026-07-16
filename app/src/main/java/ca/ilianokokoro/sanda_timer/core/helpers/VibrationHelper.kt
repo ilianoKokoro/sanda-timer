@@ -2,7 +2,6 @@ package ca.ilianokokoro.sanda_timer.core.helpers
 
 import android.content.Context
 import android.os.Build
-import android.os.Handler
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
@@ -16,9 +15,14 @@ object VibrationHelper {
     fun startTimerVibration(context: Context) {
         val vibrator = getVibrator(context)
 
+        LogHelper.printd("hasVibrator=${vibrator.hasVibrator()}", tag = "TimerVibration")
+
         if (!vibrator.hasVibrator()) {
+            LogHelper.printd("No vibrator", tag = "TimerVibration")
             return
         }
+
+        LogHelper.printd("Starting vibration", tag = "TimerVibration")
 
         val effect = VibrationEffect.createWaveform(
             longArrayOf(0, 400, 200, 400, 200, 400),
@@ -27,10 +31,7 @@ object VibrationHelper {
 
         vibrator.vibrate(effect)
 
-        Handler(context.mainLooper).postDelayed(
-            { vibrator.cancel() },
-            Constants.MAX_VIBRATION_TIME.inWholeMilliseconds
-        )
+        LogHelper.printd("Vibration requested", tag = "TimerVibration")
     }
 
     fun stopTimerVibration(context: Context) {

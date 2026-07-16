@@ -11,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -60,17 +61,19 @@ fun TimerPicker(
         )
     }
 
-    LaunchedEffect(
-        hourState.selectedOptionIndex,
-        minuteState.selectedOptionIndex,
-        secondState.selectedOptionIndex
-    ) {
-        val duration =
-            hourState.selectedOptionIndex.hours + minuteState.selectedOptionIndex.minutes + secondState.selectedOptionIndex.seconds
-
-        onTimeChanged(duration)
+    LaunchedEffect(Unit) {
+        snapshotFlow {
+            Triple(
+                hourState.selectedOptionIndex,
+                minuteState.selectedOptionIndex,
+                secondState.selectedOptionIndex,
+            )
+        }.collect { (hours, minutes, seconds) ->
+            onTimeChanged(
+                hours.hours + minutes.minutes + seconds.seconds
+            )
+        }
     }
-
     val selectedState = when (focusedColumn) {
         0 -> hourState
         1 -> minuteState
@@ -116,17 +119,19 @@ fun TimerPicker(
 }
 
 @Composable
-private fun DigitColumn(optionIndex: Int, selected: Boolean) {
+private fun DigitColumn(
+    optionIndex: Int,
+    rowSelected: Boolean,
+) {
     Text(
         text = String.format(Locale.ROOT, "%02d", optionIndex),
         style = MaterialTheme.typography.numeralSmall,
-        color = if (selected) {
-            MaterialTheme.colorScheme.onBackground
-        } else {
-            MaterialTheme.colorScheme.onSurfaceVariant
+        color = when {
+            rowSelected -> MaterialTheme.colorScheme.onBackground
+            else -> MaterialTheme.colorScheme.secondaryDim
         },
         textAlign = TextAlign.Center,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     )
 }
 

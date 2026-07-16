@@ -1,6 +1,8 @@
+import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
+
 val versionMajor = 0
-val versionMinor = 0
-val versionPatch = 1
+val versionMinor = 1
+val versionPatch = 0
 
 val beta: Boolean = (project.findProperty("beta") as String?)?.toBoolean() ?: true
 
@@ -10,6 +12,11 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.ksp)
 }
+
+kotlinExtension.jvmToolchain {
+    languageVersion.set(JavaLanguageVersion.of(21))
+}
+
 
 android {
     namespace = "ca.ilianokokoro.sanda_timer"
@@ -66,6 +73,9 @@ dependencies {
     debugImplementation(libs.tiles.tooling)
     debugImplementation(libs.ui.test.manifest)
     debugImplementation(libs.ui.tooling)
+
+    // Wear OS Material + navigation
+    implementation(libs.androidx.compose.navigation)
 
     // Notification compatibility
     implementation(libs.androidx.appcompat)
