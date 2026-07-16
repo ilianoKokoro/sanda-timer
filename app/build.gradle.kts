@@ -107,5 +107,4 @@ dependencies {
     // Ongoing
     implementation(libs.androidx.core)
     implementation(libs.androidx.wear.ongoing)
-
 }
