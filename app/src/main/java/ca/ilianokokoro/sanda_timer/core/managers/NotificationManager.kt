@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.content.Context
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
+import androidx.wear.ongoing.OngoingActivity
 import ca.ilianokokoro.sanda_timer.R
 import ca.ilianokokoro.sanda_timer.models.Timer
 import kotlin.math.abs
@@ -13,7 +14,6 @@ import android.app.NotificationManager as AndroidNotificationManager
 object NotificationManager {
     private lateinit var androidNotificationManager: AndroidNotificationManager
     private lateinit var pendingIntent: PendingIntent
-
 
     fun init(context: Context) {
         val intent = context.packageManager.getLaunchIntentForPackage(context.packageName)
@@ -58,8 +58,8 @@ object NotificationManager {
         timerId: Long
     ) {
         val notification = getBaseNotification(context, NotificationChannels.TIMER_DONE)
-            .setSmallIcon(R.drawable.ic_alarm_notification)
-            .setContentTitle("Timer Done!") // TEMP
+            .setSmallIcon(R.drawable.ic_timer)
+            .setContentTitle("Timer Finished") // TEMP
             .setContentText("Tap to dismiss") // TEMP
             // .setFullScreenIntent(pendingIntent, true) TODO
             .setCategory(NotificationCompat.CATEGORY_ALARM)
@@ -75,12 +75,10 @@ object NotificationManager {
     fun startTimerOngoingNotification(
         context: Context,
         timer: Timer
-    ) {
-        val notificationBuilder = // TEMP
+    ) { // TODO handle old ongoing vs new live update
+        val notificationBuilder =
             getBaseNotification(context, NotificationChannels.TIMER_ONGOING)
-                .setContentTitle("Always On Service")
-                .setContentText("Service is running in background")
-                .setSmallIcon(android.R.drawable.ic_lock_idle_alarm)
+                .setSmallIcon(R.drawable.ic_timer)
                 .setCategory(NotificationCompat.CATEGORY_ALARM)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setOngoing(true)
@@ -91,21 +89,14 @@ object NotificationManager {
 
         val notificationId = getNotificationID(timer.id.toString())
 
-//            val ongoingActivity =
-//                OngoingActivity.Builder(context, notificationId, notificationBuilder)
-//                    // Sets the icon that appears on the watch face in active mode.
-//                    .setAnimatedIcon(R.drawable.ic_alarm_notification)
-//                    // Sets the icon that appears on the watch face in ambient mode.
-//                    .setStaticIcon(android.R.drawable.ic_menu_manage)
-//                    // Sets the tap target to bring the user back to the app.
-//                    .setTouchIntent(pendingIntent)
-//                    .build()
-//
-//            ongoingActivity.apply(context)
+        val ongoingActivity =
+            OngoingActivity.Builder(context, notificationId, notificationBuilder)
+                .setStaticIcon(R.drawable.ic_timer)
+                .setTouchIntent(pendingIntent)
+                .build()
 
+        ongoingActivity.apply(context)
         androidNotificationManager.notify(notificationId, notificationBuilder.build())
-
-
     }
 
 

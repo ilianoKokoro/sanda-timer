@@ -2,13 +2,18 @@ package ca.ilianokokoro.sanda_timer.modules.application.ui.screens.main.componen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material3.Card
+import androidx.wear.compose.material3.CircularProgressIndicator
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.SurfaceTransformation
 import androidx.wear.compose.material3.Text
@@ -29,25 +34,35 @@ fun TimerPill(
         transformation = transformation,
         shape = RoundedCornerShape(percent = 100),
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
+        Row(
+            modifier = Modifier.fillMaxSize(),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = timer.remainingDuration(now).toFormattedString(),
-                style = MaterialTheme.typography.numeralExtraSmall,
-                textAlign = TextAlign.Center,
-                overflow = TextOverflow.Clip,
-                maxLines = 1,
+            CircularProgressIndicator(
+                progress = { timer.percentFinished(now) },
+                modifier = Modifier.size(40.dp)
             )
-            Text(
-                text = timer.duration.toFormattedString(),
-                style = MaterialTheme.typography.titleSmall,
-                textAlign = TextAlign.Center,
-                overflow = TextOverflow.Clip,
-                maxLines = 1,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+            ) {
+                Text(
+                    text = timer.remainingDuration(now).toFormattedString(),
+                    style = MaterialTheme.typography.numeralExtraSmall,
+                    textAlign = TextAlign.Center,
+                    overflow = TextOverflow.Clip,
+                    maxLines = 1,
+                )
+                Text(
+                    text = timer.duration.toFormattedString(),
+                    style = MaterialTheme.typography.titleSmall,
+                    textAlign = TextAlign.Center,
+                    overflow = TextOverflow.Clip,
+                    maxLines = 1,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
         }
     }
 }

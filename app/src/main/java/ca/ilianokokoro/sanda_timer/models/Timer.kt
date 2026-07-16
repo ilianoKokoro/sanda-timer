@@ -23,4 +23,8 @@ data class Timer(
         }
     }
 
+    fun percentFinished(now: Instant): Float {
+        val remaining = remainingDuration(now)
+        return (remaining / duration).toFloat()
+    }
 }
