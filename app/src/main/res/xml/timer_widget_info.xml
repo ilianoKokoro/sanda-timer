@@ -1,0 +1,13 @@
+<wearwidget-provider
+    description="TEMP DESCRIPTION"
+    icon="@mipmap/ic_launcher"
+    label="TEMP LABEL 2"
+    preferredType="SMALL">
+
+    <container
+        previewImage="@drawable/timer_widget_preview"
+        type="SMALL" />
+    <container
+        previewImage="@drawable/timer_widget_preview"
+        type="LARGE" />
+</wearwidget-provider>

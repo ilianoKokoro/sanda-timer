@@ -36,19 +36,26 @@
         <!--        </service>-->
 
 
-        <!--        <service-->
-        <!--            android:name=".modules.tile.MainTileService"-->
-        <!--            android:exported="true"-->
-        <!--            android:label="TEMP LABEL1"-->
-        <!--            android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />-->
-        <!--            </intent-filter>-->
+        <service
+            android:name=".modules.widget.TimerWidgetService"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="TEMP Tile Label"
+            android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
 
-        <!--            <meta-data-->
-        <!--                android:name="androidx.wear.tiles.PREVIEW"-->
-        <!--                android:resource="@drawable/tile_preview" />-->
-        <!--        </service>-->
+            <intent-filter>
+                <action android:name="androidx.glance.wear.action.BIND_WIDGET_PROVIDER" />
+                <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="androidx.glance.wear.widget.provider"
+                android:resource="@xml/timer_widget_info" />
+
+            <meta-data
+                android:name="androidx.wear.tiles.PREVIEW"
+                android:resource="@drawable/timer_widget_preview" />
+        </service>
 
         <receiver
             android:name=".core.receivers.TimerExpiredReceiver"
