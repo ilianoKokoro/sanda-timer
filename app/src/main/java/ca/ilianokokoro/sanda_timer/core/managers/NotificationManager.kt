@@ -34,6 +34,24 @@ object NotificationManager {
                 it.importance
             ).apply {
                 description = context.getString(it.descriptionRes)
+
+                if (it.vibrationPattern != null) {
+                    enableVibration(true)
+                    vibrationPattern = longArrayOf(
+                        0,    // delay
+                        1000, // vibrate 1 second
+                        500,  // pause
+                        1000, // vibrate 1 second
+                        500,  // pause
+                        1000,  // vibrate 1 second
+                        500,  // pause
+                        1000, // vibrate 1 second
+                        500,  // pause
+                        1000, // vibrate 1 second
+                        500,  // pause
+                        1000  // vibrate 1 second
+                    )
+                }
             }
             androidNotificationManager.createNotificationChannel(notificationChannel)
         }
@@ -75,30 +93,39 @@ object NotificationManager {
     fun startTimerOngoingNotification(
         context: Context,
         timer: Timer
-    ) { // TODO handle old ongoing vs new live update
+    ) {
+        val notificationId = getNotificationID(timer.id.toString())
+
         val notificationBuilder =
             getBaseNotification(context, NotificationChannels.TIMER_ONGOING)
                 .setSmallIcon(R.drawable.ic_timer)
+                .setContentTitle("Timer running")
+                .setContentText("Timer is active")
                 .setCategory(NotificationCompat.CATEGORY_ALARM)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setOngoing(true)
-                .setWhen(timer.endTime?.toEpochMilliseconds() ?: 0)
+                .setOnlyAlertOnce(true)
+                .setWhen(timer.endTime!!.toEpochMilliseconds())
                 .setUsesChronometer(true)
                 .setChronometerCountDown(true)
                 .setRequestPromotedOngoing(true)
 
-        val notificationId = getNotificationID(timer.id.toString())
-
-        val ongoingActivity =
-            OngoingActivity.Builder(context, notificationId, notificationBuilder)
-                .setStaticIcon(R.drawable.ic_timer)
-                .setTouchIntent(pendingIntent)
-                .build()
+        val ongoingActivity = OngoingActivity.Builder(
+            context,
+            notificationId,
+            notificationBuilder
+        )
+            .setStaticIcon(R.drawable.ic_timer)
+            .setTouchIntent(pendingIntent)
+            .build()
 
         ongoingActivity.apply(context)
-        androidNotificationManager.notify(notificationId, notificationBuilder.build())
-    }
 
+        androidNotificationManager.notify(
+            notificationId,
+            notificationBuilder.build()
+        )
+    }
 
     private fun getNotificationID(id: String): Int {
         return 1000 + abs(id.hashCode() and 0x7fffffff)
@@ -110,20 +137,30 @@ object NotificationManager {
         @param:StringRes val nameRes: Int,
         @param:StringRes val descriptionRes: Int,
         val importance: Int,
+        val vibrationPattern: LongArray? = null
     ) {
 
         TIMER_ONGOING(
             channelId = "timer_ongoing",
             nameRes = R.string.timer_ongoing_name,
             descriptionRes = R.string.timer_ongoing_description,
-            importance = AndroidNotificationManager.IMPORTANCE_DEFAULT,
-        ),
+            importance = AndroidNotificationManager.IMPORTANCE_LOW,
+
+            ),
 
         TIMER_DONE(
             channelId = "timer_done",
             nameRes = R.string.timer_done_name,
             descriptionRes = R.string.timer_done_description,
             importance = AndroidNotificationManager.IMPORTANCE_MAX,
+            vibrationPattern = longArrayOf(
+                0,    // delay
+                1000, // vibrate 1 second
+                500,  // pause
+                1000, // vibrate 1 second
+                500,  // pause
+                1000  // vibrate 1 second
+            )
         );
     }
 }

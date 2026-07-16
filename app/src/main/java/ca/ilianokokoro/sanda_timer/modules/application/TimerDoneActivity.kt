@@ -11,7 +11,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import ca.ilianokokoro.sanda_timer.core.Constants
-import ca.ilianokokoro.sanda_timer.core.helpers.VibrationHelper
 
 class TimerDoneActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +44,6 @@ class TimerDoneActivity : ComponentActivity() {
         val dismiss = Button(this).apply {
             text = "Dismiss"
             setOnClickListener {
-                VibrationHelper.stopTimerVibration(this@TimerDoneActivity)
                 val notificationManager =
                     getSystemService(NOTIFICATION_SERVICE) as NotificationManager
                 notificationManager.cancel(timerId.toInt())

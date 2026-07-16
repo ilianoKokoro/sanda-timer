@@ -9,12 +9,12 @@ import androidx.compose.material.icons.rounded.Check
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.wear.compose.material3.ButtonDefaults
 import androidx.wear.compose.material3.EdgeButton
 import androidx.wear.compose.material3.EdgeButtonSize
 import androidx.wear.compose.material3.Icon
+import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.ScreenScaffold
 import ca.ilianokokoro.sanda_timer.modules.application.ui.components.TimerPicker
 
@@ -24,8 +24,6 @@ fun NewScreen(
     onBack: () -> Unit,
     newViewModel: NewViewModel = viewModel()
 ) {
-    val uiState = newViewModel.uiState.collectAsStateWithLifecycle().value
-
     ScreenScaffold {
         Column(
             Modifier
@@ -37,10 +35,18 @@ fun NewScreen(
                     newViewModel.updateDuration(it)
                 })
             }
-            EdgeButton(onClick = {
-                newViewModel.createTimer()
-                onBack()
-            }, buttonSize = EdgeButtonSize.Small) {
+            EdgeButton(
+                onClick = {
+                    newViewModel.createTimer()
+                    onBack()
+                },
+                buttonSize = EdgeButtonSize.Small,
+                colors =
+                    ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                    ),
+            ) {
                 Icon(
                     Icons.Rounded.Check,
                     contentDescription = Icons.Rounded.Check.name,

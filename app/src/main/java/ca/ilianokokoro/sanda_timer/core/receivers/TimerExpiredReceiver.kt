@@ -6,7 +6,6 @@ import android.content.Intent
 import ca.ilianokokoro.sanda_timer.core.Constants
 import ca.ilianokokoro.sanda_timer.core.data.repositories.TimerRepository
 import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper
-import ca.ilianokokoro.sanda_timer.core.helpers.VibrationHelper
 import ca.ilianokokoro.sanda_timer.core.managers.NotificationManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,9 +23,6 @@ class TimerExpiredReceiver : BroadcastReceiver() {
         }
 
         LogHelper.printd("Timer $timerId finished")
-
-        VibrationHelper.startTimerVibration(context)
-
         NotificationManager.showTimerDoneNotification(context, timerId)
 
         scope.launch {

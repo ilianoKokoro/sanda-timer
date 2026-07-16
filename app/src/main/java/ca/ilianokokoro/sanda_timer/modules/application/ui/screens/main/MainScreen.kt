@@ -44,8 +44,8 @@ fun MainScreen(
                 onClick = onCreateTimer,
                 colors =
                     ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                        contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                        containerColor = MaterialTheme.colorScheme.primaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
                     ),
             ) {
                 Icon(
@@ -53,7 +53,6 @@ fun MainScreen(
                     contentDescription = Icons.Rounded.Add.name,
                     modifier = Modifier.size(ButtonDefaults.IconSize),
                 )
-
             }
         },
     ) { contentPadding ->
