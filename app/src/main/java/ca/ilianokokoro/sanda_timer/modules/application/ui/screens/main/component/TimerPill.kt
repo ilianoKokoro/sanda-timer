@@ -2,6 +2,7 @@ package ca.ilianokokoro.sanda_timer.modules.application.ui.screens.main.componen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
@@ -65,7 +66,9 @@ fun TimerPill(
         modifier = modifier,
         transformation = transformation,
         shape = RoundedCornerShape(percent = 100),
-    ) {
+        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp),
+
+        ) {
         Row(
             modifier = Modifier.fillMaxSize(),
             horizontalArrangement = Arrangement.spacedBy(6.dp),
