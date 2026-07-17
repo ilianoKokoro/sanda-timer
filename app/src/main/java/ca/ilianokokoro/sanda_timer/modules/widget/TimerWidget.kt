@@ -1,19 +1,21 @@
+@file:SuppressLint("RestrictedApi")
+
 package ca.ilianokokoro.sanda_timer.modules.widget
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Add
 import androidx.compose.remote.creation.compose.action.pendingIntentAction
 import androidx.compose.remote.creation.compose.layout.RemoteAlignment
 import androidx.compose.remote.creation.compose.layout.RemoteBox
 import androidx.compose.remote.creation.compose.layout.RemoteComposable
-import androidx.compose.remote.creation.compose.layout.RemoteText
 import androidx.compose.remote.creation.compose.modifier.RemoteModifier
 import androidx.compose.remote.creation.compose.modifier.fillMaxSize
-import androidx.compose.remote.creation.compose.state.rc
 import androidx.compose.remote.creation.compose.state.rs
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.glance.wear.GlanceWearWidget
 import androidx.glance.wear.WearWidgetBrush
 import androidx.glance.wear.WearWidgetData
@@ -21,6 +23,9 @@ import androidx.glance.wear.WearWidgetDocument
 import androidx.glance.wear.color
 import androidx.glance.wear.core.WearWidgetParams
 import androidx.wear.compose.remote.material3.RemoteButton
+import androidx.wear.compose.remote.material3.RemoteButtonDefaults
+import androidx.wear.compose.remote.material3.RemoteColorScheme
+import androidx.wear.compose.remote.material3.RemoteIcon
 import androidx.wear.compose.remote.material3.RemoteMaterialTheme
 import ca.ilianokokoro.sanda_timer.modules.application.MainActivity
 
@@ -29,8 +34,9 @@ class TimerWidget : GlanceWearWidget() {
         context: Context,
         params: WearWidgetParams,
     ): WearWidgetData {
+        val remoteColorScheme = RemoteColorScheme()
         return WearWidgetDocument(
-            background = WearWidgetBrush.color(Color(0xFF1C1B1F).rc)
+            background = WearWidgetBrush.color(remoteColorScheme.surfaceContainerLow)
         ) {
             TimerWidgetContent()
         }
@@ -53,11 +59,19 @@ fun TimerWidgetContent() {
 
     RemoteBox(
         modifier = RemoteModifier.fillMaxSize(),
-        contentAlignment = RemoteAlignment.Center,
+        contentAlignment = RemoteAlignment.BottomCenter,
     ) {
-        RemoteButton(onClick = openAppAction) {
-            RemoteText(
-                text = "Open app".rs,
+        RemoteButton(
+            onClick = openAppAction,
+            colors = RemoteButtonDefaults.buttonColors().copy(
+                containerColor = RemoteMaterialTheme.colorScheme.primary,
+                contentColor = RemoteMaterialTheme.colorScheme.onPrimary
+            ),
+            modifier = RemoteModifier.fillMaxSize()
+        ) {
+            RemoteIcon(
+                Icons.Rounded.Add,
+                contentDescription = Icons.Rounded.Add.name.rs
             )
         }
     }

@@ -109,12 +109,12 @@ dependencies {
     implementation(libs.androidx.wear.ongoing)
 
     // Widget
-    implementation("androidx.compose.remote:remote-creation-compose:1.0.0-alpha15")
-    implementation("androidx.compose.remote:remote-core:1.0.0-alpha15")
-    implementation("androidx.glance.wear:wear:1.0.0-alpha14")
-    implementation("androidx.glance.wear:wear-core:1.0.0-alpha14")
-    implementation("androidx.wear.compose.remote:remote-material3:1.0.0-alpha07")
+    implementation(libs.androidx.compose.remote.creation.compose)
+    implementation(libs.androidx.compose.remote.core)
+    implementation(libs.androidx.glance.wear)
+    implementation(libs.androidx.glance.wear.core)
+    implementation(libs.androidx.remote.material3)
 
     // Tooling for Widget previews
-    implementation("androidx.compose.remote:remote-tooling-preview:1.0.0-alpha15")
+    implementation(libs.androidx.compose.remote.tooling.preview)
 }

@@ -7,6 +7,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -19,15 +27,39 @@ import androidx.wear.compose.material3.SurfaceTransformation
 import androidx.wear.compose.material3.Text
 import ca.ilianokokoro.sanda_timer.core.extensions.toFormattedString
 import ca.ilianokokoro.sanda_timer.models.Timer
-import kotlin.time.Instant
+import kotlinx.coroutines.isActive
+import kotlin.time.Clock
 
 @Composable
 fun TimerPill(
     timer: Timer,
-    now: Instant,
     modifier: Modifier = Modifier,
     transformation: SurfaceTransformation? = null,
 ) {
+    var progress by remember { mutableFloatStateOf(timer.percentFinished(Clock.System.now())) }
+    var remainingText by remember {
+        mutableStateOf(timer.remainingDuration(Clock.System.now()).toFormattedString())
+    }
+    var lastSecond by remember { mutableLongStateOf(-1L) }
+
+    LaunchedEffect(timer) {
+        while (isActive) { // TODO : check if this needs a rework
+            withFrameNanos { }
+            val now = Clock.System.now()
+            progress = timer.percentFinished(now)
+
+            val nowSecond = now.epochSeconds
+            if (nowSecond != lastSecond) {
+                lastSecond = nowSecond
+                remainingText = timer.remainingDuration(now).toFormattedString()
+            }
+
+            if (progress >= 1f) {
+                break
+            }
+        }
+    }
+
     Card(
         onClick = { /* TEMP */ },
         modifier = modifier,
@@ -36,19 +68,18 @@ fun TimerPill(
     ) {
         Row(
             modifier = Modifier.fillMaxSize(),
-            horizontalArrangement = Arrangement.SpaceEvenly,
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             CircularProgressIndicator(
-                progress = { timer.percentFinished(now) },
+                progress = { progress },
                 modifier = Modifier.size(40.dp)
             )
             Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,
             ) {
                 Text(
-                    text = timer.remainingDuration(now).toFormattedString(),
+                    text = remainingText,
                     style = MaterialTheme.typography.numeralExtraSmall,
                     textAlign = TextAlign.Center,
                     overflow = TextOverflow.Clip,

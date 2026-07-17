@@ -6,4 +6,5 @@
     <string name="timer_done_name">Timer Finished</string>
     <string name="timer_done_description">Get notified when a timer is finished</string>
     <string name="timer_ongoing_description">Shows the progress of the next timer</string>
+    <string name="sanda_timers">Sanda Timers</string>
 </resources>
