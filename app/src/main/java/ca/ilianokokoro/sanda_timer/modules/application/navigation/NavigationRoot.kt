@@ -1,6 +1,8 @@
 package ca.ilianokokoro.sanda_timer.modules.application.navigation
 
+import android.app.Application
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
@@ -11,6 +13,7 @@ import androidx.navigation3.ui.NavDisplay
 import androidx.wear.compose.material3.AppScaffold
 import androidx.wear.compose.navigation3.rememberSwipeDismissableSceneStrategy
 import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper.printe
+import ca.ilianokokoro.sanda_timer.modules.application.ui.screens.details.DetailsScreen
 import ca.ilianokokoro.sanda_timer.modules.application.ui.screens.main.MainScreen
 import ca.ilianokokoro.sanda_timer.modules.application.ui.screens.new.NewScreen
 
@@ -18,6 +21,7 @@ import ca.ilianokokoro.sanda_timer.modules.application.ui.screens.new.NewScreen
 fun NavigationRoot() {
     val backStack = rememberNavBackStack(Screen.Main)
     val strategy = rememberSwipeDismissableSceneStrategy<NavKey>()
+    val app = LocalContext.current.applicationContext as Application
 
     AppScaffold {
         NavDisplay(
@@ -31,12 +35,19 @@ fun NavigationRoot() {
                 entry<Screen.Main> {
                     MainScreen(onCreateTimer = {
                         backStack.add(Screen.New)
+                    }, onOpenTimer = {
+                        backStack.add(Screen.Details(it))
                     })
                 }
                 entry<Screen.New> {
-                    NewScreen(onBack = {
-                        backStack.safePop()
-                    })
+                    NewScreen(onBack = backStack::safePop)
+                }
+                entry<Screen.Details> { details ->
+                    DetailsScreen(
+                        timer = details.timer,
+                        application = app,
+                        onBack = backStack::safePop,
+                    )
                 }
             }
         )

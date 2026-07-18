@@ -34,6 +34,7 @@ import kotlin.time.Clock
 @Composable
 fun TimerPill(
     timer: Timer,
+    onOpenTimer: () -> Unit,
     modifier: Modifier = Modifier,
     transformation: SurfaceTransformation? = null,
 ) {
@@ -62,7 +63,7 @@ fun TimerPill(
     }
 
     Card(
-        onClick = { /* TEMP */ },
+        onClick = onOpenTimer,
         modifier = modifier,
         transformation = transformation,
         shape = RoundedCornerShape(percent = 100),

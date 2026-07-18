@@ -24,12 +24,14 @@ import androidx.wear.compose.material3.Text
 import androidx.wear.compose.material3.lazy.rememberTransformationSpec
 import androidx.wear.compose.material3.lazy.transformedHeight
 import ca.ilianokokoro.sanda_timer.R
+import ca.ilianokokoro.sanda_timer.models.Timer
 import ca.ilianokokoro.sanda_timer.modules.application.ui.screens.main.component.TimerPill
 
 
 @Composable
 fun MainScreen(
     onCreateTimer: () -> Unit,
+    onOpenTimer: (timer: Timer) -> Unit,
     mainViewModel: MainViewModel = viewModel()
 ) {
     val uiState = mainViewModel.uiState.collectAsStateWithLifecycle().value
@@ -65,6 +67,9 @@ fun MainScreen(
                 items(timers, key = { it.id }) { timer ->
                     TimerPill(
                         timer,
+                        onOpenTimer = {
+                            onOpenTimer(timer)
+                        },
                         modifier = Modifier
                             .fillMaxWidth()
                             .transformedHeight(this, transformationSpec)

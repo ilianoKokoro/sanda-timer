@@ -5,7 +5,6 @@ import android.app.PendingIntent
 import android.content.Context
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
-import androidx.wear.ongoing.OngoingActivity
 import ca.ilianokokoro.sanda_timer.R
 import ca.ilianokokoro.sanda_timer.models.Timer
 import kotlin.math.abs
@@ -75,6 +74,7 @@ object NotificationManager {
         context: Context,
         timerId: Long
     ) {
+        stopTimerOngoingNotification(context, timerId)
         val notification = getBaseNotification(context, NotificationChannels.TIMER_DONE)
             .setSmallIcon(R.drawable.ic_timer)
             .setContentTitle("Timer Finished") // TEMP
@@ -110,21 +110,26 @@ object NotificationManager {
                 .setChronometerCountDown(true)
                 .setRequestPromotedOngoing(true)
 
-        val ongoingActivity = OngoingActivity.Builder(
-            context,
-            notificationId,
-            notificationBuilder
-        )
-            .setStaticIcon(R.drawable.ic_timer)
-            .setTouchIntent(pendingIntent)
-            .build()
-
-        ongoingActivity.apply(context)
+//        val ongoingActivity = OngoingActivity.Builder(
+//            context,
+//            notificationId,
+//            notificationBuilder
+//        )
+//            .setStaticIcon(R.drawable.ic_timer)
+//            .setTouchIntent(pendingIntent)
+//            .build()
+//
+//        ongoingActivity.apply(context)
 
         androidNotificationManager.notify(
             notificationId,
             notificationBuilder.build()
         )
+    }
+
+    fun stopTimerOngoingNotification(context: Context, timerId: Long) {
+        val notificationId = getNotificationID(timerId.toString())
+        androidNotificationManager.cancel(notificationId)
     }
 
     private fun getNotificationID(id: String): Int {
