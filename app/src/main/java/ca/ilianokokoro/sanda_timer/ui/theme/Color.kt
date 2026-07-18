@@ -1,4 +1,4 @@
-package com.iliano.chrono_calcul_mobile.ui.theme
+package ca.ilianokokoro.sanda_timer.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

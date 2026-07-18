@@ -1,4 +1,4 @@
-package com.iliano.chrono_calcul_mobile
+package ca.ilianokokoro.sanda_timer
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,8 +9,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.iliano.chrono_calcul_mobile.ui.screens.calculator.CalculatorScreen
-import com.iliano.chrono_calcul_mobile.ui.theme.ChronoCalculMobileTheme
+import ca.ilianokokoro.sanda_timer.ui.screens.calculator.CalculatorScreen
+import ca.ilianokokoro.sanda_timer.ui.theme.SandaTimerTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         installSplashScreen().apply { }
         enableEdgeToEdge()
         setContent {
-            ChronoCalculMobileTheme {
+            SandaTimerTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background

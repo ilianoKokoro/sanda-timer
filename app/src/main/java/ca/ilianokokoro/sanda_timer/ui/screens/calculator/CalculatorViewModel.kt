@@ -1,6 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
-package com.iliano.chrono_calcul_mobile.ui.screens.calculator
+package ca.ilianokokoro.sanda_timer.ui.screens.calculator
 
 import android.app.Application
 import android.content.Context
@@ -10,14 +8,12 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
 import android.text.format.DateFormat
-import android.util.Log
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TimePickerState
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.application
 import androidx.lifecycle.viewModelScope
-import com.iliano.chrono_calcul_mobile.core.Constants
-import com.iliano.chrono_calcul_mobile.core.toFormattedString
+import ca.ilianokokoro.sanda_timer.core.Constants
+import ca.ilianokokoro.sanda_timer.core.toFormattedString
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -55,18 +51,17 @@ class CalculatorViewModel(
         _uiState.update {
             _uiState.value.copy(
                 checkBoxState = enable,
-                        calculation = _uiState.value.calculation.copy(applyOffset = enable)
+                calculation = _uiState.value.calculation.copy(applyOffset = enable)
             )
         }
         updateTextResult()
     }
 
     fun showTimePicker() {
-    val currentChosenTime = _uiState.value.calculation.getTargetTime()
+        val currentChosenTime = _uiState.value.calculation.getTargetTime()
         _uiState.update {
             _uiState.value.copy(
-                showTimePicker = true
-                , timePickerState = TimePickerState(
+                showTimePicker = true, timePickerState = TimePickerState(
                     is24Hour = DateFormat.is24HourFormat(application.applicationContext),
                     initialHour = currentChosenTime.hour,
                     initialMinute = currentChosenTime.minute
@@ -95,7 +90,7 @@ class CalculatorViewModel(
     fun vibrateDevice(context: Context, type: VibrationTypes) {
         val vibrator: Vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val vibratorManager =
-             context.getSystemService(VibratorManager::class.java)
+                context.getSystemService(VibratorManager::class.java)
 
             vibratorManager.defaultVibrator
         } else {

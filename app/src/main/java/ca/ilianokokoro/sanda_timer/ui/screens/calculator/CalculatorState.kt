@@ -1,12 +1,8 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+package ca.ilianokokoro.sanda_timer.ui.screens.calculator
 
-package com.iliano.chrono_calcul_mobile.ui.screens.calculator
-
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TimePickerState
-import com.iliano.chrono_calcul_mobile.core.Constants
-import com.iliano.chrono_calcul_mobile.models.Calculation
-import java.time.LocalTime
+import ca.ilianokokoro.sanda_timer.core.Constants
+import ca.ilianokokoro.sanda_timer.models.Calculation
 
 data class CalculatorState(
     val calculation: Calculation = Calculation(),

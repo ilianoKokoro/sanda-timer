@@ -1,4 +1,4 @@
-package com.iliano.chrono_calcul_mobile.ui.components
+package ca.ilianokokoro.sanda_timer.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -20,7 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.iliano.chrono_calcul_mobile.R
+import ca.ilianokokoro.sanda_timer.R
 
 @Composable
 fun TimePickerDialog(

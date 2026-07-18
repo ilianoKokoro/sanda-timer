@@ -1,7 +1,9 @@
-package com.iliano.chrono_calcul_mobile.core
+package ca.ilianokokoro.sanda_timer.core
+
+import kotlin.time.Duration.Companion.seconds
 
 object Constants {
-    const val UPDATE_DELAY = 1000L
+    val UPDATE_DELAY = 1.seconds
 
     object DefaultValues {
         const val OFFSET = true

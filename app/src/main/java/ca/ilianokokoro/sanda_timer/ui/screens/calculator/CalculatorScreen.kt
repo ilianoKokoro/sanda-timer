@@ -1,6 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
-package com.iliano.chrono_calcul_mobile.ui.screens.calculator
+package ca.ilianokokoro.sanda_timer.ui.screens.calculator
 
 import android.content.Context
 import android.content.res.Configuration
@@ -16,7 +14,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -36,9 +33,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.iliano.chrono_calcul_mobile.R
-import com.iliano.chrono_calcul_mobile.core.toFormattedString
-import com.iliano.chrono_calcul_mobile.ui.components.TimePickerDialog
+import ca.ilianokokoro.sanda_timer.R
+import ca.ilianokokoro.sanda_timer.core.toFormattedString
+import ca.ilianokokoro.sanda_timer.ui.components.TimePickerDialog
 import java.time.LocalTime
 
 @Composable

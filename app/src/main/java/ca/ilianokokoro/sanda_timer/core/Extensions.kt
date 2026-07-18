@@ -1,4 +1,4 @@
-package com.iliano.chrono_calcul_mobile.core
+package ca.ilianokokoro.sanda_timer.core
 
 import android.content.Context
 import android.text.format.DateFormat

@@ -1,7 +1,7 @@
-package com.iliano.chrono_calcul_mobile.models
+package ca.ilianokokoro.sanda_timer.models
 
-import com.iliano.chrono_calcul_mobile.core.Constants
-import com.iliano.chrono_calcul_mobile.core.durationBetween
+import ca.ilianokokoro.sanda_timer.core.Constants
+import ca.ilianokokoro.sanda_timer.core.durationBetween
 import java.time.LocalTime
 import kotlin.time.Duration
 
