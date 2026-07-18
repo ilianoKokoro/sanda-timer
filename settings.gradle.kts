@@ -25,3 +25,4 @@ dependencyResolutionManagement {
 rootProject.name = "Sanda Timer"
 include(":wear")
 include(":app")
+include(":core")

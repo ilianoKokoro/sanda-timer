@@ -9,6 +9,7 @@ import ca.ilianokokoro.sanda_timer.R
 import ca.ilianokokoro.sanda_timer.models.Timer
 import kotlin.math.abs
 import android.app.NotificationManager as AndroidNotificationManager
+import ca.ilianokokoro.sanda_timer.core.R as RCore
 
 object NotificationManager {
     private lateinit var androidNotificationManager: AndroidNotificationManager
@@ -76,7 +77,7 @@ object NotificationManager {
     ) {
         stopTimerOngoingNotification(context, timerId)
         val notification = getBaseNotification(context, NotificationChannels.TIMER_DONE)
-            .setSmallIcon(R.drawable.ic_timer)
+            .setSmallIcon(RCore.drawable.ic_timer)
             .setContentTitle("Timer Finished") // TEMP
             .setContentText("Tap to dismiss") // TEMP
             // .setFullScreenIntent(pendingIntent, true) TODO
@@ -98,7 +99,7 @@ object NotificationManager {
 
         val notificationBuilder =
             getBaseNotification(context, NotificationChannels.TIMER_ONGOING)
-                .setSmallIcon(R.drawable.ic_timer)
+                .setSmallIcon(RCore.drawable.ic_timer)
                 .setContentTitle("Timer running")
                 .setContentText("Timer is active")
                 .setCategory(NotificationCompat.CATEGORY_ALARM)

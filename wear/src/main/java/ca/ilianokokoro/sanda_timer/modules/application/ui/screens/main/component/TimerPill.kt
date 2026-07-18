@@ -26,7 +26,7 @@ import androidx.wear.compose.material3.CircularProgressIndicator
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.SurfaceTransformation
 import androidx.wear.compose.material3.Text
-import ca.ilianokokoro.sanda_timer.core.extensions.toFormattedString
+import ca.ilianokokoro.sanda_timer.core.toFormattedDuration
 import ca.ilianokokoro.sanda_timer.models.Timer
 import kotlinx.coroutines.isActive
 import kotlin.time.Clock
@@ -40,7 +40,7 @@ fun TimerPill(
 ) {
     var progress by remember { mutableFloatStateOf(timer.percentFinished(Clock.System.now())) }
     var remainingText by remember {
-        mutableStateOf(timer.remainingDuration(Clock.System.now()).toFormattedString())
+        mutableStateOf(timer.remainingDuration(Clock.System.now()).toFormattedDuration())
     }
     var lastSecond by remember { mutableLongStateOf(-1L) }
 
@@ -53,7 +53,7 @@ fun TimerPill(
             val nowSecond = now.epochSeconds
             if (nowSecond != lastSecond) {
                 lastSecond = nowSecond
-                remainingText = timer.remainingDuration(now).toFormattedString()
+                remainingText = timer.remainingDuration(now).toFormattedDuration()
             }
 
             if (progress >= 1f) {
@@ -90,7 +90,7 @@ fun TimerPill(
                     maxLines = 1,
                 )
                 Text(
-                    text = timer.duration.toFormattedString(),
+                    text = timer.duration.toFormattedDuration(),
                     style = MaterialTheme.typography.titleSmall,
                     textAlign = TextAlign.Center,
                     overflow = TextOverflow.Clip,
