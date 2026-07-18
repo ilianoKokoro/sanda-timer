@@ -17,7 +17,6 @@ kotlinExtension.jvmToolchain {
     languageVersion.set(JavaLanguageVersion.of(21))
 }
 
-
 android {
     namespace = "ca.ilianokokoro.sanda_timer"
     compileSdk {
@@ -41,10 +40,7 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
+    
     useLibrary("wear-sdk")
     buildFeatures {
         compose = true
