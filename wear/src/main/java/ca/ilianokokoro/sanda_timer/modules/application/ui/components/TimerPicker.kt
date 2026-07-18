@@ -21,7 +21,7 @@ import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.PickerGroup
 import androidx.wear.compose.material3.Text
 import androidx.wear.compose.material3.rememberPickerState
-import ca.ilianokokoro.sanda_timer.R
+import ca.ilianokokoro.sanda_timer.core.R
 import java.util.Locale
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours

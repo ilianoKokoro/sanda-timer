@@ -4,18 +4,18 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import ca.ilianokokoro.sanda_timer.R
+import ca.ilianokokoro.sanda_timer.core.R.font as CoreFont
 import androidx.wear.compose.material3.Typography as MaterialTypography
 
 val nunitoFontFamily = FontFamily(
-    Font(R.font.nunito_extralight, FontWeight.ExtraLight, FontStyle.Normal),
-    Font(R.font.nunito_light, FontWeight.Light, FontStyle.Normal),
-    Font(R.font.nunito, FontWeight.Normal, FontStyle.Normal),
-    Font(R.font.nunito_medium, FontWeight.Medium, FontStyle.Normal),
-    Font(R.font.nunito_semibold, FontWeight.SemiBold, FontStyle.Normal),
-    Font(R.font.nunito_bold, FontWeight.Bold, FontStyle.Normal),
-    Font(R.font.nunito_extrabold, FontWeight.ExtraBold, FontStyle.Normal),
-    Font(R.font.nunito_black, FontWeight.Black, FontStyle.Normal),
+    Font(CoreFont.nunito_extralight, FontWeight.ExtraLight, FontStyle.Normal),
+    Font(CoreFont.nunito_light, FontWeight.Light, FontStyle.Normal),
+    Font(CoreFont.nunito, FontWeight.Normal, FontStyle.Normal),
+    Font(CoreFont.nunito_medium, FontWeight.Medium, FontStyle.Normal),
+    Font(CoreFont.nunito_semibold, FontWeight.SemiBold, FontStyle.Normal),
+    Font(CoreFont.nunito_bold, FontWeight.Bold, FontStyle.Normal),
+    Font(CoreFont.nunito_extrabold, FontWeight.ExtraBold, FontStyle.Normal),
+    Font(CoreFont.nunito_black, FontWeight.Black, FontStyle.Normal),
 )
 private val defaultTypography = MaterialTypography()
 

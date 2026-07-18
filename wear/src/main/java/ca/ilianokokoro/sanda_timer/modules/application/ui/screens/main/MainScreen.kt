@@ -23,7 +23,7 @@ import androidx.wear.compose.material3.SurfaceTransformation
 import androidx.wear.compose.material3.Text
 import androidx.wear.compose.material3.lazy.rememberTransformationSpec
 import androidx.wear.compose.material3.lazy.transformedHeight
-import ca.ilianokokoro.sanda_timer.R
+import ca.ilianokokoro.sanda_timer.core.R
 import ca.ilianokokoro.sanda_timer.models.Timer
 import ca.ilianokokoro.sanda_timer.modules.application.ui.screens.main.component.TimerPill
 

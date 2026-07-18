@@ -148,16 +148,16 @@ object NotificationManager {
 
         TIMER_ONGOING(
             channelId = "timer_ongoing",
-            nameRes = R.string.timer_ongoing_name,
-            descriptionRes = R.string.timer_ongoing_description,
+            nameRes = RCore.string.timer_ongoing_name,
+            descriptionRes = RCore.string.timer_ongoing_description,
             importance = AndroidNotificationManager.IMPORTANCE_LOW,
 
             ),
 
         TIMER_DONE(
             channelId = "timer_done",
-            nameRes = R.string.timer_done_name,
-            descriptionRes = R.string.timer_done_description,
+            nameRes = RCore.string.timer_done_name,
+            descriptionRes = RCore.string.timer_done_description,
             importance = AndroidNotificationManager.IMPORTANCE_MAX,
             vibrationPattern = longArrayOf(
                 0,    // delay
