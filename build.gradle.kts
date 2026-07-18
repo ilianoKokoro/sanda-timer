@@ -5,3 +5,8 @@ plugins {
     alias(libs.plugins.kotlin.compose) apply false
     alias(libs.plugins.ksp) apply false
 }
+
+extra["versionMajor"] = 0
+extra["versionMinor"] = 2
+extra["versionPatch"] = 0
+extra["beta"] = true // TODO dynamic

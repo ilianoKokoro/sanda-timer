@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 
-val versionMajor = 0
-val versionMinor = 1
-val versionPatch = 0
+val versionMajor: Int = rootProject.extra["versionMajor"] as Int
+val versionMinor: Int = rootProject.extra["versionMinor"] as Int
+val versionPatch: Int = rootProject.extra["versionPatch"] as Int
 
-val beta: Boolean = (project.findProperty("beta") as String?)?.toBoolean() ?: true
+val beta: Boolean = rootProject.extra["beta"] as Boolean
 
 plugins {
     alias(libs.plugins.android.application)
@@ -40,7 +40,7 @@ android {
         }
     }
 
-    
+
     useLibrary("wear-sdk")
     buildFeatures {
         compose = true

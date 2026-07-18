@@ -2,18 +2,15 @@ name: "CodeQL Advanced"
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
   schedule:
     - cron: "30 7 * * 3"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
-env:
-  MAIN_PROJECT_MODULE: app
 
 jobs:
   analyze:
@@ -57,7 +54,7 @@ jobs:
 
       - name: Build
         if: matrix.language == 'java-kotlin'
-        run: ./gradlew assembleRelease
+        run: ./gradlew assemble
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4
