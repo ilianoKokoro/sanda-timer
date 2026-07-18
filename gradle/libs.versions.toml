@@ -1,7 +1,7 @@
 [versions]
 agp = "9.3.0"
 playServicesWearable = "20.0.1"
-kotlin = "2.4.0" # 2.4.0 for CodeQL https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/#languages-and-compilers
+kotlin = "2.4.10" # 2.4.0 for CodeQL https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/#languages-and-compilers
 composeBom = "2026.06.01"
 wearToolingPreview = "1.0.0"
 activityCompose = "1.13.0"
