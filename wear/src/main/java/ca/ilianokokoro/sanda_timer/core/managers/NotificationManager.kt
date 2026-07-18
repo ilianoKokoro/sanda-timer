@@ -75,7 +75,6 @@ object NotificationManager {
         context: Context,
         timerId: Long
     ) {
-        stopTimerOngoingNotification(context, timerId)
         val notification = getBaseNotification(context, NotificationChannels.TIMER_DONE)
             .setSmallIcon(RCore.drawable.ic_timer)
             .setContentTitle("Timer Finished") // TEMP

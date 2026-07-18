@@ -33,7 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import ca.ilianokokoro.sanda_timer.R
+import ca.ilianokokoro.sanda_timer.core.R
 import ca.ilianokokoro.sanda_timer.core.toFormattedString
 import ca.ilianokokoro.sanda_timer.ui.components.TimePickerDialog
 import java.time.LocalTime

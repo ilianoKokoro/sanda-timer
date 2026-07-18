@@ -8,4 +8,9 @@
     <string name="timer_done_name">Timer Finished</string>
     <string name="timer_done_description">Get notified when a timer is finished</string>
     <string name="timer_ongoing_description">Shows the progress of the next timer</string>
+    <string name="genericError">Error</string>
+    <string name="offset_switch">-15 mins</string>
+    <string name="confirmButton">OK</string>
+    <string name="invalid_time_error">The chosen time is invalid</string>
+    <string name="select_time">Select the target time</string>
 </resources>

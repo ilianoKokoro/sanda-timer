@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="genericError">Erreur</string>
-    <string name="offset_switch">-15 mins</string>
-    <string name="confirmButton">OK</string>
-    <string name="invalid_time_error">Le temps entré est invalide</string>
-    <string name="select_time">Choisissez l\'heure cible</string>
-</resources>

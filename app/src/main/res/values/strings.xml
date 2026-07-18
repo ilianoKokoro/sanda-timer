@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name" translatable="false">Chrono calcul</string>
-    <string name="genericError">Error</string>
-    <string name="offset_switch">-15 mins</string>
-    <string name="confirmButton">OK</string>
-    <string name="invalid_time_error">The chosen time is invalid</string>
-    <string name="select_time">Select the target time</string>
-</resources>
