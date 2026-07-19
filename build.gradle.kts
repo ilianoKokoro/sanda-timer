@@ -7,6 +7,6 @@ plugins {
 }
 
 extra["versionMajor"] = 0
-extra["versionMinor"] = 2
+extra["versionMinor"] = 3
 extra["versionPatch"] = 0
 extra["beta"] = true // TODO dynamic

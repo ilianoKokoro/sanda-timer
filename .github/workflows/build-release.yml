@@ -1,0 +1,70 @@
+name: Build the Android App and upload to Google Play Store
+
+permissions:
+    contents: read
+
+on:
+    push:
+        branches:
+            - prod
+
+    workflow_dispatch:
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+env:
+    MAIN_PROJECT_MODULE: app
+    APK_FILE_NAME: SandaTimer
+    STORE_FILE: release-key.jks
+    BETA_TAG: beta
+
+jobs:
+    publish-play-store:
+        runs-on: ubuntu-latest
+
+        permissions:
+            contents: "read"
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Set Up JDK
+              uses: actions/setup-java@v5
+              with:
+                  distribution: temurin
+                  java-version: 21
+                  cache: gradle
+
+            - name: Change wrapper permissions
+              run: chmod +x ./gradlew
+
+            - name: Set up Keystore
+              run: |
+                  echo "$KEYSTORE_BASE64" | base64 -d > app/release-key.jks
+              env:
+                  KEYSTORE_BASE64: ${{ secrets.SIGNING_KEY }}
+
+            - name: Create keystore.properties
+              run: |
+                  echo "storeFile=release-key.jks" > keystore.properties
+                  echo "storePassword=${{ secrets.KEY_STORE_PASSWORD }}" >> keystore.properties
+                  echo "keyAlias=${{ secrets.ALIAS }}" >> keystore.properties
+                  echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> keystore.properties
+
+            - name: Build Play Store bundle
+              run: |
+                  ./gradlew \
+                    bundleStoreRelease \
+                    -Pbeta=false \
+                    -PgitHash=${{ github.sha }}
+
+            - name: Upload to Google Play
+              uses: r0adkll/upload-google-play@v1
+              with:
+                  serviceAccountJson: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+                  packageName: ca.ilianokokoro.sanda_timer
+                  releaseFiles: app/build/outputs/bundle/storeRelease/*.aab
+                  tracks: internal
+                  status: draft
