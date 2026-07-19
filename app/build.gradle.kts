@@ -1,4 +1,13 @@
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
+import java.io.FileInputStream
+import java.util.Properties
+
+val keystorePropertiesFile: File = rootProject.file("keystore.properties")
+val keystoreProperties = Properties()
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+}
+
 
 val versionMajor: Int = rootProject.extra["versionMajor"] as Int
 val versionMinor: Int = rootProject.extra["versionMinor"] as Int
@@ -30,12 +39,28 @@ android {
         versionName = "${versionMajor}.${versionMinor}.${versionPatch}"
     }
 
+
+    signingConfigs {
+        if (keystorePropertiesFile.exists()) {
+            create("release") {
+                keyAlias = keystoreProperties["keyAlias"] as String
+                keyPassword = keystoreProperties["keyPassword"] as String
+                storeFile = rootProject.file(keystoreProperties["storeFile"] as String)
+                storePassword = keystoreProperties["storePassword"] as String
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            signingConfigs.findByName("release")?.let {
+                signingConfig = it
+            }
         }
     }
+
 
     buildFeatures {
         compose = true

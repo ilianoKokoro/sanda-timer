@@ -40,6 +40,19 @@ jobs:
             - name: Change wrapper permissions
               run: chmod +x ./gradlew
 
+            - name: Set up Keystore
+              run: |
+                  echo "$KEYSTORE_BASE64" | base64 -d > ./release-key.jks
+              env:
+                  KEYSTORE_BASE64: ${{ secrets.SIGNING_KEY }}
+
+            - name: Create keystore.properties
+              run: |
+                  echo "storeFile=release-key.jks" > keystore.properties
+                  echo "storePassword=${{ secrets.KEY_STORE_PASSWORD }}" >> keystore.properties
+                  echo "keyAlias=${{ secrets.ALIAS }}" >> keystore.properties
+                  echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> keystore.properties
+
             - name: Build phone bundle
               run: ./gradlew app:bundleRelease
 
