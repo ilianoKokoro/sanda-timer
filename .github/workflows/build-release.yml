@@ -14,12 +14,6 @@ concurrency:
     group: ${{ github.workflow }}-${{ github.ref }}
     cancel-in-progress: true
 
-env:
-    MAIN_PROJECT_MODULE: app
-    APK_FILE_NAME: SandaTimer
-    STORE_FILE: release-key.jks
-    BETA_TAG: beta
-
 jobs:
     publish-play-store:
         runs-on: ubuntu-latest
@@ -58,6 +52,9 @@ jobs:
 
             - name: Build Wear bundle
               run: ./gradlew wear:bundleRelease
+
+            - name: Smoke test
+              run: ./gradlew app:testReleaseUnitTest wear:testReleaseUnitTest lint
 
             - name: Upload phone
               uses: r0adkll/upload-google-play@v1

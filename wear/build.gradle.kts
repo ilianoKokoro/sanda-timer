@@ -29,9 +29,7 @@ android {
     compileSdk {
         version = release(37)
     }
-    ndkVersion = "30.0.14904198"
     buildToolsVersion = "37.0.0"
-
     defaultConfig {
         applicationId = "ca.ilianokokoro.sanda_timer"
         minSdk = 31
@@ -62,7 +60,6 @@ android {
     }
 
 
-    useLibrary("wear-sdk")
     buildFeatures {
         compose = true
     }
