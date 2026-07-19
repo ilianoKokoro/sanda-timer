@@ -4,8 +4,6 @@ val versionMajor: Int = rootProject.extra["versionMajor"] as Int
 val versionMinor: Int = rootProject.extra["versionMinor"] as Int
 val versionPatch: Int = rootProject.extra["versionPatch"] as Int
 
-val beta: Boolean = rootProject.extra["beta"] as Boolean
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -30,7 +28,7 @@ android {
         minSdk = 31
         targetSdk = 37
         versionCode = versionMajor * 10000 + versionMinor * 100 + versionPatch
-        versionName = "${versionMajor}.${versionMinor}.${versionPatch}${if (beta) "-beta" else ""}"
+        versionName = "${versionMajor}.${versionMinor}.${versionPatch}"
     }
 
     buildTypes {

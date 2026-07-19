@@ -28,7 +28,7 @@ jobs:
             contents: "read"
 
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v7
 
             - name: Set Up JDK
               uses: actions/setup-java@v5
@@ -40,31 +40,26 @@ jobs:
             - name: Change wrapper permissions
               run: chmod +x ./gradlew
 
-            - name: Set up Keystore
-              run: |
-                  echo "$KEYSTORE_BASE64" | base64 -d > app/release-key.jks
-              env:
-                  KEYSTORE_BASE64: ${{ secrets.SIGNING_KEY }}
+            - name: Build phone bundle
+              run: ./gradlew app:bundleRelease
 
-            - name: Create keystore.properties
-              run: |
-                  echo "storeFile=release-key.jks" > keystore.properties
-                  echo "storePassword=${{ secrets.KEY_STORE_PASSWORD }}" >> keystore.properties
-                  echo "keyAlias=${{ secrets.ALIAS }}" >> keystore.properties
-                  echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> keystore.properties
+            - name: Build Wear bundle
+              run: ./gradlew wear:bundleRelease
 
-            - name: Build Play Store bundle
-              run: |
-                  ./gradlew \
-                    bundleStoreRelease \
-                    -Pbeta=false \
-                    -PgitHash=${{ github.sha }}
-
-            - name: Upload to Google Play
+            - name: Upload phone
               uses: r0adkll/upload-google-play@v1
               with:
-                  serviceAccountJson: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+                  serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
                   packageName: ca.ilianokokoro.sanda_timer
-                  releaseFiles: app/build/outputs/bundle/storeRelease/*.aab
+                  releaseFiles: app/build/outputs/bundle/release/*.aab
+                  tracks: internal
+                  status: draft
+
+            - name: Upload Wear
+              uses: r0adkll/upload-google-play@v1
+              with:
+                  serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+                  packageName: ca.ilianokokoro.sanda_timer
+                  releaseFiles: wear/build/outputs/bundle/release/*.aab
                   tracks: internal
                   status: draft
