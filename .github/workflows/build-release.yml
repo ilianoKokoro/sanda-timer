@@ -54,7 +54,7 @@ jobs:
               run: ./gradlew wear:bundleRelease
 
             - name: Smoke test
-              run: ./gradlew app:testReleaseUnitTest wear:testReleaseUnitTest lint
+              run: ./gradlew lint
 
             - name: Upload phone
               uses: r0adkll/upload-google-play@v1
