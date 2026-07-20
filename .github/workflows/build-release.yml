@@ -6,6 +6,7 @@ permissions:
 on:
     push:
         branches:
+            - main
             - prod
 
     workflow_dispatch:
@@ -58,6 +59,7 @@ jobs:
 
             - name: Upload phone
               uses: r0adkll/upload-google-play@v1
+              if: github.ref_name == 'prod'
               with:
                   serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
                   packageName: ca.ilianokokoro.sanda_timer
@@ -67,6 +69,7 @@ jobs:
 
             - name: Upload Wear
               uses: r0adkll/upload-google-play@v1
+              if: github.ref_name == 'prod'
               with:
                   serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
                   packageName: ca.ilianokokoro.sanda_timer
