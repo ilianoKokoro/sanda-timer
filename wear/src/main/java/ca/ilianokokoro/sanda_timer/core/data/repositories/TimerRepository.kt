@@ -49,6 +49,33 @@ class TimerRepository(
         timerDataSource.deleteExpired(Clock.System.now())
     }
 
+    suspend fun pauseTimer(timer: Timer): Timer {
+        val now = Clock.System.now()
+        val remaining = timer.remainingDuration(now)
+        val pausedTimer = timer.copy(
+            running = false,
+            pausedRemaining = remaining,
+            endTime = null,
+        )
+        timerDataSource.update(pausedTimer)
+        cancelAlarm(timer.id)
+        NotificationManager.stopTimerOngoingNotification(context, timer.id)
+        return pausedTimer
+    }
+
+    suspend fun resumeTimer(timer: Timer): Timer {
+        val now = Clock.System.now()
+        val endTime = now + timer.pausedRemaining
+        val resumedTimer = timer.copy(
+            running = true,
+            pausedRemaining = Duration.ZERO,
+            endTime = endTime,
+        )
+        timerDataSource.update(resumedTimer)
+        scheduleAlarm(resumedTimer, endTime)
+        return resumedTimer
+    }
+
     suspend fun clearTimers() {
         getAllTimers().forEach {
             cancelAlarm(it.id)
