@@ -1,11 +1,10 @@
 package ca.ilianokokoro.sanda_timer.core.managers
 
 import android.app.NotificationChannel
-import android.app.PendingIntent
 import android.content.Context
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
-import ca.ilianokokoro.sanda_timer.R
+import ca.ilianokokoro.sanda_timer.core.helpers.IntentHelper
 import ca.ilianokokoro.sanda_timer.models.Timer
 import kotlin.math.abs
 import android.app.NotificationManager as AndroidNotificationManager
@@ -13,17 +12,8 @@ import ca.ilianokokoro.sanda_timer.core.R as RCore
 
 object NotificationManager {
     private lateinit var androidNotificationManager: AndroidNotificationManager
-    private lateinit var pendingIntent: PendingIntent
 
     fun init(context: Context) {
-        val intent = context.packageManager.getLaunchIntentForPackage(context.packageName)
-        pendingIntent = PendingIntent.getActivity(
-            context,
-            0,
-            intent,
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-        )
-
         androidNotificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as AndroidNotificationManager
 
@@ -37,7 +27,7 @@ object NotificationManager {
 
                 if (it.vibrationPattern != null) {
                     enableVibration(true)
-                    vibrationPattern = longArrayOf(
+                    vibrationPattern = longArrayOf( // TEMP
                         0,    // delay
                         1000, // vibrate 1 second
                         500,  // pause
@@ -67,7 +57,6 @@ object NotificationManager {
             context,
             channel.channelId
         )
-            .setContentIntent(pendingIntent)
     }
 
 
@@ -79,7 +68,7 @@ object NotificationManager {
             .setSmallIcon(RCore.drawable.ic_timer)
             .setContentTitle("Timer Finished") // TEMP
             .setContentText("Tap to dismiss") // TEMP
-            // .setFullScreenIntent(pendingIntent, true) TODO
+            .setContentIntent(IntentHelper.openAppPendingIntent(context))
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setDefaults(NotificationCompat.DEFAULT_ALL)
@@ -98,6 +87,7 @@ object NotificationManager {
 
         val notificationBuilder =
             getBaseNotification(context, NotificationChannels.TIMER_ONGOING)
+                .setContentIntent(IntentHelper.openTimerPendingIntent(context, timer.id))
                 .setSmallIcon(RCore.drawable.ic_timer)
                 .setContentTitle("Timer running")
                 .setContentText("Timer is active")

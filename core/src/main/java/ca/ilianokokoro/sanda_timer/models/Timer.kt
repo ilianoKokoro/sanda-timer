@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import ca.ilianokokoro.sanda_timer.core.Constants
 import kotlinx.serialization.Serializable
+import kotlin.time.Clock
 import kotlin.time.Duration
 import kotlin.time.Instant
 
@@ -28,5 +29,23 @@ data class Timer(
     fun percentFinished(now: Instant): Float {
         val remaining = remainingDuration(now)
         return (remaining / duration).toFloat()
+    }
+
+    fun pause(): Timer {
+        val now = Clock.System.now()
+        return copy(
+            running = false,
+            pausedRemaining = remainingDuration(now),
+            endTime = null,
+        )
+    }
+
+    fun resume(): Timer {
+        val now = Clock.System.now()
+        return copy(
+            running = true,
+            pausedRemaining = Duration.ZERO,
+            endTime = now + pausedRemaining,
+        )
     }
 }

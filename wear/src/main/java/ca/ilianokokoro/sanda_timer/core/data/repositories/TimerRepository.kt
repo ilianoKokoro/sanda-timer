@@ -50,13 +50,7 @@ class TimerRepository(
     }
 
     suspend fun pauseTimer(timer: Timer): Timer {
-        val now = Clock.System.now()
-        val remaining = timer.remainingDuration(now)
-        val pausedTimer = timer.copy(
-            running = false,
-            pausedRemaining = remaining,
-            endTime = null,
-        )
+        val pausedTimer = timer.pause()
         timerDataSource.update(pausedTimer)
         cancelAlarm(timer.id)
         NotificationManager.stopTimerOngoingNotification(context, timer.id)
@@ -64,15 +58,9 @@ class TimerRepository(
     }
 
     suspend fun resumeTimer(timer: Timer): Timer {
-        val now = Clock.System.now()
-        val endTime = now + timer.pausedRemaining
-        val resumedTimer = timer.copy(
-            running = true,
-            pausedRemaining = Duration.ZERO,
-            endTime = endTime,
-        )
+        val resumedTimer = timer.resume()
         timerDataSource.update(resumedTimer)
-        scheduleAlarm(resumedTimer, endTime)
+        scheduleAlarm(resumedTimer, resumedTimer.endTime!!)
         return resumedTimer
     }
 
