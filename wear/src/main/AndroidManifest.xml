@@ -77,14 +77,7 @@
         <meta-data
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
-
-        <activity
-            android:name=".modules.application.TimerDoneActivity"
-            android:exported="false"
-            android:showWhenLocked="true"
-            android:taskAffinity=".timerdone"
-            android:turnScreenOn="true" />
-
+        
         <activity
             android:name=".modules.application.MainActivity"
             android:exported="true"
