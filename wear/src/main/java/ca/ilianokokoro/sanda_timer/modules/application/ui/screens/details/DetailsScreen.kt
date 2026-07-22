@@ -32,6 +32,7 @@ import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.ScreenScaffold
 import androidx.wear.compose.material3.Text
 import ca.ilianokokoro.sanda_timer.core.toFormattedDuration
+import ca.ilianokokoro.sanda_timer.core.withCenteredColons
 import ca.ilianokokoro.sanda_timer.models.Timer
 import ca.ilianokokoro.sanda_timer.modules.application.ui.components.MaterialUButton
 import ca.ilianokokoro.sanda_timer.modules.application.ui.components.MaterialUToggleButton
@@ -119,11 +120,12 @@ fun DetailsScreen(
                     )
                 )
 
+                val timeStyle = MaterialTheme.typography.numeralSmall.copy(
+                    fontSize = 32.sp
+                )
                 Text(
-                    remainingText,
-                    style = MaterialTheme.typography.numeralSmall.copy(
-                        fontSize = 32.sp
-                    )
+                    remainingText.withCenteredColons(style = timeStyle),
+                    style = timeStyle
                 )
 
 

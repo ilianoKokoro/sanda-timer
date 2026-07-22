@@ -29,6 +29,7 @@ import androidx.wear.compose.material3.SurfaceTransformation
 import androidx.wear.compose.material3.Text
 import ca.ilianokokoro.sanda_timer.R
 import ca.ilianokokoro.sanda_timer.core.toFormattedDuration
+import ca.ilianokokoro.sanda_timer.core.withCenteredColons
 import ca.ilianokokoro.sanda_timer.models.Timer
 import kotlinx.coroutines.isActive
 import kotlin.time.Clock
@@ -47,6 +48,10 @@ fun TimerPill(
     var lastSecond by remember { mutableLongStateOf(-1L) }
 
     LaunchedEffect(timer) {
+        if (!timer.running) {
+            return@LaunchedEffect
+        }
+
         while (isActive) { // TODO : check if this needs a rework
             withFrameNanos { }
             val now = Clock.System.now()
@@ -85,7 +90,7 @@ fun TimerPill(
                 verticalArrangement = Arrangement.Center,
             ) {
                 Text(
-                    text = remainingText,
+                    text = remainingText.withCenteredColons(style = MaterialTheme.typography.numeralExtraSmall),
                     style = MaterialTheme.typography.numeralExtraSmall,
                     textAlign = TextAlign.Center,
                     overflow = TextOverflow.Clip,
@@ -93,9 +98,9 @@ fun TimerPill(
                 )
                 Text(
                     text = if (timer.running) {
-                        timer.duration.toFormattedDuration()
+                        timer.duration.toFormattedDuration().withCenteredColons(style = MaterialTheme.typography.titleSmall)
                     } else {
-                        stringResource(R.string.paused)
+                        stringResource(R.string.paused).withCenteredColons(style = MaterialTheme.typography.titleSmall)
                     },
                     style = MaterialTheme.typography.titleSmall,
                     textAlign = TextAlign.Center,

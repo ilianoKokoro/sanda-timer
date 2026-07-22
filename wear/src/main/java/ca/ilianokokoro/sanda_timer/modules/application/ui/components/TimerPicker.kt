@@ -22,6 +22,7 @@ import androidx.wear.compose.material3.PickerGroup
 import androidx.wear.compose.material3.Text
 import androidx.wear.compose.material3.rememberPickerState
 import ca.ilianokokoro.sanda_timer.core.R
+import ca.ilianokokoro.sanda_timer.core.withCenteredColons
 import java.util.Locale
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
@@ -138,7 +139,7 @@ private fun DigitColumn(
 @Composable
 private fun Colon() {
     Text(
-        text = stringResource(R.string.colon),
+        text = stringResource(R.string.colon).withCenteredColons(style = MaterialTheme.typography.numeralSmall),
         style = MaterialTheme.typography.numeralSmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = Modifier.padding(horizontal = 2.dp)

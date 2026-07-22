@@ -35,6 +35,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import ca.ilianokokoro.sanda_timer.core.R
 import ca.ilianokokoro.sanda_timer.core.toFormattedString
+import ca.ilianokokoro.sanda_timer.core.withCenteredColons
 import ca.ilianokokoro.sanda_timer.ui.components.TimePickerDialog
 import java.time.LocalTime
 
@@ -213,7 +214,7 @@ fun ResultBox(resultString: String) {
 
     ) {
         Text(
-            text = resultString,
+            text = resultString.withCenteredColons(style = MaterialTheme.typography.displayLarge),
             style = MaterialTheme.typography.displayLarge,
             color = MaterialTheme.colorScheme.onPrimaryContainer,
             textAlign = TextAlign.Center,
@@ -235,7 +236,7 @@ fun TimePickerDisplay(selectedTime: LocalTime, onPress: () -> Unit) {
             }
     ) {
         Text(
-            text = selectedTime.toFormattedString(context),
+            text = selectedTime.toFormattedString(context).withCenteredColons(style = MaterialTheme.typography.displayLarge),
             style = MaterialTheme.typography.displayLarge,
             color = MaterialTheme.colorScheme.onTertiaryContainer,
             textAlign = TextAlign.Center,

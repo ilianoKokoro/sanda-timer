@@ -44,3 +44,4 @@ fun Duration.toFormattedDuration(): String {
         String.format(Locale.ROOT, "%02d:%02d", minutes, seconds)
     }
 }
+
