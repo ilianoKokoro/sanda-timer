@@ -13,9 +13,9 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.wear.compose.material3.AppScaffold
 import androidx.wear.compose.navigation3.rememberSwipeDismissableSceneStrategy
+import ca.ilianokokoro.sanda_timer.core.data.repositories.TimerRepository
 import ca.ilianokokoro.sanda_timer.core.helpers.AppIntent
 import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper.printe
-import ca.ilianokokoro.sanda_timer.models.Timer
 import ca.ilianokokoro.sanda_timer.modules.application.ui.screens.details.DetailsScreen
 import ca.ilianokokoro.sanda_timer.modules.application.ui.screens.main.MainScreen
 import ca.ilianokokoro.sanda_timer.modules.application.ui.screens.new.NewScreen
@@ -26,13 +26,15 @@ fun NavigationRoot(appIntentFlow: SharedFlow<AppIntent>) {
     val backStack = rememberNavBackStack(Screen.Main)
     val strategy = rememberSwipeDismissableSceneStrategy<NavKey>()
     val app = LocalContext.current.applicationContext as Application
+    val timerRepository = TimerRepository(LocalContext.current)
 
     LaunchedEffect(Unit) {
         appIntentFlow.collect { appIntent ->
             when (appIntent) {
                 is AppIntent.OpenTimer -> {
-                    appIntent.timerId // TODO
-                    backStack.add(Screen.Details(Timer()))
+                    timerRepository.getTimerById(appIntent.timerId)?.let {
+                        backStack.add(Screen.Details(it))
+                    }
                 }
 
                 AppIntent.OpenNewScreen -> {
