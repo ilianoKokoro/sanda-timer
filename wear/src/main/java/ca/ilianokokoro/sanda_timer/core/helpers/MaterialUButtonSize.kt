@@ -8,6 +8,6 @@ enum class MaterialUButtonSize(
     val height: Dp,
     val iconSize: Dp,
 ) {
-    Small(52.dp, 34.dp, 20.dp),
+    Small(52.dp, 32.dp, 20.dp),
     Medium(68.dp, 46.dp, 24.dp),
 }

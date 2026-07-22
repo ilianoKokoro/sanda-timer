@@ -31,7 +31,6 @@ class DetailsViewModel(application: Application, timer: Timer) : AndroidViewMode
     fun cancelTimer() {
         viewModelScope.launch {
             timerRepository.deleteTimer(uiState.value.timer)
-            // TODO onback
         }
     }
 

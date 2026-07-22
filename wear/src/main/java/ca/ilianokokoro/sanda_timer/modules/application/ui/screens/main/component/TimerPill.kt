@@ -18,6 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -26,6 +27,7 @@ import androidx.wear.compose.material3.CircularProgressIndicator
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.SurfaceTransformation
 import androidx.wear.compose.material3.Text
+import ca.ilianokokoro.sanda_timer.R
 import ca.ilianokokoro.sanda_timer.core.toFormattedDuration
 import ca.ilianokokoro.sanda_timer.models.Timer
 import kotlinx.coroutines.isActive
@@ -90,7 +92,11 @@ fun TimerPill(
                     maxLines = 1,
                 )
                 Text(
-                    text = timer.duration.toFormattedDuration(),
+                    text = if (timer.running) {
+                        timer.duration.toFormattedDuration()
+                    } else {
+                        stringResource(R.string.paused)
+                    },
                     style = MaterialTheme.typography.titleSmall,
                     textAlign = TextAlign.Center,
                     overflow = TextOverflow.Clip,

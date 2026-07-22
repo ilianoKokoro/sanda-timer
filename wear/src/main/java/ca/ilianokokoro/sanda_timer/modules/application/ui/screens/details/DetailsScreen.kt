@@ -22,6 +22,7 @@ import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.wear.compose.material.CircularProgressIndicator
@@ -58,7 +59,11 @@ fun DetailsScreen(
     var lastSecond by remember { mutableLongStateOf(-1L) }
 
     LaunchedEffect(timer) {
-        while (isActive) { // TODO : check if this needs a rework
+        if (!timer.running) {
+            return@LaunchedEffect
+        }
+
+        while (isActive) {
             withFrameNanos { }
             val now = Clock.System.now()
             progress = timer.percentFinished(now)
@@ -69,7 +74,8 @@ fun DetailsScreen(
                 remainingText = timer.remainingDuration(now).toFormattedDuration()
             }
 
-            if (progress >= 1f) {
+            if (progress <= 0f) {
+                onBack()
                 break
             }
         }
@@ -102,7 +108,10 @@ fun DetailsScreen(
                 verticalArrangement = Arrangement.SpaceEvenly,
             ) {
                 MaterialUButton(
-                    onClick = { detailsViewModel.cancelTimer() },
+                    onClick = {
+                        detailsViewModel.cancelTimer()
+                        onBack()
+                    },
                     icon = Icons.Rounded.Close,
                     colors = IconButtonDefaults.filledTonalIconButtonColors(
                         containerColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -112,7 +121,9 @@ fun DetailsScreen(
 
                 Text(
                     remainingText,
-                    style = MaterialTheme.typography.numeralSmall
+                    style = MaterialTheme.typography.numeralSmall.copy(
+                        fontSize = 32.sp
+                    )
                 )
 
 
