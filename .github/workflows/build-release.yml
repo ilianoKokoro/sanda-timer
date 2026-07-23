@@ -73,7 +73,7 @@ jobs:
           packageName: ca.ilianokokoro.sanda_timer
           releaseFiles: app/build/outputs/bundle/release/*.aab
           releaseName: ${{ steps.version.outputs.version }}
-          tracks: android-closed-beta
+          tracks: "Android closed beta"
           status: draft
 
       - name: Upload Wear
@@ -84,5 +84,5 @@ jobs:
           packageName: ca.ilianokokoro.sanda_timer
           releaseFiles: wear/build/outputs/bundle/release/*.aab
           releaseName: ${{ steps.version.outputs.version }} WearOS
-          tracks: wear:android-closed-beta
+          tracks: "wear:Wear OS closed beta"
           status: draft
