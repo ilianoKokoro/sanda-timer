@@ -7,5 +7,5 @@ plugins {
 }
 
 extra["versionMajor"] = 0
-extra["versionMinor"] = 5
-extra["versionPatch"] = 1
+extra["versionMinor"] = 6
+extra["versionPatch"] = 0

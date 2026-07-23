@@ -27,7 +27,7 @@ import androidx.wear.compose.material3.CircularProgressIndicator
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.SurfaceTransformation
 import androidx.wear.compose.material3.Text
-import ca.ilianokokoro.sanda_timer.R
+import ca.ilianokokoro.sanda_timer.core.R
 import ca.ilianokokoro.sanda_timer.core.toFormattedDuration
 import ca.ilianokokoro.sanda_timer.core.withCenteredColons
 import ca.ilianokokoro.sanda_timer.models.Timer
@@ -98,9 +98,12 @@ fun TimerPill(
                 )
                 Text(
                     text = if (timer.running) {
-                        timer.duration.toFormattedDuration().withCenteredColons(style = MaterialTheme.typography.titleSmall)
+                        timer.duration.toFormattedDuration()
+                            .withCenteredColons(style = MaterialTheme.typography.titleSmall)
                     } else {
-                        stringResource(R.string.paused).withCenteredColons(style = MaterialTheme.typography.titleSmall)
+                        stringResource(R.string.paused).withCenteredColons(
+                            style = MaterialTheme.typography.titleSmall
+                        )
                     },
                     style = MaterialTheme.typography.titleSmall,
                     textAlign = TextAlign.Center,

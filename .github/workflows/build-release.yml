@@ -48,6 +48,14 @@ jobs:
           echo "keyAlias=${{ secrets.ALIAS }}" >> keystore.properties
           echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> keystore.properties
 
+      - name: Extract version
+        id: version
+        run: |
+          major=$(grep 'versionMajor' build.gradle.kts | grep -o '[0-9]\+')
+          minor=$(grep 'versionMinor' build.gradle.kts | grep -o '[0-9]\+')
+          patch=$(grep 'versionPatch' build.gradle.kts | grep -o '[0-9]\+')
+          echo "version=v$major.$minor.$patch" >> $GITHUB_OUTPUT
+
       - name: Build phone bundle
         run: ./gradlew app:bundleRelease
 
@@ -64,7 +72,8 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           packageName: ca.ilianokokoro.sanda_timer
           releaseFiles: app/build/outputs/bundle/release/*.aab
-          tracks: internal
+          releaseName: ${{ steps.version.outputs.version }}
+          tracks: android-closed-beta
           status: draft
 
       - name: Upload Wear
@@ -74,5 +83,6 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           packageName: ca.ilianokokoro.sanda_timer
           releaseFiles: wear/build/outputs/bundle/release/*.aab
-          tracks: internal
+          releaseName: ${{ steps.version.outputs.version }} WearOS
+          tracks: wear:android-closed-beta
           status: draft
