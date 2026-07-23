@@ -68,6 +68,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".modules.application.DoneActivity"
+            android:excludeFromRecents="true"
+            android:taskAffinity="" />
     </application>
 
 </manifest>

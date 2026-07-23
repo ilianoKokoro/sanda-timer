@@ -7,6 +7,7 @@ import ca.ilianokokoro.sanda_timer.core.Constants
 import ca.ilianokokoro.sanda_timer.core.data.repositories.TimerRepository
 import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper
 import ca.ilianokokoro.sanda_timer.core.managers.NotificationManager
+import ca.ilianokokoro.sanda_timer.modules.application.DoneActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,6 +25,13 @@ class TimerExpiredReceiver : BroadcastReceiver() {
 
         LogHelper.printd("Timer $timerId finished")
         NotificationManager.showTimerDoneNotification(context, timerId)
+
+        context.startActivity(
+            Intent(context, DoneActivity::class.java).apply {
+                putExtra(Constants.TimerReceiver.TIMER_ID, timerId)
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            }
+        )
 
         scope.launch {
             TimerRepository(context).deleteTimerById(timerId)

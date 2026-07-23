@@ -27,20 +27,8 @@ object NotificationManager {
 
                 if (it.vibrationPattern != null) {
                     enableVibration(true)
-                    vibrationPattern = longArrayOf( // TEMP
-                        0,    // delay
-                        1000, // vibrate 1 second
-                        500,  // pause
-                        1000, // vibrate 1 second
-                        500,  // pause
-                        1000,  // vibrate 1 second
-                        500,  // pause
-                        1000, // vibrate 1 second
-                        500,  // pause
-                        1000, // vibrate 1 second
-                        500,  // pause
-                        1000  // vibrate 1 second
-                    )
+                    vibrationPattern = it.vibrationPattern
+
                 }
             }
             androidNotificationManager.createNotificationChannel(notificationChannel)
@@ -64,11 +52,13 @@ object NotificationManager {
         context: Context,
         timerId: Long
     ) {
+
         val notification = getBaseNotification(context, NotificationChannels.TIMER_DONE)
             .setSmallIcon(RCore.drawable.ic_timer)
             .setContentTitle("Timer Finished") // TEMP
             .setContentText("Tap to dismiss") // TEMP
             .setContentIntent(IntentHelper.openAppPendingIntent(context))
+            .setFullScreenIntent(IntentHelper.openAppPendingIntent(context), true)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setDefaults(NotificationCompat.DEFAULT_ALL)
@@ -122,6 +112,10 @@ object NotificationManager {
         androidNotificationManager.cancel(notificationId)
     }
 
+    fun cancelTimerDoneNotification(timerId: Long) {
+        androidNotificationManager.cancel(getNotificationID(timerId.toString()))
+    }
+
     private fun getNotificationID(id: String): Int {
         return 1000 + abs(id.hashCode() and 0x7fffffff)
     }
@@ -148,8 +142,14 @@ object NotificationManager {
             nameRes = RCore.string.timer_done_name,
             descriptionRes = RCore.string.timer_done_description,
             importance = AndroidNotificationManager.IMPORTANCE_MAX,
-            vibrationPattern = longArrayOf(
+            vibrationPattern = longArrayOf( // TEMP
                 0,    // delay
+                1000, // vibrate 1 second
+                500,  // pause
+                1000, // vibrate 1 second
+                500,  // pause
+                1000,  // vibrate 1 second
+                500,  // pause
                 1000, // vibrate 1 second
                 500,  // pause
                 1000, // vibrate 1 second
