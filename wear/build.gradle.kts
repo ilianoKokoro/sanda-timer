@@ -75,16 +75,13 @@ dependencies {
     implementation(libs.core.splashscreen)
     implementation(libs.guava)
     implementation(libs.play.services.wearable)
-    implementation(libs.protolayout)
     implementation(libs.protolayout.material3)
-    implementation(libs.tiles)
     implementation(libs.tiles.tooling.preview)
     implementation(libs.ui)
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.watchface.complications.data.source.ktx)
     implementation(libs.wear.tooling.preview)
-    debugImplementation(libs.tiles.renderer)
     debugImplementation(libs.tiles.tooling)
     debugImplementation(libs.ui.test.manifest)
     debugImplementation(libs.ui.tooling)
@@ -123,13 +120,12 @@ dependencies {
     implementation(libs.androidx.core)
     implementation(libs.androidx.wear.ongoing)
 
-    // Widget
-    implementation(libs.androidx.compose.remote.creation.compose)
-    implementation(libs.androidx.compose.remote.core)
-    implementation(libs.androidx.glance.wear)
-    implementation(libs.androidx.glance.wear.core)
-    implementation(libs.androidx.remote.material3)
 
-    // Tooling for Widget previews
-    implementation(libs.androidx.compose.remote.tooling.preview)
+    // Wear OS
+    implementation(libs.tiles)
+    implementation(libs.protolayout)
+    implementation(libs.protolayout.material)
+    implementation(libs.protolayout.expression)
+    debugImplementation(libs.tiles.renderer)
+
 }

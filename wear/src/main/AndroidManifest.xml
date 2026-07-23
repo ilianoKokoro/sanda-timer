@@ -20,43 +20,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault">
-        <!--        <service-->
-        <!--            android:name=".modules.complication.MainComplicationService"-->
-        <!--            android:exported="true"-->
-        <!--            android:label="TEMP LABEL2"-->
-        <!--            android:permission="com.google.android.wearable.permission.BIND_COMPLICATION_PROVIDER">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="android.support.wearable.complications.ACTION_COMPLICATION_UPDATE_REQUEST" />-->
-        <!--            </intent-filter>-->
-
-        <!--            <meta-data-->
-        <!--                android:name="android.support.wearable.complications.SUPPORTED_TYPES"-->
-        <!--                android:value="SHORT_TEXT" />-->
-        <!--            <meta-data-->
-        <!--                android:name="android.support.wearable.complications.UPDATE_PERIOD_SECONDS"-->
-        <!--                android:value="3600" />-->
-        <!--        </service>-->
-
 
         <service
-            android:name=".modules.widget.TimerWidgetService"
+            android:name=".modules.tile.TimersTileService"
+            android:description="@string/timer_tile_description"
             android:exported="true"
             android:icon="@mipmap/ic_launcher"
-            android:label="@string/sanda_timers"
+            android:label="@string/timer_tile_label"
             android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
-
             <intent-filter>
-                <action android:name="androidx.glance.wear.action.BIND_WIDGET_PROVIDER" />
                 <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />
             </intent-filter>
 
             <meta-data
-                android:name="androidx.glance.wear.widget.provider"
-                android:resource="@xml/timer_widget_info" />
-
-            <meta-data
                 android:name="androidx.wear.tiles.PREVIEW"
-                android:resource="@drawable/timer_widget_preview" />
+                android:resource="@drawable/timer_tile_preview" />
         </service>
 
         <receiver

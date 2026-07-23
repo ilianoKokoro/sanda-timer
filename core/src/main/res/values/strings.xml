@@ -13,4 +13,6 @@
     <string name="confirmButton">OK</string>
     <string name="invalid_time_error">The chosen time is invalid</string>
     <string name="select_time">Select the target time</string>
+    <string name="timer_tile_description">Lets you quickly see your active timers and create a new one</string>
+    <string name="timer_tile_label">Sanda Timers</string>
 </resources>
