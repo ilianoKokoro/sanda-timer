@@ -1,10 +1,15 @@
 package ca.ilianokokoro.sanda_timer.core.managers
 
 import android.app.NotificationChannel
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
+import ca.ilianokokoro.sanda_timer.R
+import ca.ilianokokoro.sanda_timer.core.Constants
 import ca.ilianokokoro.sanda_timer.core.helpers.IntentHelper
+import ca.ilianokokoro.sanda_timer.core.receivers.DismissReceiver
 import ca.ilianokokoro.sanda_timer.models.Timer
 import kotlin.math.abs
 import android.app.NotificationManager as AndroidNotificationManager
@@ -52,11 +57,18 @@ object NotificationManager {
         context: Context,
         timerId: Long
     ) {
+        val dismissIntent = PendingIntent.getBroadcast(
+            context,
+            timerId.hashCode(),
+            Intent(context, DismissReceiver::class.java).apply {
+                putExtra(Constants.TimerReceiver.TIMER_ID, timerId)
+            },
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+        )
 
         val notification = getBaseNotification(context, NotificationChannels.TIMER_DONE)
             .setSmallIcon(RCore.drawable.ic_timer)
-            .setContentTitle("Timer Finished") // TEMP
-            .setContentText("Tap to dismiss") // TEMP
+            .setContentTitle(context.getString(R.string.timer_finished))
             .setContentIntent(IntentHelper.openAppPendingIntent(context))
             .setFullScreenIntent(IntentHelper.openAppPendingIntent(context), true)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
@@ -64,6 +76,13 @@ object NotificationManager {
             .setDefaults(NotificationCompat.DEFAULT_ALL)
             .setOngoing(false)
             .setAutoCancel(true)
+            .addAction(
+                NotificationCompat.Action.Builder(
+                    RCore.drawable.ic_timer,
+                    context.getString(R.string.dismiss),
+                    dismissIntent
+                ).build()
+            )
             .build()
 
         androidNotificationManager.notify(getNotificationID(timerId.toString()), notification)
@@ -120,7 +139,6 @@ object NotificationManager {
         return 1000 + abs(id.hashCode() and 0x7fffffff)
     }
 
-
     private enum class NotificationChannels(
         val channelId: String,
         @param:StringRes val nameRes: Int,
@@ -142,20 +160,16 @@ object NotificationManager {
             nameRes = RCore.string.timer_done_name,
             descriptionRes = RCore.string.timer_done_description,
             importance = AndroidNotificationManager.IMPORTANCE_MAX,
-            vibrationPattern = longArrayOf( // TEMP
-                0,    // delay
-                1000, // vibrate 1 second
-                500,  // pause
-                1000, // vibrate 1 second
-                500,  // pause
-                1000,  // vibrate 1 second
-                500,  // pause
-                1000, // vibrate 1 second
-                500,  // pause
-                1000, // vibrate 1 second
-                500,  // pause
-                1000  // vibrate 1 second
-            )
+            vibrationPattern = createTimerDoneVibrationPattern()
         );
+    }
+
+    private fun createTimerDoneVibrationPattern(): LongArray {
+        val list = mutableListOf(0L)
+        repeat(20) {
+            list.add(1000L)
+            list.add(500L)
+        }
+        return list.toLongArray()
     }
 }

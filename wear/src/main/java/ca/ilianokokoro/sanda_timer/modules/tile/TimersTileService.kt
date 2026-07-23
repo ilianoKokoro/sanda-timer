@@ -4,7 +4,7 @@ import androidx.wear.protolayout.DimensionBuilders.expand
 import androidx.wear.protolayout.TimelineBuilders
 import androidx.wear.protolayout.layout.androidImageResource
 import androidx.wear.protolayout.layout.imageResource
-import androidx.wear.protolayout.material3.CardDefaults.filledVariantCardColors
+import androidx.wear.protolayout.material3.CardDefaults.filledTonalCardColors
 import androidx.wear.protolayout.material3.icon
 import androidx.wear.protolayout.material3.iconEdgeButton
 import androidx.wear.protolayout.material3.materialScopeWithResources
@@ -36,10 +36,11 @@ class TimersTileService : TileService() {
                                 },
                                 mainSlot = {
                                     titleCard(
+                                        // TEMP : show all timers
                                         onClick = IntentHelper.openAppClickable(),
                                         height = expand(),
-                                        colors = filledVariantCardColors(),
-                                        title = { text("Temp title".layoutString) },
+                                        colors = filledTonalCardColors(),
+                                        title = { text(context.getString(R.string.no_timers).layoutString) },
                                         content = { text("Add a new timer".layoutString) },
                                     )
                                 },
