@@ -98,7 +98,7 @@ fun DetailsScreen(
                 progress = progress,
                 startAngle = position + gap,
                 endAngle = position - gap,
-                strokeWidth = CircularProgressIndicatorDefaults.largeStrokeWidth
+                strokeWidth = CircularProgressIndicatorDefaults.smallStrokeWidth
             )
             Column(
                 modifier = Modifier

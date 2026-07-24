@@ -37,6 +37,7 @@ class TimerRepository(
 
     suspend fun deleteTimer(timer: Timer) {
         cancelAlarm(timer.id)
+        NotificationManager.stopTimerOngoingNotification(context, timer.id)
         timerDataSource.delete(timer)
     }
 

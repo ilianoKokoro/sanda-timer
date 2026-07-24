@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material3.Card
 import androidx.wear.compose.material3.CircularProgressIndicator
+import androidx.wear.compose.material3.CircularProgressIndicatorDefaults
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.SurfaceTransformation
 import androidx.wear.compose.material3.Text
@@ -84,7 +85,8 @@ fun TimerPill(
         ) {
             CircularProgressIndicator(
                 progress = { progress },
-                modifier = Modifier.size(40.dp)
+                modifier = Modifier.size(40.dp),
+                strokeWidth = CircularProgressIndicatorDefaults.smallStrokeWidth
             )
             Column(
                 verticalArrangement = Arrangement.Center,
