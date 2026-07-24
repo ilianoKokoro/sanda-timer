@@ -39,8 +39,7 @@ class TimersTileService : Material3TileService() {
                                     onClick = IntentHelper.openAppClickable(),
                                     height = expand(),
                                     colors = filledTonalCardColors(),
-                                    title = { text(context.getString(R.string.no_timers).layoutString) },
-                                    content = { text("Add a new timer".layoutString) },
+                                    title = { text(context.getString(R.string.add_new_timer).layoutString) },
                                 )
                             },
                             bottomSlot = {

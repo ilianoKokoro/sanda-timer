@@ -17,4 +17,8 @@
     <string name="timer_tile_label">Sanda Timers</string>
     <string name="paused">Paused</string>
     <string name="timer_finished">Timer Finished !</string>
+    <string name="add_new_timer">Add a new timer</string>
+    <string name="timer_running">Timer running</string>
+    <string name="a_timer_is_active">A timer is active</string>
+
 </resources>
