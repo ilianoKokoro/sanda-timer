@@ -4,6 +4,7 @@ import android.app.NotificationChannel
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
 import androidx.wear.ongoing.OngoingActivity
@@ -94,36 +95,35 @@ object NotificationManager {
     ) {
         val notificationId = getNotificationID(timer.id.toString())
         val openTimerIntent = IntentHelper.openTimerPendingIntent(context, timer.id)
-        val notificationBuilder =
-            getBaseNotification(context, NotificationChannels.TIMER_ONGOING)
-                .setContentIntent(openTimerIntent)
-                .setSmallIcon(RCore.drawable.ic_timer)
-                .setContentTitle("Timer running")
-                .setContentText("Timer is active")
-                .setCategory(NotificationCompat.CATEGORY_ALARM)
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setOngoing(true)
-                .setOnlyAlertOnce(true)
-                .setWhen(timer.endTime!!.toEpochMilliseconds())
-                .setUsesChronometer(true)
-                .setChronometerCountDown(true)
-                .setRequestPromotedOngoing(true)
 
-        val ongoingActivity = OngoingActivity.Builder(
-            context,
-            notificationId,
-            notificationBuilder
-        )
-            .setStaticIcon(RCore.drawable.ic_timer)
-            .setTouchIntent(openTimerIntent)
-            .build()
+        val notificationBuilder = getBaseNotification(context, NotificationChannels.TIMER_ONGOING)
+            .setContentIntent(openTimerIntent)
+            .setSmallIcon(RCore.drawable.ic_timer)
+            .setContentTitle("Timer running")
+            .setContentText("Timer is active")
+            .setCategory(NotificationCompat.CATEGORY_ALARM)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+            .setOngoing(true)
+            .setOnlyAlertOnce(true)
+            .setWhen(timer.endTime!!.toEpochMilliseconds())
+            .setUsesChronometer(true)
+            .setChronometerCountDown(true)
 
-        ongoingActivity.apply(context)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN) {
+            notificationBuilder.setRequestPromotedOngoing(true)
+        } else {
+            val ongoingActivity = OngoingActivity.Builder(
+                context,
+                notificationId,
+                notificationBuilder
+            )
+                .setStaticIcon(RCore.drawable.ic_timer)
+                .setTouchIntent(openTimerIntent)
+                .build()
+            ongoingActivity.apply(context)
+        }
 
-        androidNotificationManager.notify(
-            notificationId,
-            notificationBuilder.build()
-        )
+        androidNotificationManager.notify(notificationId, notificationBuilder.build())
     }
 
     fun stopTimerOngoingNotification(context: Context, timerId: Long) {
