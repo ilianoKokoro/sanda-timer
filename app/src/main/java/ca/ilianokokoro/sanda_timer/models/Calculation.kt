@@ -4,6 +4,8 @@ import ca.ilianokokoro.sanda_timer.core.Constants
 import ca.ilianokokoro.sanda_timer.core.durationBetween
 import java.time.LocalTime
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.days
+
 
 data class Calculation(
     var applyOffset: Boolean = Constants.DefaultValues.OFFSET,
@@ -25,10 +27,12 @@ data class Calculation(
                 currentTime = currentTime.plusMinutes(Constants.TimeOffsets.SECURITY_MINUTES)
             }
 
+            var result = currentTime.durationBetween(_targetTime)
+
             if (_targetTime.isBefore(currentTime)) {
-                return Duration.ZERO
+                result += 1.days
             }
 
-            return currentTime.durationBetween(_targetTime)
+            return result
         }
 }

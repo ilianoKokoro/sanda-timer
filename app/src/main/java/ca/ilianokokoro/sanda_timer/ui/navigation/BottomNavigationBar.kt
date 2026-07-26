@@ -3,6 +3,7 @@ package ca.ilianokokoro.sanda_timer.ui.navigation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Calculate
 import androidx.compose.material.icons.filled.Timer
+import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
@@ -25,9 +26,9 @@ fun BottomNavigationBar(
                 onTabSelected(CalculatorKey)
             },
             icon = {
-                androidx.compose.material3.Icon(
+                Icon(
                     Icons.Default.Calculate,
-                    contentDescription = null
+                    contentDescription = Icons.Default.Calculate.name
                 )
             },
             label = { Text(stringResource(R.string.calculator)) }
@@ -38,9 +39,9 @@ fun BottomNavigationBar(
                 onTabSelected(TimersScreenKey)
             },
             icon = {
-                androidx.compose.material3.Icon(
+                Icon(
                     Icons.Default.Timer,
-                    contentDescription = null
+                    contentDescription = Icons.Default.Timer.name
                 )
             },
             label = { Text(stringResource(R.string.timers)) }
