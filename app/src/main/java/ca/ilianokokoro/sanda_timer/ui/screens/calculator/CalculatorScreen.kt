@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -36,6 +37,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import ca.ilianokokoro.sanda_timer.core.R
 import ca.ilianokokoro.sanda_timer.core.toFormattedString
 import ca.ilianokokoro.sanda_timer.core.withCenteredColons
+import ca.ilianokokoro.sanda_timer.ui.components.FadingStatusBarWrapper
 import ca.ilianokokoro.sanda_timer.ui.components.TimePickerDialog
 import java.time.LocalTime
 
@@ -79,11 +81,16 @@ fun CalculatorScreen(calculatorViewModel: CalculatorViewModel = viewModel()) {
         }
     }
 
-    val orientation = LocalConfiguration.current.orientation
-    if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-        OrientationPortrait(uiStateValue, calculatorViewModel, context)
-    } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-        OrientationLandscape(uiStateValue, calculatorViewModel, context)
+    FadingStatusBarWrapper { statusBarHeight ->
+        Column(modifier = Modifier.padding(top = statusBarHeight)) {
+
+            val orientation = LocalConfiguration.current.orientation
+            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                OrientationPortrait(uiStateValue, calculatorViewModel, context)
+            } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                OrientationLandscape(uiStateValue, calculatorViewModel, context)
+            }
+        }
     }
 
     TimerPickerLogic(
@@ -91,7 +98,10 @@ fun CalculatorScreen(calculatorViewModel: CalculatorViewModel = viewModel()) {
         timerPickerState = uiStateValue.timePickerState,
         closeTimePicker = {
             calculatorViewModel.hideTimePicker()
-            calculatorViewModel.vibrateDevice(context, CalculatorViewModel.VibrationTypes.Short)
+            calculatorViewModel.vibrateDevice(
+                context,
+                CalculatorViewModel.VibrationTypes.Short
+            )
         }
     )
 }
@@ -105,7 +115,9 @@ fun OrientationPortrait(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceAround
+        verticalArrangement = Arrangement.SpaceAround,
+        modifier = Modifier
+            .fillMaxSize()
     ) {
         ResultBox(uiStateValue.resultText)
         Column(
@@ -143,11 +155,13 @@ fun OrientationPortrait(
 fun OrientationLandscape(
     uiStateValue: CalculatorState,
     calculatorViewModel: CalculatorViewModel,
-    context: Context
+    context: Context,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceAround
+        verticalArrangement = Arrangement.SpaceAround,
+        modifier = Modifier
+            .fillMaxSize()
     ) {
         ResultBox(uiStateValue.resultText)
         Row(
@@ -225,7 +239,6 @@ fun ResultBox(resultString: String) {
 
 @Composable
 fun TimePickerDisplay(selectedTime: LocalTime, onPress: () -> Unit) {
-
     val context = LocalContext.current
     Box(
         modifier = Modifier
@@ -236,7 +249,8 @@ fun TimePickerDisplay(selectedTime: LocalTime, onPress: () -> Unit) {
             }
     ) {
         Text(
-            text = selectedTime.toFormattedString(context).withCenteredColons(style = MaterialTheme.typography.displayLarge),
+            text = selectedTime.toFormattedString(context)
+                .withCenteredColons(style = MaterialTheme.typography.displayLarge),
             style = MaterialTheme.typography.displayLarge,
             color = MaterialTheme.colorScheme.onTertiaryContainer,
             textAlign = TextAlign.Center,

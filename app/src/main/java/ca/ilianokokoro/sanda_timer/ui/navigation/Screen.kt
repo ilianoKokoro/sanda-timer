@@ -13,7 +13,6 @@ data object CalculatorKey : NavKey
 
 
 data class ScreenUiConfig(
-    val showBottomBar: Boolean = true,
     val selectedTab: NavKey? = null
 )
 

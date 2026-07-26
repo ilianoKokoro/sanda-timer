@@ -1,24 +1,19 @@
 package ca.ilianokokoro.sanda_timer.ui.navigation
 
 import android.app.Application
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
@@ -32,6 +27,7 @@ import ca.ilianokokoro.sanda_timer.core.Constants
 import ca.ilianokokoro.sanda_timer.core.R
 import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper
 import ca.ilianokokoro.sanda_timer.ui.screens.calculator.CalculatorScreen
+import ca.ilianokokoro.sanda_timer.ui.screens.timers.TimersScreen
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -45,8 +41,18 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
         contentWindowInsets = WindowInsets(0),
+        bottomBar = {
+            BottomNavigationBar(
+                currentTab = screenConfig.selectedTab,
+                onTabSelected = { key ->
+                    if (backStack.last() != key) {
+                        backStack.add(key)
+                    }
+                },
+            )
+        }
     ) { paddingValues ->
-        Box(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
@@ -105,7 +111,7 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
                         }
 
                         is TimersScreenKey -> NavEntry(key) {
-                            Text("TEMP SCREEN")
+                            TimersScreen()
                         }
 
 
@@ -119,27 +125,7 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
                 }
             )
 
-            AnimatedVisibility(
-                visible = screenConfig.showBottomBar,
-                enter = slideInVertically(
-                    animationSpec = tween(Constants.Animation.NAVIGATION_DURATION),
-                    initialOffsetY = { it }
-                ),
-                exit = slideOutVertically(
-                    animationSpec = tween(Constants.Animation.NAVIGATION_DURATION),
-                    targetOffsetY = { it }
-                ),
-                modifier = Modifier.align(Alignment.BottomCenter)
-            ) {
-                BottomNavigationBar(
-                    currentTab = screenConfig.selectedTab,
-                    onTabSelected = { key ->
-                        if (backStack.last() != key) {
-                            backStack.add(key)
-                        }
-                    },
-                )
-            }
+
         }
 
     }
