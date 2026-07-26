@@ -75,23 +75,14 @@ object NotificationManager {
         )
             .setSmallIcon(RCore.drawable.ic_timer)
             .setContentTitle(context.getString(RCore.string.timer_running))
-            .setContentText(context.getString(RCore.string.a_timer_is_active))
+            .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setOngoing(true)
             .setOnlyAlertOnce(true)
-            .setCategory(NotificationCompat.CATEGORY_PROGRESS)
             .setWhen(timer.endTime!!.toEpochMilliseconds())
             .setUsesChronometer(true)
             .setChronometerCountDown(true)
-//            .apply {
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-//                    setForegroundServiceBehavior(
-//                        NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE
-//                    )
-//                }
-//            }
-
-
+            .setRequestPromotedOngoing(true)
     }
 
     fun updateTimerNotification(

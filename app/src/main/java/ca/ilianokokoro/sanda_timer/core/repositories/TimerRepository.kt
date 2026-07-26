@@ -6,6 +6,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import ca.ilianokokoro.sanda_timer.core.Constants
 import ca.ilianokokoro.sanda_timer.core.data.database.AppDatabase
 import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper
 import ca.ilianokokoro.sanda_timer.core.managers.NotificationManager
@@ -99,9 +100,8 @@ class TimerRepository(
         }
 
         val intent = Intent(context, TimerExpiredReceiver::class.java).apply {
-            //  Intent.putExtra(Constants.TimerReceiver.TIMER_ID, timer.id)
+            putExtra(Constants.TimerReceiver.TIMER_ID, timer.id)
         }
-
 
         val pendingIntent = PendingIntent.getBroadcast(
             context,
@@ -117,7 +117,7 @@ class TimerRepository(
             pendingIntent,
         )
 
-        NotificationManager.createTimerNotification(context, timer)
+        NotificationManager.updateTimerNotification(context, timer)
     }
 
     private fun cancelAlarm(timerId: Long) {

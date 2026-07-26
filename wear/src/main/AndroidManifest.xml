@@ -42,10 +42,6 @@
             android:exported="false" />
 
         <receiver
-            android:name=".core.receivers.DismissReceiver"
-            android:exported="false" />
-
-        <receiver
             android:name=".core.receivers.BootReceiver"
             android:directBootAware="true"
             android:exported="false">

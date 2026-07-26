@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import ca.ilianokokoro.sanda_timer.core.data.database.AppDatabase
 import ca.ilianokokoro.sanda_timer.core.repositories.TimerRepository
+import ca.ilianokokoro.sanda_timer.models.Timer
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -21,6 +22,7 @@ class TimersViewModel(
 
 
     val timerDataSource = AppDatabase.getInstance(application).timerDataSource()
+    val timerRepository = TimerRepository(application)
 
     init {
         viewModelScope.launch {
@@ -33,5 +35,12 @@ class TimersViewModel(
             }
             .launchIn(viewModelScope)
     }
+
+    fun cancelTimer(timer: Timer) {
+        viewModelScope.launch {
+            timerRepository.deleteTimer(timer)
+        }
+    }
+
 
 }
