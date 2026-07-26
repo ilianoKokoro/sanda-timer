@@ -4,6 +4,7 @@ import android.app.NotificationChannel
 import android.content.Context
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
+import ca.ilianokokoro.sanda_timer.core.helpers.IntentHelper
 import ca.ilianokokoro.sanda_timer.models.Timer
 import kotlin.math.abs
 import android.app.NotificationManager as AndroidNotificationManager
@@ -50,6 +51,7 @@ object NotificationManager {
             context,
             NotificationChannels.TIMER_DONE
         )
+            .setContentIntent(IntentHelper.openAppPendingIntent(context))
             .setSmallIcon(RCore.drawable.ic_timer)
             .setContentTitle(context.getString(RCore.string.timer_finished))
             .setContentText("Tap to open")
@@ -73,6 +75,7 @@ object NotificationManager {
             context,
             NotificationChannels.TIMER_ONGOING
         )
+            .setContentIntent(IntentHelper.openTimerPagePendingIntent(context))
             .setSmallIcon(RCore.drawable.ic_timer)
             .setContentTitle(context.getString(RCore.string.timer_running))
             .setCategory(NotificationCompat.CATEGORY_ALARM)

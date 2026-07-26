@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
@@ -25,21 +26,37 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import ca.ilianokokoro.sanda_timer.core.Constants
 import ca.ilianokokoro.sanda_timer.core.R
+import ca.ilianokokoro.sanda_timer.core.helpers.AppIntent
 import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper
 import ca.ilianokokoro.sanda_timer.ui.screens.calculator.CalculatorScreen
 import ca.ilianokokoro.sanda_timer.ui.screens.timers.TimersScreen
+import kotlinx.coroutines.flow.SharedFlow
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NavigationRoot(modifier: Modifier = Modifier) {
+fun NavigationRoot(appIntentFlow: SharedFlow<AppIntent>) {
     val backStack = rememberNavBackStack(CalculatorKey)
     val app = LocalContext.current.applicationContext as Application
     val currentScreen = backStack.last()
     val screenConfig = rememberScreenUiConfig(currentScreen)
 
+
+    LaunchedEffect(Unit) {
+        appIntentFlow.collect { appIntent ->
+            when (appIntent) {
+
+                AppIntent.OpenTimerPage -> {
+                    backStack.add(TimersScreenKey)
+                }
+
+                else -> Unit
+            }
+        }
+    }
+
     Scaffold(
-        modifier = modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         contentWindowInsets = WindowInsets(0),
         bottomBar = {
             BottomNavigationBar(
