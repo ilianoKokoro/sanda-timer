@@ -18,6 +18,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.jetbrains.kotlin.serialization)
+    alias(libs.plugins.ksp)
 }
 
 kotlinExtension.jvmToolchain {
@@ -81,8 +82,9 @@ dependencies {
     implementation(libs.material3)
     debugImplementation(libs.androidx.ui.tooling)
 
-    // Serialization
+    //  Serialization
     implementation(libs.kotlinx.serialization.core)
+    implementation(libs.kotlinx.serialization.json)
 
     //  Viewmodel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
@@ -98,5 +100,10 @@ dependencies {
 
     // Icons
     implementation(libs.androidx.material.icons.extended)
+
+    // Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 
 }

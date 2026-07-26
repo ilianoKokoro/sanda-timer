@@ -13,6 +13,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.application
 import androidx.lifecycle.viewModelScope
 import ca.ilianokokoro.sanda_timer.core.Constants
+import ca.ilianokokoro.sanda_timer.core.repositories.TimerRepository
 import ca.ilianokokoro.sanda_timer.core.toFormattedString
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -37,6 +38,9 @@ class CalculatorViewModel(
 
     private val _eventsFlow = MutableSharedFlow<ScreenEvent>()
     val eventsFlow = _eventsFlow.asSharedFlow()
+
+    private val timerRepository = TimerRepository(application)
+
 
     init {
         viewModelScope.launch {
@@ -84,6 +88,12 @@ class CalculatorViewModel(
                 _eventsFlow.emit(ScreenEvent.EnteredTimeInvalid)
             }
             updateTextResult()
+        }
+    }
+
+    fun startTimer() {
+        viewModelScope.launch {
+            timerRepository.createTimer(_uiState.value.calculation.duration)
         }
     }
 

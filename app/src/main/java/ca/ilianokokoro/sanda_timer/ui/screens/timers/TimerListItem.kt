@@ -1,0 +1,111 @@
+package ca.ilianokokoro.sanda_timer.ui.screens.timers
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.withFrameNanos
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
+import ca.ilianokokoro.sanda_timer.core.R
+import ca.ilianokokoro.sanda_timer.core.toFormattedDuration
+import ca.ilianokokoro.sanda_timer.core.withCenteredColons
+import ca.ilianokokoro.sanda_timer.models.Timer
+import kotlinx.coroutines.isActive
+import kotlin.time.Clock
+
+@Composable
+fun TimerListItem(
+    timer: Timer,
+    onOpenTimer: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    var progress by remember { mutableFloatStateOf(timer.percentFinished(Clock.System.now())) }
+    var remainingText by remember {
+        mutableStateOf(timer.remainingDuration(Clock.System.now()).toFormattedDuration())
+    }
+    var lastSecond by remember { mutableLongStateOf(-1L) }
+
+    LaunchedEffect(timer) {
+        if (!timer.running) {
+            return@LaunchedEffect
+        }
+
+        while (isActive) { // TODO : check if this needs a rework
+            withFrameNanos { }
+            val now = Clock.System.now()
+            progress = timer.percentFinished(now)
+
+            val nowSecond = now.epochSeconds
+            if (nowSecond != lastSecond) {
+                lastSecond = nowSecond
+                remainingText = timer.remainingDuration(now).toFormattedDuration()
+            }
+
+            if (progress >= 1f) {
+                break
+            }
+        }
+    }
+
+    Card(
+        onClick = onOpenTimer,
+        modifier = modifier,
+        shape = RoundedCornerShape(percent = 100),
+    ) {
+        Row(
+            modifier = Modifier.fillMaxSize(),
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            CircularProgressIndicator(
+                progress = { progress },
+                modifier = Modifier.size(40.dp),
+            )
+            Column(
+                verticalArrangement = Arrangement.Center,
+            ) {
+                Text(
+                    text = remainingText.withCenteredColons(style = MaterialTheme.typography.bodySmall),
+                    style = MaterialTheme.typography.bodySmall,
+                    textAlign = TextAlign.Center,
+                    overflow = TextOverflow.Clip,
+                    maxLines = 1,
+                )
+                Text(
+                    text = if (timer.running) {
+                        timer.duration.toFormattedDuration()
+                            .withCenteredColons(style = MaterialTheme.typography.titleSmall)
+                    } else {
+                        stringResource(R.string.paused).withCenteredColons(
+                            style = MaterialTheme.typography.titleSmall
+                        )
+                    },
+                    style = MaterialTheme.typography.titleSmall,
+                    textAlign = TextAlign.Center,
+                    overflow = TextOverflow.Clip,
+                    maxLines = 1,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
+    }
+}

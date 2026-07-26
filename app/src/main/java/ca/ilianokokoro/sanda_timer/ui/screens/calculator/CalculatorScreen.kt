@@ -9,12 +9,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -39,7 +40,10 @@ import ca.ilianokokoro.sanda_timer.core.toFormattedString
 import ca.ilianokokoro.sanda_timer.core.withCenteredColons
 import ca.ilianokokoro.sanda_timer.ui.components.FadingStatusBarWrapper
 import ca.ilianokokoro.sanda_timer.ui.components.TimePickerDialog
+import ca.ilianokokoro.sanda_timer.ui.components.materialu.MaterialUButton
+import ca.ilianokokoro.sanda_timer.ui.components.materialu.MaterialUButtonSize
 import java.time.LocalTime
+import kotlin.time.Duration
 
 @Composable
 fun CalculatorScreen(calculatorViewModel: CalculatorViewModel = viewModel()) {
@@ -122,10 +126,8 @@ fun OrientationPortrait(
         ResultBox(uiStateValue.resultText)
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceAround,
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(0.3f)
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+            modifier = Modifier.fillMaxWidth()
         ) {
             TimePickerDisplay(
                 selectedTime = uiStateValue.calculation.getTargetTime(),
@@ -146,7 +148,12 @@ fun OrientationPortrait(
                         CalculatorViewModel.VibrationTypes.Short
                     )
                 })
+
         }
+        StartButton(
+            enabled = uiStateValue.calculation.duration != Duration.ZERO,
+            onPress = calculatorViewModel::startTimer
+        )
     }
 
 }
@@ -171,6 +178,16 @@ fun OrientationLandscape(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
+            ToggleBox(
+                checkedState = uiStateValue.checkBoxState,
+                onCheckedChange = {
+                    calculatorViewModel.onOffsetToggle(it)
+                    calculatorViewModel.vibrateDevice(
+                        context,
+                        CalculatorViewModel.VibrationTypes.Short
+                    )
+                })
+
             TimePickerDisplay(
                 selectedTime = uiStateValue.calculation.getTargetTime(),
                 onPress = {
@@ -181,15 +198,12 @@ fun OrientationLandscape(
                     )
                 }
             )
-            ToggleBox(
-                checkedState = uiStateValue.checkBoxState,
-                onCheckedChange = {
-                    calculatorViewModel.onOffsetToggle(it)
-                    calculatorViewModel.vibrateDevice(
-                        context,
-                        CalculatorViewModel.VibrationTypes.Short
-                    )
-                })
+
+
+            StartButton(
+                enabled = uiStateValue.calculation.duration != Duration.ZERO,
+                onPress = calculatorViewModel::startTimer
+            )
         }
     }
 
@@ -283,4 +297,15 @@ fun ToggleBox(checkedState: Boolean, onCheckedChange: (Boolean) -> Unit) {
             })
         }
     }
+}
+
+@Composable
+fun StartButton(enabled: Boolean, onPress: () -> Unit) {
+    MaterialUButton(
+        onClick = onPress,
+        enabled = enabled,
+        size = MaterialUButtonSize.Large,
+        icon = Icons.Rounded.PlayArrow,
+        text = stringResource(R.string.start)
+    )
 }
