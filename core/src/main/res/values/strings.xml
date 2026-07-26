@@ -20,5 +20,8 @@
     <string name="add_new_timer">Add a new timer</string>
     <string name="timer_running">Timer running</string>
     <string name="a_timer_is_active">A timer is active</string>
+    <string name="timers">Timers</string>
+    <string name="calculator">Calculator</string>
+    <string name="invalid_navkey">Invalid NavKey : %1$s</string>
 
 </resources>

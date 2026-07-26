@@ -31,4 +31,9 @@ object Constants {
         const val TICK_AMPLITUDE = 50
         const val SMALL_DURATION = 1L
     }
+
+    object Animation {
+        const val NAVIGATION_DURATION = 200
+        const val IMAGE_FADE_DURATION = 200
+    }
 }

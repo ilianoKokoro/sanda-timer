@@ -9,7 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import ca.ilianokokoro.sanda_timer.ui.screens.calculator.CalculatorScreen
+import ca.ilianokokoro.sanda_timer.ui.navigation.NavigationRoot
 import ca.ilianokokoro.sanda_timer.ui.theme.SandaTimerTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +23,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    CalculatorScreen()
+                    NavigationRoot(
+                        modifier = Modifier.fillMaxSize()
+                    )
                 }
             }
         }

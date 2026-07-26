@@ -17,6 +17,7 @@ val versionPatch: Int = rootProject.extra["versionPatch"] as Int
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
 }
 
 kotlinExtension.jvmToolchain {
@@ -80,9 +81,22 @@ dependencies {
     implementation(libs.material3)
     debugImplementation(libs.androidx.ui.tooling)
 
+    // Serialization
+    implementation(libs.kotlinx.serialization.core)
+
     //  Viewmodel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     // Splashscreen
     implementation(libs.core.splashscreen)
+
+    // Navigation
+    implementation(libs.nav3.runtime)
+    implementation(libs.nav3.ui)
+    implementation(libs.nav3.viewmodel)
+    implementation(libs.androidx.material3.adaptive.navigation3)
+
+    // Icons
+    implementation(libs.androidx.material.icons.extended)
+
 }
