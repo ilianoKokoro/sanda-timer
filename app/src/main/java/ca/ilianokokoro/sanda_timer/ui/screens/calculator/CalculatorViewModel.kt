@@ -94,6 +94,7 @@ class CalculatorViewModel(
     fun startTimer() {
         viewModelScope.launch {
             timerRepository.createTimer(_uiState.value.calculation.duration)
+            _eventsFlow.emit(ScreenEvent.TimerStarted)
         }
     }
 
@@ -152,6 +153,7 @@ class CalculatorViewModel(
     sealed class ScreenEvent {
         data object EnteredTimeInvalid : ScreenEvent()
         data object GenericError : ScreenEvent()
+        data object TimerStarted : ScreenEvent()
     }
 
     sealed class VibrationTypes {

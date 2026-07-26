@@ -46,7 +46,10 @@ import java.time.LocalTime
 import kotlin.time.Duration
 
 @Composable
-fun CalculatorScreen(calculatorViewModel: CalculatorViewModel = viewModel()) {
+fun CalculatorScreen(
+    calculatorViewModel: CalculatorViewModel = viewModel(),
+    onOpenTimerScreen: () -> Unit
+) {
     val uiStateValue = calculatorViewModel.uiState.collectAsStateWithLifecycle().value
     val context = LocalContext.current
     val resources = LocalResources.current
@@ -80,6 +83,15 @@ fun CalculatorScreen(calculatorViewModel: CalculatorViewModel = viewModel()) {
                         resources.getString(R.string.genericError),
                         Toast.LENGTH_SHORT
                     ).show()
+                }
+
+                is CalculatorViewModel.ScreenEvent.TimerStarted -> {
+                    Toast.makeText(
+                        context,
+                        resources.getString(R.string.timer_started),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    onOpenTimerScreen()
                 }
             }
         }

@@ -24,5 +24,6 @@
     <string name="calculator">Calculator</string>
     <string name="invalid_navkey">Invalid NavKey : %1$s</string>
     <string name="start">Start</string>
+    <string name="timer_started">Timer started</string>
 
 </resources>

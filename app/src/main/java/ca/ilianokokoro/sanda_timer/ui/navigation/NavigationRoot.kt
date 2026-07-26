@@ -124,7 +124,9 @@ fun NavigationRoot(appIntentFlow: SharedFlow<AppIntent>) {
                     when (key) {
 
                         is CalculatorKey -> NavEntry(key) {
-                            CalculatorScreen()
+                            CalculatorScreen(onOpenTimerScreen = {
+                                backStack.add(TimersScreenKey)
+                            })
                         }
 
                         is TimersScreenKey -> NavEntry(key) {
