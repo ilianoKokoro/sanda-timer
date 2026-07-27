@@ -4,12 +4,15 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper
-import ca.ilianokokoro.sanda_timer.core.repositories.TimerRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class BootReceiver : BroadcastReceiver() {
+    companion object {
+        var onBoot: (suspend () -> Unit)? = null
+    }
+
     val scope = CoroutineScope(Dispatchers.IO)
 
     override fun onReceive(context: Context, intent: Intent) {
@@ -19,7 +22,7 @@ class BootReceiver : BroadcastReceiver() {
 
         scope.launch {
             LogHelper.printd("Received boot event, deleting all timers")
-            TimerRepository(context).clearTimers()
+            onBoot?.invoke() ?: LogHelper.printe("BootReceiver.onBoot callback not set")
         }
     }
 }

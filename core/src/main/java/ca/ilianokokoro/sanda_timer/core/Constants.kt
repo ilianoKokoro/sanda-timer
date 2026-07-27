@@ -34,6 +34,5 @@ object Constants {
 
     object Animation {
         const val NAVIGATION_DURATION = 200
-        const val IMAGE_FADE_DURATION = 200
     }
 }

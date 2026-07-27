@@ -10,7 +10,6 @@ import android.os.VibratorManager
 import android.text.format.DateFormat
 import androidx.compose.material3.TimePickerState
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.application
 import androidx.lifecycle.viewModelScope
 import ca.ilianokokoro.sanda_timer.core.Constants
 import ca.ilianokokoro.sanda_timer.core.repositories.TimerRepository
@@ -26,7 +25,7 @@ import java.time.LocalTime
 import kotlin.time.Duration
 
 class CalculatorViewModel(
-    application: Application
+    val application: Application
 ) : AndroidViewModel(application) {
 
     private val _uiState = MutableStateFlow(
@@ -66,7 +65,7 @@ class CalculatorViewModel(
         _uiState.update {
             _uiState.value.copy(
                 showTimePicker = true, timePickerState = TimePickerState(
-                    is24Hour = DateFormat.is24HourFormat(application.applicationContext),
+                    is24Hour = DateFormat.is24HourFormat(application),
                     initialHour = currentChosenTime.hour,
                     initialMinute = currentChosenTime.minute
                 )
