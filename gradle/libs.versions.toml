@@ -17,7 +17,7 @@ coreKtx = "1.19.0"
 protolayout = "1.4.1"
 
 # Added librairies
-ksp = "2.3.10"
+ksp = "2.3.11"
 room = "2.8.4"
 lifecycleRuntimeKtx = "2.11.0"
 kotlinSerialization = "2.4.10"
