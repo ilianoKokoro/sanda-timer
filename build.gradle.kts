@@ -6,6 +6,6 @@ plugins {
     alias(libs.plugins.ksp) apply false
 }
 
-extra["versionMajor"] = 0
-extra["versionMinor"] = 7
-extra["versionPatch"] = 1
+extra["versionMajor"] = 1
+extra["versionMinor"] = 0
+extra["versionPatch"] = 0
