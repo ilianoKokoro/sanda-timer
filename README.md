@@ -31,18 +31,18 @@ All timers are stored only on the device. Sanda Timer does not collect or sell p
 ### WearOS
 
 <p float="left">
-  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-US/images/wearScreenshots/list_full.png" width="150" />
-  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-US/images/wearScreenshots/details.png" width="150" />
-  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-US/images/wearScreenshots/tile.png" width="150" />
-  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-US/images/wearScreenshots/new.png" width="150" />
-  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-US/images/wearScreenshots/empty.png" width="150" />
+  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-CA/images/wearScreenshots/list_full.png" width="150" />
+  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-CA/images/wearScreenshots/details.png" width="150" />
+  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-CA/images/wearScreenshots/tile.png" width="150" />
+  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-CA/images/wearScreenshots/new.png" width="150" />
+  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-CA/images/wearScreenshots/empty.png" width="150" />
 </p>
 
 ### Phone
 
 <p float="left">
-  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-US/images/phoneScreenshots/home_off.png" width="200" />
-  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-US/images/phoneScreenshots/timers.png" width="200" />
-  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-US/images/phoneScreenshots/picker.png" width="200" />
-  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-US/images/phoneScreenshots/home_on.png" width="200" />
+  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-CA/images/phoneScreenshots/home_off.png" width="200" />
+  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-CA/images/phoneScreenshots/timers.png" width="200" />
+  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-CA/images/phoneScreenshots/picker.png" width="200" />
+  <img src="https://raw.githubusercontent.com/ilianoKokoro/sanda-timer/refs/heads/main/fastlane/metadata/android/en-CA/images/phoneScreenshots/home_on.png" width="200" />
 </p>
