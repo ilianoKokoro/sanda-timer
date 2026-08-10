@@ -58,7 +58,6 @@ object NotificationManager {
             .setAutoCancel(true)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setPriority(NotificationCompat.PRIORITY_MAX)
-            .setDefaults(NotificationCompat.DEFAULT_ALL)
 
 
         androidNotificationManager.notify(
@@ -139,11 +138,13 @@ object NotificationManager {
     }
 
     private fun createTimerDoneVibrationPattern(): LongArray {
-        val pattern = mutableListOf(0L)
-        repeat(20) {
-            pattern += 1000L
-            pattern += 500L
-        }
-        return pattern.toLongArray()
+        return longArrayOf(
+            0L,
+            500L, 200L,
+            500L, 200L,
+            500L, 200L,
+            500L, 200L,
+            500L
+        )
     }
 }

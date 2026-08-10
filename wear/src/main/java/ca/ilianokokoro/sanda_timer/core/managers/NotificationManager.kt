@@ -61,10 +61,8 @@ object NotificationManager {
             .setFullScreenIntent(IntentHelper.openAppPendingIntent(context), true)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setPriority(NotificationCompat.PRIORITY_MAX)
-            .setDefaults(NotificationCompat.DEFAULT_ALL)
             .setOngoing(false)
             .setAutoCancel(true)
-
             .build()
 
         androidNotificationManager.notify(getNotificationID(timerId.toString()), notification)
@@ -146,11 +144,13 @@ object NotificationManager {
     }
 
     private fun createTimerDoneVibrationPattern(): LongArray {
-        val list = mutableListOf(0L)
-        repeat(20) {
-            list.add(1000L)
-            list.add(500L)
-        }
-        return list.toLongArray()
+        return longArrayOf(
+            0L,
+            500L, 200L,
+            500L, 200L,
+            500L, 200L,
+            500L, 200L,
+            500L
+        )
     }
 }

@@ -1,22 +1,17 @@
 package ca.ilianokokoro.sanda_timer.ui.screens.timers.components
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilledIconButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,6 +31,8 @@ import ca.ilianokokoro.sanda_timer.core.R
 import ca.ilianokokoro.sanda_timer.core.toFormattedDuration
 import ca.ilianokokoro.sanda_timer.core.withCenteredColons
 import ca.ilianokokoro.sanda_timer.models.Timer
+import ca.ilianokokoro.sanda_timer.ui.components.materialu.MaterialUButton
+import ca.ilianokokoro.sanda_timer.ui.components.materialu.MaterialUButtonSize
 import kotlinx.coroutines.isActive
 import kotlin.time.Clock
 
@@ -80,62 +77,49 @@ fun TimerListItem(
     Card(
         onClick = onOpenTimer,
         modifier = modifier,
-        shape = RoundedCornerShape(24.dp),
+        shape = RoundedCornerShape(30.dp),
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 20.dp, vertical = 16.dp),
+                .padding(20.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(20.dp)
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-
-            Box(
-                contentAlignment = Alignment.Center
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(20.dp)
             ) {
                 CircularProgressIndicator(
                     progress = { progress },
-                    modifier = Modifier.size(56.dp),
-                    strokeWidth = 5.dp,
+                    modifier = Modifier.size(60.dp),
+                    strokeWidth = 8.dp,
                 )
 
-                Text(
-                    text = "${(progress * 100).toInt()}%",
-                    style = MaterialTheme.typography.labelSmall
-                )
+                Column {
+                    Text(
+                        text = remainingText.withCenteredColons(MaterialTheme.typography.headlineMedium),
+                        style = MaterialTheme.typography.headlineMedium,
+                        maxLines = 1,
+                    )
+
+                    Text(
+                        text = if (timer.running) {
+                            timer.duration.toFormattedDuration()
+                        } else {
+                            stringResource(R.string.paused)
+                        },
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
             }
 
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-                Text(
-                    text = remainingText.withCenteredColons(MaterialTheme.typography.headlineMedium),
-                    style = MaterialTheme.typography.headlineMedium,
-                    maxLines = 1,
-                )
-
-                Spacer(Modifier.height(4.dp))
-
-                Text(
-                    text = if (timer.running) {
-                        timer.duration.toFormattedDuration()
-                    } else {
-                        stringResource(R.string.paused)
-                    },
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-
-            FilledIconButton(
-                shapes = IconButtonDefaults.shapes(),
+            MaterialUButton(
                 onClick = onCancel,
-            ) {
-                Icon(
-                    imageVector = Icons.Rounded.Close,
-                    contentDescription = Icons.Rounded.Close.name
-                )
-            }
+                size = MaterialUButtonSize.Medium,
+                icon = Icons.Rounded.Close,
+                modifier = Modifier.width(80.dp)
+            )
         }
     }
 }
