@@ -73,7 +73,7 @@ jobs:
           packageName: ca.ilianokokoro.sanda_timer
           releaseFiles: app/build/outputs/bundle/release/*.aab
           releaseName: ${{ steps.version.outputs.version }}
-          whatsNewDirectory: fastlane\metadata\android\en-CA\whats-new\phone
+          whatsNewDirectory: fastlane/metadata/android/en-CA/whats-new/phone
           tracks: "Android closed beta"
           status: draft
 
@@ -85,7 +85,7 @@ jobs:
           packageName: ca.ilianokokoro.sanda_timer
           releaseFiles: wear/build/outputs/bundle/release/*.aab
           releaseName: ${{ steps.version.outputs.version }} WearOS
-          whatsNewDirectory: fastlane\metadata\android\en-CA\whats-new\wearos
+          whatsNewDirectory: fastlane/metadata/android/en-CA/whats-new/wearos
           tracks: "wear:Wear OS closed beta"
           status: draft
 

@@ -21,7 +21,7 @@ All timers are stored only on the device. Sanda Timer does not collect or sell p
 - Run multiple timers at the same time.
 - Pause, resume, and cancel timers.
 - Silent vibration for a discrete reminder in public.
-- Designed with mordern Material 3 for Wear OS.
+- Designed with modern Material 3 for Wear OS.
 - Completely offline.
 - No ads.
 - No subscriptions.
