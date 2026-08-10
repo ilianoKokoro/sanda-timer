@@ -73,7 +73,7 @@ jobs:
           packageName: ca.ilianokokoro.sanda_timer
           releaseFiles: app/build/outputs/bundle/release/*.aab
           releaseName: ${{ steps.version.outputs.version }}
-          whatsNewDirectory: fastlane/metadata/android/whats-new
+          whatsNewDirectory: fastlane/metadata/android/whats-new/phone
           tracks: "Android closed beta"
           status: draft
 
@@ -85,6 +85,42 @@ jobs:
           packageName: ca.ilianokokoro.sanda_timer
           releaseFiles: wear/build/outputs/bundle/release/*.aab
           releaseName: ${{ steps.version.outputs.version }} WearOS
-          whatsNewDirectory: fastlane/metadata/android/whats-new
+          whatsNewDirectory: fastlane/metadata/android/whats-new/wearos
           tracks: "wear:Wear OS closed beta"
           status: draft
+
+      - name: Create new Beta release
+        uses: ncipollo/release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          name: Beta
+          artifacts: ./artifacts/**/*.apk
+          allowUpdates: true
+          removeArtifacts: true
+          generateReleaseNotes: false
+          body: ${{ github.event.head_commit.message }}
+          makeLatest: false
+          prerelease: true
+          draft: false
+          commit: ${{ github.sha }}
+      - name: Create a Release
+        uses: ncipollo/release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag: ${{ steps.version.outputs.version }}
+          commit: prod
+          generateReleaseNotes: false
+          draft: true
+          body: |
+            ## Release ${{ steps.version.outputs.version }}
+
+            ### Full Changelog
+            https://github.com/ilianoKokoro/sanda-timer/compare/${{ steps.version.outputs.version }}...${{ steps.version.outputs.version }}
+
+            ## Download link
+
+            <a href="https://play.google.com/store/apps/details?id=ca.ilianokokoro.sanda_timer">
+            <img src="https://i.postimg.cc/rm90vjNw/5a902dbf7f96951c82922875.png" height="100" alt="Get Sanda Timer on the Google Play Store">
+            </a>

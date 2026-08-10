@@ -9,6 +9,12 @@
 
 All timers are stored only on the device. Sanda Timer does not collect or sell personal data.
 
+## Download 📥
+
+   <a href="https://play.google.com/store/apps/details?id=ca.ilianokokoro.sanda_timer">
+          <img src="https://i.postimg.cc/rm90vjNw/5a902dbf7f96951c82922875.png" height="100" alt="Get Sanda Timer on the Google Play Store">
+        </a>
+
 ## Features ✨
 
 - Create timers quickly on the go.
