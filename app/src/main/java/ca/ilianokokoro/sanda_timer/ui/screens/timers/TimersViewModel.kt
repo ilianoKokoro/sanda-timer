@@ -42,5 +42,21 @@ class TimersViewModel(
         }
     }
 
+    fun toggleTimer(timer: Timer) {
+        viewModelScope.launch {
+            val newTimer = timerRepository.toggleTimer(timer)
 
+            _uiState.update { state ->
+                state.copy(
+                    timers = state.timers.map {
+                        if (it.id == newTimer.id) {
+                            newTimer
+                        } else {
+                            it
+                        }
+                    }
+                )
+            }
+        }
+    }
 }

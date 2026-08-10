@@ -1,17 +1,27 @@
 package ca.ilianokokoro.sanda_timer.ui.screens.timers.components
 
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material.icons.rounded.Pause
+import androidx.compose.material.icons.rounded.PlayArrow
+import androidx.compose.material3.ButtonGroup
+import androidx.compose.material3.ButtonGroupDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.FilledIconToggleButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,8 +41,6 @@ import ca.ilianokokoro.sanda_timer.core.R
 import ca.ilianokokoro.sanda_timer.core.toFormattedDuration
 import ca.ilianokokoro.sanda_timer.core.withCenteredColons
 import ca.ilianokokoro.sanda_timer.models.Timer
-import ca.ilianokokoro.sanda_timer.ui.components.materialu.MaterialUButton
-import ca.ilianokokoro.sanda_timer.ui.components.materialu.MaterialUButtonSize
 import kotlinx.coroutines.isActive
 import kotlin.time.Clock
 
@@ -42,6 +50,7 @@ fun TimerListItem(
     timer: Timer,
     onOpenTimer: () -> Unit,
     onCancel: () -> Unit,
+    onToggle: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var progress by remember { mutableFloatStateOf(timer.percentFinished(Clock.System.now())) }
@@ -50,6 +59,8 @@ fun TimerListItem(
     }
     var lastSecond by remember { mutableLongStateOf(-1L) }
 
+    val buttonGroupInteractionSources =
+        List(2) { remember { MutableInteractionSource() } }
 
     LaunchedEffect(timer) {
         if (!timer.running) {
@@ -114,12 +125,70 @@ fun TimerListItem(
                 }
             }
 
-            MaterialUButton(
-                onClick = onCancel,
-                size = MaterialUButtonSize.Medium,
-                icon = Icons.Rounded.Close,
-                modifier = Modifier.width(80.dp)
-            )
+            ButtonGroup(
+                overflowIndicator = {},
+                horizontalArrangement = Arrangement.spacedBy(ButtonGroupDefaults.ConnectedSpaceBetween)
+            ) {
+                customItem(
+                    {
+                        FilledIconToggleButton(
+                            checked = timer.running,
+                            onCheckedChange = { onToggle() },
+                            shapes = IconButtonDefaults.toggleableShapes(
+                                shape = ButtonGroupDefaults.connectedLeadingButtonShape,
+                                pressedShape = ButtonGroupDefaults.connectedLeadingButtonPressShape,
+                                checkedShape = ButtonGroupDefaults.connectedLeadingButtonShape,
+                            ),
+                            colors = IconButtonDefaults.filledIconToggleButtonColors(
+                                checkedContainerColor = IconButtonDefaults.filledIconToggleButtonColors().checkedContainerColor,
+                                checkedContentColor = IconButtonDefaults.filledIconToggleButtonColors().checkedContentColor,
+                                containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
+                                contentColor = MaterialTheme.colorScheme.onSurface
+                            ),
+                            modifier = Modifier
+                                .height(60.dp)
+                                .width(65.dp)
+                                .animateWidth(interactionSource = buttonGroupInteractionSources[1]),
+                            interactionSource = buttonGroupInteractionSources[1],
+                        ) {
+                            val icon = if (timer.running) {
+                                Icons.Rounded.Pause
+                            } else {
+                                Icons.Rounded.PlayArrow
+                            }
+                            Icon(
+                                imageVector = icon,
+                                contentDescription = icon.name,
+                            )
+                        }
+                    },
+                    {}
+                )
+                customItem(
+                    {
+                        FilledIconButton(
+                            onClick = onCancel,
+                            shapes = IconButtonDefaults.shapes(
+                                shape = ButtonGroupDefaults.connectedTrailingButtonShape,
+                                pressedShape = ButtonGroupDefaults.connectedTrailingButtonPressShape,
+                            ),
+                            interactionSource = buttonGroupInteractionSources[0],
+                            modifier = Modifier
+                                .height(60.dp)
+                                .width(65.dp)
+                                .animateWidth(
+                                    interactionSource = buttonGroupInteractionSources[0]
+                                )
+                        ) {
+                            Icon(
+                                imageVector = Icons.Rounded.Close,
+                                contentDescription = Icons.Rounded.Close.name,
+                            )
+                        }
+                    },
+                    {}
+                )
+            }
         }
     }
 }

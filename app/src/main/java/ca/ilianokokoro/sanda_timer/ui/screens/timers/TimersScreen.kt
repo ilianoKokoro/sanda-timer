@@ -53,6 +53,7 @@ fun TimersScreen(timersViewModel: TimersViewModel = viewModel()) {
                         TimerListItem(
                             timer = it,
                             onOpenTimer = {},
+                            onToggle = { timersViewModel.toggleTimer(it) },
                             onCancel = { timersViewModel.cancelTimer(it) })
                     }
                 }
