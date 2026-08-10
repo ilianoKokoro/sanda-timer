@@ -89,29 +89,17 @@ jobs:
           tracks: "wear:Wear OS closed beta"
           status: draft
 
-      - name: Create new Beta release
-        uses: ncipollo/release-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          name: Beta
-          artifacts: ./artifacts/**/*.apk
-          allowUpdates: true
-          removeArtifacts: true
-          generateReleaseNotes: false
-          body: ${{ github.event.head_commit.message }}
-          makeLatest: false
-          prerelease: true
-          draft: false
-          commit: ${{ github.sha }}
       - name: Create a Release
         uses: ncipollo/release-action@v1
+        if: github.ref_name == 'prod'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag: ${{ steps.version.outputs.version }}
           commit: prod
+          allowUpdates: true
           generateReleaseNotes: false
+          makeLatest: true
           draft: true
           body: |
             ## Release ${{ steps.version.outputs.version }}
