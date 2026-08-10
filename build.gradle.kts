@@ -8,4 +8,4 @@ plugins {
 
 extra["versionMajor"] = 1
 extra["versionMinor"] = 0
-extra["versionPatch"] = 2
+extra["versionPatch"] = 3
