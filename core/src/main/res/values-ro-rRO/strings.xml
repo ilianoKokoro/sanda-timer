@@ -16,7 +16,8 @@
     <string name="timer_tile_description">Vă permite să vedeţi rapid cronometrul activ şi să creaţi unul nou</string>
     <string name="timer_tile_label">Sanda Timers</string>
     <string name="paused">Pauză</string>
-    <string name="timer_finished">Temporizator terminat!</string>
+    <string name="timer_finished">Timer Finished!</string>
+    <string name="tap_to_open">Tap to open</string>
     <string name="add_new_timer">Adaugă un nou cronometru</string>
     <string name="timer_running">Cronometru rulează</string>
     <string name="a_timer_is_active">Un cronometru este activ</string>
