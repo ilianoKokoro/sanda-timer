@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
@@ -98,6 +98,7 @@ fun TimerListItem(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Row(
+                modifier = Modifier.weight(1f, fill = false),
                 horizontalArrangement = Arrangement.spacedBy(20.dp)
             ) {
                 CircularProgressIndicator(
@@ -147,7 +148,7 @@ fun TimerListItem(
                             ),
                             modifier = Modifier
                                 .height(60.dp)
-                                .width(65.dp)
+                                .widthIn(min = 48.dp)
                                 .animateWidth(interactionSource = buttonGroupInteractionSources[1]),
                             interactionSource = buttonGroupInteractionSources[1],
                         ) {
@@ -175,7 +176,7 @@ fun TimerListItem(
                             interactionSource = buttonGroupInteractionSources[0],
                             modifier = Modifier
                                 .height(60.dp)
-                                .width(65.dp)
+                                .widthIn(min = 48.dp)
                                 .animateWidth(
                                     interactionSource = buttonGroupInteractionSources[0]
                                 )
