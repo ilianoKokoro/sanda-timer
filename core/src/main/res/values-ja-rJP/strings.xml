@@ -16,8 +16,8 @@
     <string name="timer_tile_description">アクティブなタイマーをすばやく確認し、新しいタイマーを作成できます。</string>
     <string name="timer_tile_label">Sanda Timers</string>
     <string name="paused">一時停止</string>
-    <string name="timer_finished">Timer Finished!</string>
-    <string name="tap_to_open">Tap to open</string>
+    <string name="timer_finished">タイマーが終了しました！</string>
+    <string name="tap_to_open">タップして開く</string>
     <string name="add_new_timer">新しいタイマーを追加</string>
     <string name="timer_running">タイマー実行中</string>
     <string name="a_timer_is_active">タイマーが有効です</string>
