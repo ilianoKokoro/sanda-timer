@@ -73,8 +73,7 @@ jobs:
           releaseFiles: app/build/outputs/bundle/release/*.aab
           releaseName: ${{ steps.version.outputs.version }}
           whatsNewDirectory: fastlane/metadata/android/en-CA/whats-new/phone
-          tracks: "Android closed beta"
-          status: draft
+          tracks: internal
 
       - name: Upload Wear
         uses: r0adkll/upload-google-play@v1
@@ -85,8 +84,7 @@ jobs:
           releaseFiles: wear/build/outputs/bundle/release/*.aab
           releaseName: ${{ steps.version.outputs.version }} WearOS
           whatsNewDirectory: fastlane/metadata/android/en-CA/whats-new/wearos
-          tracks: "wear:Wear OS closed beta"
-          status: draft
+          tracks: wear:internal
 
       - name: Create a Release
         uses: ncipollo/release-action@v1
@@ -99,7 +97,7 @@ jobs:
           allowUpdates: true
           generateReleaseNotes: false
           makeLatest: true
-          draft: true
+          draft: false
           body: |
             ## Release ${{ steps.version.outputs.version }}
 
