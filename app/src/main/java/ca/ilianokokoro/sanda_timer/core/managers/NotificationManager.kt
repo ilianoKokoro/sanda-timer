@@ -54,7 +54,7 @@ object NotificationManager {
             .setContentIntent(IntentHelper.openAppPendingIntent(context))
             .setSmallIcon(RCore.drawable.ic_timer)
             .setContentTitle(context.getString(RCore.string.timer_finished))
-            .setContentText("Tap to open")
+            .setContentText(context.getString(RCore.string.tap_to_open))
             .setAutoCancel(true)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setPriority(NotificationCompat.PRIORITY_MAX)
