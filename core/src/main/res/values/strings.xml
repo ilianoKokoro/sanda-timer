@@ -25,5 +25,7 @@
     <string name="invalid_navkey">Invalid NavKey : %1$s</string>
     <string name="start">Start</string>
     <string name="timer_started">Timer started</string>
-
+    <string name="minutes">Minutes</string>
+    <string name="seconds">Seconds</string>
+    <string name="hours">Hours</string>
 </resources>

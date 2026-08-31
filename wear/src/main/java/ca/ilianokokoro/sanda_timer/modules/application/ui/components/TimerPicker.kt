@@ -14,6 +14,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -35,6 +36,7 @@ fun TimerPicker(
     maxHours: Int = 99,
     onTimeChanged: (Duration) -> Unit = { _ -> },
 ) {
+
     val showHours = maxHours > 0
     val columnWidth = 36.dp
     val columnHeight = 46.dp
@@ -80,8 +82,14 @@ fun TimerPicker(
         1 -> minuteState
         else -> secondState
     }
+    val context = LocalContext.current
 
     Box(modifier = modifier.fillMaxSize()) {
+
+        val hoursDescription = stringResource(R.string.hours)
+        val minutesDescription = stringResource(R.string.minutes)
+        val secondsDescription = stringResource(R.string.seconds)
+
         PickerGroup(
             modifier = Modifier.align(Alignment.Center),
             selectedPickerState = selectedState,
@@ -93,7 +101,7 @@ fun TimerPicker(
                     selected = focusedColumn == 0,
                     onSelected = { focusedColumn = 0 },
                     option = { index, selected -> DigitColumn(index, selected) },
-                    contentDescription = { "Hours" },
+                    contentDescription = { hoursDescription },
                     modifier = Modifier.size(width = columnWidth, height = columnHeight)
                 )
                 Colon()
@@ -103,7 +111,7 @@ fun TimerPicker(
                 selected = focusedColumn == 1,
                 onSelected = { focusedColumn = 1 },
                 option = { index, selected -> DigitColumn(index, selected) },
-                contentDescription = { "Minutes" },
+                contentDescription = { minutesDescription },
                 modifier = Modifier.size(width = columnWidth, height = columnHeight)
             )
             Colon()
@@ -112,7 +120,7 @@ fun TimerPicker(
                 selected = focusedColumn == 2,
                 onSelected = { focusedColumn = 2 },
                 option = { index, selected -> DigitColumn(index, selected) },
-                contentDescription = { "Seconds" },
+                contentDescription = { secondsDescription },
                 modifier = Modifier.size(width = columnWidth, height = columnHeight)
             )
         }
