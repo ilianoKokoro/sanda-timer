@@ -154,11 +154,9 @@ object NotificationManager {
     private fun createTimerDoneVibrationPattern(): LongArray {
         return longArrayOf(
             0L,
-            500L, 200L,
-            500L, 200L,
-            500L, 200L,
-            500L, 200L,
-            500L
+            1000L, 1000L,
+            1000L, 1000L,
+            1000L, 2000L
         )
     }
 }

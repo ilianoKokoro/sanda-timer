@@ -82,17 +82,17 @@ class DoneActivity : ComponentActivity() {
                         v.vibrate(
                             longArrayOf(
                                 0L,
-                                500L, 200L,
-                                500L, 200L,
-                                500L, 200L,
-                                500L, 200L,
-                                500L
+                                1000L, 1000L,
+                                1000L, 1000L,
+                                1000L, 1000L,
+                                1000L, 1000L,
+                                1000L
                             ),
                             -1 // repeat from start, -1 = don't repeat (we'll restart)
                         )
                     }
                 }
-                delay(3.seconds) // brief pause between pattern repeats before restarting
+                delay(8.seconds) // pause between pattern repeats before restarting
             }
         }
     }
