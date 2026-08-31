@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">لا يوجد مؤقتات</string>
-
     <string name="timer_ongoing_name">المؤقت الحالي</string>
     <string name="timer_done_name">انتهت مدة المؤقت</string>
     <string name="timer_done_description">الحصول على إشعار عند الانتهاء من المؤقت</string>
@@ -11,6 +9,7 @@
     <string name="genericError">خطأ</string>
     <string name="offset_switch">-15 دقيقة</string>
     <string name="confirmButton">حسناً</string>
+    <string name="cancelButton">إلغاء</string>
     <string name="invalid_time_error">الوقت المختار غير صالح</string>
     <string name="select_time">حدد الوقت المستهدف</string>
     <string name="timer_tile_description">يتيح لك رؤية المؤقت النشط الخاص بك بسرعة وإنشاء واحد جديد</string>

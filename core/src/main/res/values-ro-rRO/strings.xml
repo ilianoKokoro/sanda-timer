@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">Fără cronometre</string>
-
     <string name="timer_ongoing_name">Temporizator în desfășurare</string>
     <string name="timer_done_name">Temporizator terminat</string>
     <string name="timer_done_description">Primește notificări când s-a terminat un cronometru</string>
@@ -11,6 +9,7 @@
     <string name="genericError">Eroare</string>
     <string name="offset_switch">-15 min.</string>
     <string name="confirmButton">Ok</string>
+    <string name="cancelButton">Anulează</string>
     <string name="invalid_time_error">Timpul ales nu este valid</string>
     <string name="select_time">Selectați ora țintă</string>
     <string name="timer_tile_description">Vă permite să vedeţi rapid cronometrul activ şi să creaţi unul nou</string>

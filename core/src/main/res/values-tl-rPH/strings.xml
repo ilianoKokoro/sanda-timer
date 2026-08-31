@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">No timers</string>
-
     <string name="timer_ongoing_name">Ongoing Timer</string>
     <string name="timer_done_name">Timer Finished</string>
     <string name="timer_done_description">Get notified when a timer is finished</string>
@@ -11,6 +9,7 @@
     <string name="genericError">Error</string>
     <string name="offset_switch">-15 mins</string>
     <string name="confirmButton">OK</string>
+    <string name="cancelButton">Cancel</string>
     <string name="invalid_time_error">The chosen time is invalid</string>
     <string name="select_time">Select the target time</string>
     <string name="timer_tile_description">Lets you quickly see your active timers and create a new one</string>

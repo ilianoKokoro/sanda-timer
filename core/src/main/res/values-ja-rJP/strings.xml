@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">タイマーがありません</string>
-
     <string name="timer_ongoing_name">進行中のタイマー</string>
     <string name="timer_done_name">タイマー終了</string>
     <string name="timer_done_description">タイマーが終了したら通知を受け取ります</string>
@@ -11,6 +9,7 @@
     <string name="genericError">エラー</string>
     <string name="offset_switch">-15分</string>
     <string name="confirmButton">OK</string>
+    <string name="cancelButton">キャンセル</string>
     <string name="invalid_time_error">選択された時間は無効です</string>
     <string name="select_time">目標時間を選択</string>
     <string name="timer_tile_description">アクティブなタイマーをすばやく確認し、新しいタイマーを作成できます。</string>
