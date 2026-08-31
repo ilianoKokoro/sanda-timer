@@ -16,8 +16,8 @@
     <string name="timer_tile_description">Antaa sinun nähdä nopeasti aktiiviset ajastimet ja luoda uuden</string>
     <string name="timer_tile_label">Sanda Timers</string>
     <string name="paused">Keskeytetty</string>
-    <string name="timer_finished">Timer Finished!</string>
-    <string name="tap_to_open">Tap to open</string>
+    <string name="timer_finished">Ajastin Valmis!</string>
+    <string name="tap_to_open">Avaa napauttamalla</string>
     <string name="add_new_timer">Lisää uusi ajastin</string>
     <string name="timer_running">Ajastin käynnissä</string>
     <string name="a_timer_is_active">Ajastin on aktiivinen</string>
