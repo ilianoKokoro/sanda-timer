@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Sanda Timer</string>
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">Inga timers</string>
-    <string name="colon">:</string>
     <string name="timer_ongoing_name">Pågående Timer</string>
     <string name="timer_done_name">Timern är klar</string>
     <string name="timer_done_description">Få meddelande när en timer är klar</string>
@@ -11,7 +9,7 @@
     <string name="genericError">Fel</string>
     <string name="offset_switch">-15 minuter</string>
     <string name="confirmButton">Ok</string>
-    <string name="cancelButton">Cancel</string>
+    <string name="cancelButton">Avbryt</string>
     <string name="invalid_time_error">Den valda tiden är ogiltig</string>
     <string name="select_time">Välj måltid</string>
     <string name="timer_tile_description">Kan du snabbt se dina aktiva timers och skapa en ny</string>
