@@ -16,7 +16,8 @@
     <string name="timer_tile_description">Permite que você veja rapidamente os seus temporizadores ativos e crie um novo</string>
     <string name="timer_tile_label">Sanda Timers</string>
     <string name="paused">Pausado</string>
-    <string name="timer_finished">Cronômetro terminado!</string>
+    <string name="timer_finished">Timer Finished!</string>
+    <string name="tap_to_open">Tap to open</string>
     <string name="add_new_timer">Adicionar um novo temporizador</string>
     <string name="timer_running">Temporizador em execução</string>
     <string name="a_timer_is_active">Um temporizador está ativo</string>
