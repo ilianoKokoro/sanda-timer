@@ -16,7 +16,8 @@
     <string name="timer_tile_description">Lets you quickly see your active timers and create a new one</string>
     <string name="timer_tile_label">Sanda Timers</string>
     <string name="paused">Paused</string>
-    <string name="timer_finished">Timer Finished !</string>
+    <string name="timer_finished">Timer Finished!</string>
+    <string name="tap_to_open">Tap to open</string>
     <string name="add_new_timer">Add a new timer</string>
     <string name="timer_running">Timer running</string>
     <string name="a_timer_is_active">A timer is active</string>
