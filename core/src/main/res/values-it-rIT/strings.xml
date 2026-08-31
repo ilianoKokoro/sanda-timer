@@ -11,6 +11,7 @@
     <string name="genericError">Errore</string>
     <string name="offset_switch">-15 min</string>
     <string name="confirmButton">OK</string>
+    <string name="app_id">ca.ilianokokoro.sanda_timer</string>
     <string name="invalid_time_error">L\'orario scelto non è valido</string>
     <string name="select_time">Seleziona l\'ora di destinazione</string>
     <string name="timer_tile_description">Ti permette di vedere rapidamente i tuoi timer attivi e crearne uno nuovo</string>
