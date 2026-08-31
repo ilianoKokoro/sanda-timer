@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Timer Sandy</string>
+
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">Brak timerów</string>
-    <string name="colon">:</string>
+
     <string name="timer_ongoing_name">Trwający Timer</string>
     <string name="timer_done_name">Timer zakończony</string>
     <string name="timer_done_description">Otrzymuj powiadomienia o zakończeniu odliczania</string>

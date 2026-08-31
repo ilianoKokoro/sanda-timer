@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Zanda Timer</string>
+
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">Geen timers</string>
-    <string name="colon">:</string>
+
     <string name="timer_ongoing_name">Lopende Timer</string>
     <string name="timer_done_name">Timer beëindigd</string>
     <string name="timer_done_description">Krijg een melding wanneer een timer is voltooid</string>

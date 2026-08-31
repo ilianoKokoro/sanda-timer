@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Sanda Timer</string>
+
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">Ingen timere</string>
-    <string name="colon">:</string>
+
     <string name="timer_ongoing_name">Igangværende Timer</string>
     <string name="timer_done_name">Timeren Er Færdig</string>
     <string name="timer_done_description">Få besked, når en timer er færdig</string>

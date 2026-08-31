@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Таймер Санды</string>
+
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">Нет таймеров</string>
-    <string name="colon">:</string>
+
     <string name="timer_ongoing_name">Текущий таймер</string>
     <string name="timer_done_name">Таймер завершён</string>
     <string name="timer_done_description">Получать уведомления по завершении таймера</string>

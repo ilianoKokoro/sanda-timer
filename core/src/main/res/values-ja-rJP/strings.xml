@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">三田タイマー</string>
+
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">タイマーがありません</string>
-    <string name="colon">:</string>
+
     <string name="timer_ongoing_name">進行中のタイマー</string>
     <string name="timer_done_name">タイマー終了</string>
     <string name="timer_done_description">タイマーが終了したら通知を受け取ります</string>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Časovač Sanda</string>
+
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">Žádné časovače</string>
-    <string name="colon">:</string>
+
     <string name="timer_ongoing_name">Probíhající časovač</string>
     <string name="timer_done_name">Časovač dokončen</string>
     <string name="timer_done_description">Dostat oznámení, když je časovač dokončen</string>

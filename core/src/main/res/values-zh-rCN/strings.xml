@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">桑达定时器</string>
+
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">无计时器</string>
-    <string name="colon">:</string>
+
     <string name="timer_ongoing_name">进行中的计时器</string>
     <string name="timer_done_name">计时器完成</string>
     <string name="timer_done_description">计时器完成时获得通知</string>

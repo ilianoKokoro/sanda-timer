@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Cronometru Sanda</string>
+
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">Fără cronometre</string>
-    <string name="colon">:</string>
+
     <string name="timer_ongoing_name">Temporizator în desfășurare</string>
     <string name="timer_done_name">Temporizator terminat</string>
     <string name="timer_done_description">Primește notificări când s-a terminat un cronometru</string>

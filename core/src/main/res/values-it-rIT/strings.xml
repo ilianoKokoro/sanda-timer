@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Timer Di Sanda</string>
+
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">Nessun timer</string>
-    <string name="colon">:</string>
+
     <string name="timer_ongoing_name">Timer In Corso</string>
     <string name="timer_done_name">Timer Terminato</string>
     <string name="timer_done_description">Ricevi una notifica quando un timer è finito</string>
