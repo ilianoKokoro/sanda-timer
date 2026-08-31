@@ -11,7 +11,7 @@
     <string name="genericError">Feil</string>
     <string name="offset_switch">-15 min</string>
     <string name="confirmButton">Ok</string>
-    <string name="app_id">ca.ilianokokoro.sanda_timer</string>
+    <string name="cancelButton">Cancel</string>
     <string name="invalid_time_error">Den valgte tiden er ugyldig</string>
     <string name="select_time">Velg tid for målet</string>
     <string name="timer_tile_description">Lar deg raskt se de aktive tidene og lage en ny</string>
