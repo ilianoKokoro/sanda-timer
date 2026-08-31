@@ -11,7 +11,7 @@
     <string name="genericError">خطأ</string>
     <string name="offset_switch">-15 دقيقة</string>
     <string name="confirmButton">حسناً</string>
-    <string name="app_id">ca.ilianokokoro.sanda_timer</string>
+    <string name="cancelButton">Cancel</string>
     <string name="invalid_time_error">الوقت المختار غير صالح</string>
     <string name="select_time">حدد الوقت المستهدف</string>
     <string name="timer_tile_description">يتيح لك رؤية المؤقت النشط الخاص بك بسرعة وإنشاء واحد جديد</string>
