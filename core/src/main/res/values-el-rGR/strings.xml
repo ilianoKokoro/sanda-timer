@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Χρονόμετρο Sanda</string>
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">Χωρίς ξυπνητήρια</string>
-    <string name="colon">:</string>
     <string name="timer_ongoing_name">Χρονόμετρο Σε Εξέλιξη</string>
     <string name="timer_done_name">Το Χρονόμετρο Ολοκληρώθηκε</string>
     <string name="timer_done_description">Ειδοποίηση όταν τελειώσει ένα χρονόμετρο</string>
@@ -11,7 +9,7 @@
     <string name="genericError">Σφάλμα</string>
     <string name="offset_switch">-15 λεπτά</string>
     <string name="confirmButton">Εντάξει</string>
-    <string name="cancelButton">Cancel</string>
+    <string name="cancelButton">Ακύρωση</string>
     <string name="invalid_time_error">Η επιλεγμένη ώρα δεν είναι έγκυρη</string>
     <string name="select_time">Επιλέξτε την ώρα προορισμού</string>
     <string name="timer_tile_description">Σας επιτρέπει να βλέπετε γρήγορα τα ενεργά χρονόμετρα σας και να δημιουργήσετε ένα νέο</string>
