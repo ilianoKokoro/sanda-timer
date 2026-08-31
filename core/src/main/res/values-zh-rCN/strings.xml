@@ -16,8 +16,8 @@
     <string name="timer_tile_description">让你很快看到你活跃的计时器并创建一个新的计时器</string>
     <string name="timer_tile_label">Sanda Timers</string>
     <string name="paused">已暂停</string>
-    <string name="timer_finished">Timer Finished!</string>
-    <string name="tap_to_open">Tap to open</string>
+    <string name="timer_finished">计时器完成！</string>
+    <string name="tap_to_open">点击打开</string>
     <string name="add_new_timer">添加新的计时器</string>
     <string name="timer_running">计时器运行</string>
     <string name="a_timer_is_active">计时器已激活</string>
