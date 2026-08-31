@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Temporizador Sanda</string>
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">Sin temporizadores</string>
-    <string name="colon">:</string>
     <string name="timer_ongoing_name">Temporizador en curso</string>
     <string name="timer_done_name">Temporizador finalizado</string>
     <string name="timer_done_description">Notificar cuando finalice un temporizador</string>
@@ -11,7 +9,7 @@
     <string name="genericError">Error</string>
     <string name="offset_switch">-15 min</string>
     <string name="confirmButton">Ok</string>
-    <string name="cancelButton">Cancel</string>
+    <string name="cancelButton">Cancelar</string>
     <string name="invalid_time_error">La hora seleccionada no es válida</string>
     <string name="select_time">Seleccione la hora de destino</string>
     <string name="timer_tile_description">Te permite ver rápidamente tus temporizadores activos y crear uno nuevo</string>
