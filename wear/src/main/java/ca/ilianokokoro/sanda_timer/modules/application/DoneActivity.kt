@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.core.view.WindowCompat
 import androidx.wear.compose.material3.AppScaffold
 import ca.ilianokokoro.sanda_timer.core.Constants
@@ -30,6 +31,8 @@ class DoneActivity : ComponentActivity() {
         timerId = intent.getLongExtra(Constants.TimerReceiver.TIMER_ID, -1L)
         duration = intent.getLongExtra(Constants.TimerReceiver.DURATION_SECONDS, 0L).seconds
         LogHelper.printd("DoneActivity timerId: $timerId, duration: $duration")
+        
+        enableEdgeToEdge()
         setContent {
             SandaTimerTheme {
                 AppScaffold {

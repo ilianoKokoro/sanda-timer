@@ -8,6 +8,7 @@ import android.os.VibratorManager
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.core.view.WindowCompat
 import ca.ilianokokoro.sanda_timer.core.Constants
 import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper
@@ -33,7 +34,6 @@ class DoneActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         LogHelper.printd("DoneActivity onCreate started")
-
         WindowCompat.setDecorFitsSystemWindows(window, false)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         setShowWhenLocked(true)
@@ -54,6 +54,7 @@ class DoneActivity : ComponentActivity() {
 
         startVibrationLoop()
 
+        enableEdgeToEdge()
         setContent {
             SandaTimerTheme {
                 DoneScreen(

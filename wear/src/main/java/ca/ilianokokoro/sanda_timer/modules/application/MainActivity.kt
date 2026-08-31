@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import ca.ilianokokoro.sanda_timer.core.helpers.AppIntent
 import ca.ilianokokoro.sanda_timer.core.helpers.IntentHelper
@@ -28,6 +29,7 @@ class MainActivity : ComponentActivity() {
 
         handleIntent(intent)
 
+        enableEdgeToEdge()
         setContent {
             SandaTimerTheme {
                 NavigationRoot(appIntentFlow)
