@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.wear.protolayout.ActionBuilders
 import androidx.wear.protolayout.ModifiersBuilders
+import ca.ilianokokoro.sanda_timer.core.Constants
+import ca.ilianokokoro.sanda_timer.modules.application.DoneActivity
 import ca.ilianokokoro.sanda_timer.modules.application.MainActivity
 
 sealed interface AppIntent {
@@ -19,6 +21,10 @@ object IntentHelper {
     private val MAIN_ACTIVITY_COMPONENT_NAME = ComponentName(
         APP_ID,
         "$APP_ID.modules.application.MainActivity"
+    )
+    private val DONE_ACTIVITY_COMPONENT_NAME = ComponentName(
+        APP_ID,
+        "$APP_ID.modules.application.DoneActivity"
     )
     private const val PREFIX = "${APP_ID}.action."
     const val ACTION_OPEN_TIMER =
@@ -50,6 +56,14 @@ object IntentHelper {
         flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
     }
 
+    fun openDone(
+        context: Context,
+        timerId: Long,
+    ) = Intent(context, DoneActivity::class.java).apply {
+        putExtra(Constants.TimerReceiver.TIMER_ID, timerId)
+        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+    }
+
     fun openAppPendingIntent(
         context: Context,
     ): PendingIntent =
@@ -68,6 +82,17 @@ object IntentHelper {
             context,
             timerId.hashCode(),
             openTimer(context, timerId),
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+        )
+
+    fun openDonePendingIntent(
+        context: Context,
+        timerId: Long,
+    ): PendingIntent =
+        PendingIntent.getActivity(
+            context,
+            timerId.hashCode() + 1,
+            openDone(context, timerId),
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
         )
 

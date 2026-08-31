@@ -21,6 +21,7 @@ object Constants {
 
     object TimerReceiver {
         const val TIMER_ID = "timerId"
+        const val DURATION_SECONDS = "durationSeconds"
     }
 
     object Strings {
