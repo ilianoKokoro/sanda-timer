@@ -1,5 +1,4 @@
 [![Latest release](https://img.shields.io/github/v/release/ilianoKokoro/sanda-timer?style=for-the-badge)](https://github.com/ilianoKokoro/sanda-timer/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/ilianoKokoro/sanda-timer/total?style=for-the-badge&color=E53935)](https://github.com/ilianoKokoro/sanda-timer/releases/latest)
 
 # Sanda Timer
 

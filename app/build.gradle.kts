@@ -33,7 +33,7 @@ android {
     buildToolsVersion = "37.0.0"
     defaultConfig {
         applicationId = "ca.ilianokokoro.sanda_timer"
-        minSdk = 26
+        minSdk = 27
         targetSdk = 37
         versionCode = versionMajor * 10000 + versionMinor * 100 + versionPatch
         versionName = "${versionMajor}.${versionMinor}.${versionPatch}"

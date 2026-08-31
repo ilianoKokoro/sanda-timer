@@ -4,6 +4,8 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import ca.ilianokokoro.sanda_timer.MainActivity
+import ca.ilianokokoro.sanda_timer.core.Constants
+import ca.ilianokokoro.sanda_timer.modules.application.DoneActivity
 
 sealed interface AppIntent {
     data object OpenTimerPage : AppIntent
@@ -34,6 +36,28 @@ object IntentHelper {
         action = ACTION_OPEN_APP
         flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
     }
+
+    fun openDone(
+        context: Context,
+        timerId: Long,
+        durationSeconds: Long,
+    ) = Intent(context, DoneActivity::class.java).apply {
+        putExtra(Constants.TimerReceiver.TIMER_ID, timerId)
+        putExtra(Constants.TimerReceiver.DURATION_SECONDS, durationSeconds)
+        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    }
+
+    fun openDonePendingIntent(
+        context: Context,
+        timerId: Long,
+        durationSeconds: Long,
+    ): PendingIntent =
+        PendingIntent.getActivity(
+            context,
+            timerId.hashCode() + 1,
+            openDone(context, timerId, durationSeconds),
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+        )
 
     fun openAppPendingIntent(
         context: Context,

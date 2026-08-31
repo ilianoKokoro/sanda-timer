@@ -5,7 +5,10 @@ import android.content.Context
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
 import ca.ilianokokoro.sanda_timer.core.helpers.IntentHelper
+import ca.ilianokokoro.sanda_timer.core.helpers.LogHelper
+import ca.ilianokokoro.sanda_timer.core.repositories.TimerRepository
 import ca.ilianokokoro.sanda_timer.models.Timer
+import kotlinx.coroutines.runBlocking
 import kotlin.math.abs
 import android.app.NotificationManager as AndroidNotificationManager
 import ca.ilianokokoro.sanda_timer.core.R as RCore
@@ -47,23 +50,34 @@ object NotificationManager {
         context: Context,
         timerId: Long
     ) {
+        val durationSeconds = runBlocking {
+            TimerRepository(context).getTimerById(timerId)?.duration?.inWholeSeconds ?: 0L
+        }
+
         val notification = getBaseNotification(
             context,
             NotificationChannels.TIMER_DONE
         )
-            .setContentIntent(IntentHelper.openAppPendingIntent(context))
+            .setContentIntent(
+                IntentHelper.openDonePendingIntent(context, timerId, durationSeconds)
+            )
+            .setFullScreenIntent(
+                IntentHelper.openDonePendingIntent(context, timerId, durationSeconds),
+                true
+            )
             .setSmallIcon(RCore.drawable.ic_timer)
             .setContentTitle(context.getString(RCore.string.timer_finished))
             .setContentText(context.getString(RCore.string.tap_to_open))
             .setAutoCancel(true)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setPriority(NotificationCompat.PRIORITY_MAX)
-
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 
         androidNotificationManager.notify(
             getNotificationID(timerId.toString()),
             notification.build()
         )
+        LogHelper.printd("Timer done notification shown for timer $timerId (duration=${durationSeconds}s)")
     }
 
     fun createTimerNotification(
@@ -132,7 +146,7 @@ object NotificationManager {
             channelId = "timer_done",
             nameRes = RCore.string.timer_done_name,
             descriptionRes = RCore.string.timer_done_description,
-            importance = AndroidNotificationManager.IMPORTANCE_HIGH,
+            importance = AndroidNotificationManager.IMPORTANCE_MAX,
             vibrationPattern = createTimerDoneVibrationPattern()
         )
     }
