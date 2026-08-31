@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Zanda Timer</string>
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">Geen timers</string>
-    <string name="colon">:</string>
     <string name="timer_ongoing_name">Lopende Timer</string>
     <string name="timer_done_name">Timer beëindigd</string>
     <string name="timer_done_description">Krijg een melding wanneer een timer is voltooid</string>
@@ -11,7 +9,7 @@
     <string name="genericError">Foutmelding</string>
     <string name="offset_switch">-15 minuten</string>
     <string name="confirmButton">Ok</string>
-    <string name="cancelButton">Cancel</string>
+    <string name="cancelButton">annuleren</string>
     <string name="invalid_time_error">De gekozen tijd is ongeldig</string>
     <string name="select_time">Selecteer de doeltijd</string>
     <string name="timer_tile_description">Laat je snel je actieve timers zien en maak een nieuwe</string>
