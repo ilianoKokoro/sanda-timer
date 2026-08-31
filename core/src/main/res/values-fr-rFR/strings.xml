@@ -16,7 +16,8 @@
     <string name="timer_tile_description">Vous permet de voir rapidement vos minuteurs actifs et d\'en créer un nouveau</string>
     <string name="timer_tile_label">Sanda Timers</string>
     <string name="paused">En pause</string>
-    <string name="timer_finished">Minuterie terminée !</string>
+    <string name="timer_finished">Timer Finished!</string>
+    <string name="tap_to_open">Tap to open</string>
     <string name="add_new_timer">Ajouter un nouveau minuteur</string>
     <string name="timer_running">Minuterie en cours d\'exécution</string>
     <string name="a_timer_is_active">Un minuteur est actif</string>
