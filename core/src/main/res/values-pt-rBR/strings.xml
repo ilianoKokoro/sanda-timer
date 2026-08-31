@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Timer do Papai Noel</string>
     <string name="sanda_timers">Sanda Timers</string>
     <string name="no_timers">Sem temporizadores</string>
-    <string name="colon">:</string>
     <string name="timer_ongoing_name">Temporizador em andamento</string>
     <string name="timer_done_name">Cronômetro terminado</string>
     <string name="timer_done_description">Seja notificado quando um cronômetro for concluído</string>
@@ -11,7 +9,7 @@
     <string name="genericError">ERRO</string>
     <string name="offset_switch">-15 mins</string>
     <string name="confirmButton">Certo</string>
-    <string name="cancelButton">Cancel</string>
+    <string name="cancelButton">cancelar</string>
     <string name="invalid_time_error">O tempo escolhido é inválido</string>
     <string name="select_time">Selecione o horário alvo</string>
     <string name="timer_tile_description">Permite que você veja rapidamente os seus temporizadores ativos e crie um novo</string>
