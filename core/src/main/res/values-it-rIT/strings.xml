@@ -16,8 +16,8 @@
     <string name="timer_tile_description">Ti permette di vedere rapidamente i tuoi timer attivi e crearne uno nuovo</string>
     <string name="timer_tile_label">Sanda Timers</string>
     <string name="paused">Pausa</string>
-    <string name="timer_finished">Timer Finished!</string>
-    <string name="tap_to_open">Tap to open</string>
+    <string name="timer_finished">Timer Finito!</string>
+    <string name="tap_to_open">Tocca per aprire</string>
     <string name="add_new_timer">Aggiungi un nuovo timer</string>
     <string name="timer_running">Timer in esecuzione</string>
     <string name="a_timer_is_active">Un timer è attivo</string>
