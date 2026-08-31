@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">三田タイマー</string>
+    <string name="sanda_timers">Sanda Timers</string>
+    <string name="no_timers">タイマーがありません</string>
+    <string name="colon">:</string>
+    <string name="timer_ongoing_name">進行中のタイマー</string>
+    <string name="timer_done_name">タイマー終了</string>
+    <string name="timer_done_description">タイマーが終了したら通知を受け取ります</string>
+    <string name="timer_ongoing_description">次のタイマーの進行状況を表示します</string>
+    <string name="genericError">エラー</string>
+    <string name="offset_switch">-15分</string>
+    <string name="confirmButton">OK</string>
+    <string name="invalid_time_error">選択された時間は無効です</string>
+    <string name="select_time">目標時間を選択</string>
+    <string name="timer_tile_description">アクティブなタイマーをすばやく確認し、新しいタイマーを作成できます。</string>
+    <string name="timer_tile_label">Sanda Timers</string>
+    <string name="paused">一時停止</string>
+    <string name="timer_finished">タイマー終了！</string>
+    <string name="add_new_timer">新しいタイマーを追加</string>
+    <string name="timer_running">タイマー実行中</string>
+    <string name="a_timer_is_active">タイマーが有効です</string>
+    <string name="timers">Timers</string>
+    <string name="calculator">Calculator</string>
+    <string name="invalid_navkey">無効なナビキー: %1$s</string>
+    <string name="start">開始</string>
+    <string name="timer_started">タイマーを開始しました</string>
+    <string name="minutes">分</string>
+    <string name="seconds">秒</string>
+    <string name="hours">時間</string>
+</resources>

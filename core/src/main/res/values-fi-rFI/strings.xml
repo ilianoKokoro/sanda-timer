@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sanda Ajastin</string>
+    <string name="sanda_timers">Sanda Timers</string>
+    <string name="no_timers">Ei ajastinta</string>
+    <string name="colon">:</string>
+    <string name="timer_ongoing_name">Käynnissä Oleva Ajastin</string>
+    <string name="timer_done_name">Ajastin Valmis</string>
+    <string name="timer_done_description">Saa ilmoitus, kun ajastin on valmis</string>
+    <string name="timer_ongoing_description">Näyttää seuraavan ajastimen edistymisen</string>
+    <string name="genericError">Virhe</string>
+    <string name="offset_switch">-15 min</string>
+    <string name="confirmButton">Ok</string>
+    <string name="invalid_time_error">Valittu aika on virheellinen</string>
+    <string name="select_time">Valitse kohteen aika</string>
+    <string name="timer_tile_description">Antaa sinun nähdä nopeasti aktiiviset ajastimet ja luoda uuden</string>
+    <string name="timer_tile_label">Sanda Timers</string>
+    <string name="paused">Keskeytetty</string>
+    <string name="timer_finished">Ajastin Valmis!</string>
+    <string name="add_new_timer">Lisää uusi ajastin</string>
+    <string name="timer_running">Ajastin käynnissä</string>
+    <string name="a_timer_is_active">Ajastin on aktiivinen</string>
+    <string name="timers">Timers</string>
+    <string name="calculator">Laskin</string>
+    <string name="invalid_navkey">Virheellinen NavKey : %1$s</string>
+    <string name="start">Aloita</string>
+    <string name="timer_started">Ajastin käynnistetty</string>
+    <string name="minutes">Minuuttia</string>
+    <string name="seconds">Sekuntia</string>
+    <string name="hours">Tuntia</string>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Zanda Timer</string>
+    <string name="sanda_timers">Sanda Timers</string>
+    <string name="no_timers">Geen timers</string>
+    <string name="colon">:</string>
+    <string name="timer_ongoing_name">Lopende Timer</string>
+    <string name="timer_done_name">Timer beëindigd</string>
+    <string name="timer_done_description">Krijg een melding wanneer een timer is voltooid</string>
+    <string name="timer_ongoing_description">Toont de voortgang van de volgende timer</string>
+    <string name="genericError">Foutmelding</string>
+    <string name="offset_switch">-15 minuten</string>
+    <string name="confirmButton">Ok</string>
+    <string name="invalid_time_error">De gekozen tijd is ongeldig</string>
+    <string name="select_time">Selecteer de doeltijd</string>
+    <string name="timer_tile_description">Laat je snel je actieve timers zien en maak een nieuwe</string>
+    <string name="timer_tile_label">Sanda Timers</string>
+    <string name="paused">Gepauzeerd</string>
+    <string name="timer_finished">Timer is beëindigd!</string>
+    <string name="add_new_timer">Voeg een nieuwe timer toe</string>
+    <string name="timer_running">Timer loopt</string>
+    <string name="a_timer_is_active">Een timer is actief</string>
+    <string name="timers">Timers</string>
+    <string name="calculator">Rekenmachine</string>
+    <string name="invalid_navkey">Ongeldige NavKey : %1$s</string>
+    <string name="start">Beginnen</string>
+    <string name="timer_started">Timer gestart</string>
+    <string name="minutes">minuten</string>
+    <string name="seconds">seconden</string>
+    <string name="hours">Uren</string>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sanda Timer</string>
+    <string name="sanda_timers">Sanda Timers</string>
+    <string name="no_timers">Inga timers</string>
+    <string name="colon">:</string>
+    <string name="timer_ongoing_name">Pågående Timer</string>
+    <string name="timer_done_name">Timern är klar</string>
+    <string name="timer_done_description">Få meddelande när en timer är klar</string>
+    <string name="timer_ongoing_description">Visar utvecklingen av nästa timer</string>
+    <string name="genericError">Fel</string>
+    <string name="offset_switch">-15 minuter</string>
+    <string name="confirmButton">Ok</string>
+    <string name="invalid_time_error">Den valda tiden är ogiltig</string>
+    <string name="select_time">Välj måltid</string>
+    <string name="timer_tile_description">Kan du snabbt se dina aktiva timers och skapa en ny</string>
+    <string name="timer_tile_label">Sanda Timers</string>
+    <string name="paused">Pausad</string>
+    <string name="timer_finished">Timern är klar!</string>
+    <string name="add_new_timer">Lägg till en ny timer</string>
+    <string name="timer_running">Timern körs</string>
+    <string name="a_timer_is_active">En timer är aktiv</string>
+    <string name="timers">Timers</string>
+    <string name="calculator">Kalkylator</string>
+    <string name="invalid_navkey">Ogiltig NavKey : %1$s</string>
+    <string name="start">Starta</string>
+    <string name="timer_started">Timern har startats</string>
+    <string name="minutes">Minuter</string>
+    <string name="seconds">Sekunder</string>
+    <string name="hours">Timmar</string>
+</resources>

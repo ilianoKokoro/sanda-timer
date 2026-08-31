@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Časovač Sanda</string>
+    <string name="sanda_timers">Sanda Timers</string>
+    <string name="no_timers">Žádné časovače</string>
+    <string name="colon">:</string>
+    <string name="timer_ongoing_name">Probíhající časovač</string>
+    <string name="timer_done_name">Časovač dokončen</string>
+    <string name="timer_done_description">Dostat oznámení, když je časovač dokončen</string>
+    <string name="timer_ongoing_description">Zobrazí průběh příštího časovače</string>
+    <string name="genericError">Chyba</string>
+    <string name="offset_switch">-15 minut</string>
+    <string name="confirmButton">OK</string>
+    <string name="invalid_time_error">Zvolený čas je neplatný</string>
+    <string name="select_time">Vyberte cílový čas</string>
+    <string name="timer_tile_description">Umožňuje rychle vidět vaše aktivní časovače a vytvořit nové</string>
+    <string name="timer_tile_label">Sanda Timers</string>
+    <string name="paused">Pozastaveno</string>
+    <string name="timer_finished">Časovač dokončen!</string>
+    <string name="add_new_timer">Přidat nový časovač</string>
+    <string name="timer_running">Časovač běží</string>
+    <string name="a_timer_is_active">Časovač je aktivní</string>
+    <string name="timers">Timers</string>
+    <string name="calculator">Kalkulačka</string>
+    <string name="invalid_navkey">Neplatný navigační klíč: %1$s</string>
+    <string name="start">Začít</string>
+    <string name="timer_started">Časovač spuštěn</string>
+    <string name="minutes">Zápis z jednání</string>
+    <string name="seconds">Sekund</string>
+    <string name="hours">Hodiny</string>
+</resources>

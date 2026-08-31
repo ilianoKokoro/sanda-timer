@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Minuterie de Sanda</string>
+    <string name="sanda_timers">Sanda Timers</string>
+    <string name="no_timers">Aucun minuteur</string>
+    <string name="colon">:</string>
+    <string name="timer_ongoing_name">Minuterie en cours</string>
+    <string name="timer_done_name">Minuterie terminée</string>
+    <string name="timer_done_description">Recevez une notification quand un minuteur est terminé</string>
+    <string name="timer_ongoing_description">Affiche la progression de la prochaine minuterie</string>
+    <string name="genericError">Erreur</string>
+    <string name="offset_switch">-15 minutes</string>
+    <string name="confirmButton">Ok</string>
+    <string name="invalid_time_error">L\'heure choisie est invalide</string>
+    <string name="select_time">Sélectionnez l\'heure cible</string>
+    <string name="timer_tile_description">Vous permet de voir rapidement vos minuteurs actifs et d\'en créer un nouveau</string>
+    <string name="timer_tile_label">Sanda Timers</string>
+    <string name="paused">En pause</string>
+    <string name="timer_finished">Minuterie terminée !</string>
+    <string name="add_new_timer">Ajouter un nouveau minuteur</string>
+    <string name="timer_running">Minuterie en cours d\'exécution</string>
+    <string name="a_timer_is_active">Un minuteur est actif</string>
+    <string name="timers">Timers</string>
+    <string name="calculator">Calculatrice</string>
+    <string name="invalid_navkey">Clé de navigation invalide : %1$s</string>
+    <string name="start">Début</string>
+    <string name="timer_started">La minuterie a commencé</string>
+    <string name="minutes">Minutes</string>
+    <string name="seconds">Secondes</string>
+    <string name="hours">Heures</string>
+</resources>

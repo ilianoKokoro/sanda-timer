@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sanda timer</string>
+    <string name="sanda_timers">Sanda Timers</string>
+    <string name="no_timers">Ingen tidtaker</string>
+    <string name="colon">:</string>
+    <string name="timer_ongoing_name">Pågående timer</string>
+    <string name="timer_done_name">Tidtaker avsluttet</string>
+    <string name="timer_done_description">Få beskjed når en tidtaker er ferdig</string>
+    <string name="timer_ongoing_description">Viser fremdriften til neste tidtaker</string>
+    <string name="genericError">Feil</string>
+    <string name="offset_switch">-15 min</string>
+    <string name="confirmButton">Ok</string>
+    <string name="invalid_time_error">Den valgte tiden er ugyldig</string>
+    <string name="select_time">Velg tid for målet</string>
+    <string name="timer_tile_description">Lar deg raskt se de aktive tidene og lage en ny</string>
+    <string name="timer_tile_label">Sanda Timers</string>
+    <string name="paused">Pauset</string>
+    <string name="timer_finished">Tidtaker er avsluttet!</string>
+    <string name="add_new_timer">Legg til ny tidtaker</string>
+    <string name="timer_running">Tidtaker kjører</string>
+    <string name="a_timer_is_active">En tidtaker er aktiv</string>
+    <string name="timers">Timers</string>
+    <string name="calculator">Kalkulator</string>
+    <string name="invalid_navkey">Ugyldig marinnøkkel : %1$s</string>
+    <string name="start">Begynn</string>
+    <string name="timer_started">Tidtaker startet</string>
+    <string name="minutes">Minutter</string>
+    <string name="seconds">Sekunder</string>
+    <string name="hours">Timer</string>
+</resources>

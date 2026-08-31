@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">桑达定时器</string>
+    <string name="sanda_timers">Sanda Timers</string>
+    <string name="no_timers">无计时器</string>
+    <string name="colon">:</string>
+    <string name="timer_ongoing_name">进行中的计时器</string>
+    <string name="timer_done_name">计时器完成</string>
+    <string name="timer_done_description">计时器完成时获得通知</string>
+    <string name="timer_ongoing_description">显示下一个计时器的进度</string>
+    <string name="genericError">错误</string>
+    <string name="offset_switch">-15 分钟</string>
+    <string name="confirmButton">好的</string>
+    <string name="invalid_time_error">选择的时间无效</string>
+    <string name="select_time">选择目标时间</string>
+    <string name="timer_tile_description">让你很快看到你活跃的计时器并创建一个新的计时器</string>
+    <string name="timer_tile_label">Sanda Timers</string>
+    <string name="paused">已暂停</string>
+    <string name="timer_finished">计时器完成！</string>
+    <string name="add_new_timer">添加新的计时器</string>
+    <string name="timer_running">计时器运行</string>
+    <string name="a_timer_is_active">计时器已激活</string>
+    <string name="timers">Timers</string>
+    <string name="calculator">计算器</string>
+    <string name="invalid_navkey">无效的 NavKey : %1$s</string>
+    <string name="start">开始</string>
+    <string name="timer_started">计时器已启动</string>
+    <string name="minutes">分钟</string>
+    <string name="seconds">秒</string>
+    <string name="hours">小时数</string>
+</resources>
