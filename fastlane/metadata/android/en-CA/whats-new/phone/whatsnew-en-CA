@@ -1,3 +1,5 @@
-• Added translations in a few languages
-• Fix button overflow on small screens
 • Added a done screen
+• Fixed adaptive icons
+• Fixed a button overflow on small screens
+• Added translations in a few languages
+• Migrated to the new time picker

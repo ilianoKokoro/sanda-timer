@@ -19,8 +19,6 @@ import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TimePicker
 import androidx.compose.material3.TimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -230,18 +228,9 @@ fun TimerPickerLogic(
 ) {
     if (showTimePicker) {
         TimePickerDialog(
+            timerPickerState = timerPickerState,
             onDismissRequest = { closeTimePicker() },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        closeTimePicker()
-                    }
-                ) { Text(stringResource(R.string.confirmButton)) }
-            },
         )
-        {
-            TimePicker(state = timerPickerState)
-        }
     }
 }
 
