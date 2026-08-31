@@ -16,7 +16,8 @@
     <string name="timer_tile_description">يتيح لك رؤية المؤقت النشط الخاص بك بسرعة وإنشاء واحد جديد</string>
     <string name="timer_tile_label">Sanda Timers</string>
     <string name="paused">متوقف</string>
-    <string name="timer_finished">إنتهى المؤقت !</string>
+    <string name="timer_finished">انتهت فترة المؤقت!</string>
+    <string name="tap_to_open">انقر للفتح</string>
     <string name="add_new_timer">إضافة مؤقت جديد</string>
     <string name="timer_running">المؤقت قيد التشغيل</string>
     <string name="a_timer_is_active">المؤقت نشط</string>

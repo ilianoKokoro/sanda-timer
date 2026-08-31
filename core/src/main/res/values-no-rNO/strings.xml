@@ -16,7 +16,8 @@
     <string name="timer_tile_description">Lar deg raskt se de aktive tidene og lage en ny</string>
     <string name="timer_tile_label">Sanda Timers</string>
     <string name="paused">Pauset</string>
-    <string name="timer_finished">Tidtaker er avsluttet!</string>
+    <string name="timer_finished">Tidtaker fullført!</string>
+    <string name="tap_to_open">Trykk for å åpne</string>
     <string name="add_new_timer">Legg til ny tidtaker</string>
     <string name="timer_running">Tidtaker kjører</string>
     <string name="a_timer_is_active">En tidtaker er aktiv</string>

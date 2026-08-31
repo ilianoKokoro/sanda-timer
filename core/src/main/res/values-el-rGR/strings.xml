@@ -17,6 +17,7 @@
     <string name="timer_tile_label">Sanda Timers</string>
     <string name="paused">Παύση</string>
     <string name="timer_finished">Το Χρονόμετρο Ολοκληρώθηκε!</string>
+    <string name="tap_to_open">Πατήστε για άνοιγμα</string>
     <string name="add_new_timer">Προσθήκη νέου χρονομέτρου</string>
     <string name="timer_running">Εκτελείται το χρονόμετρο</string>
     <string name="a_timer_is_active">Ένα χρονόμετρο είναι ενεργό</string>

@@ -16,7 +16,8 @@
     <string name="timer_tile_description">Laat je snel je actieve timers zien en maak een nieuwe</string>
     <string name="timer_tile_label">Sanda Timers</string>
     <string name="paused">Gepauzeerd</string>
-    <string name="timer_finished">Timer is beëindigd!</string>
+    <string name="timer_finished">Timer beëindigd!</string>
+    <string name="tap_to_open">Tik om te openen</string>
     <string name="add_new_timer">Voeg een nieuwe timer toe</string>
     <string name="timer_running">Timer loopt</string>
     <string name="a_timer_is_active">Een timer is actief</string>

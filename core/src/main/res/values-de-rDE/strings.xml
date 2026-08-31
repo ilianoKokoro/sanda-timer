@@ -17,6 +17,7 @@
     <string name="timer_tile_label">Sanda Timers</string>
     <string name="paused">Pausiert</string>
     <string name="timer_finished">Timer beendet!</string>
+    <string name="tap_to_open">Zum Öffnen tippen</string>
     <string name="add_new_timer">Neuen Timer hinzufügen</string>
     <string name="timer_running">Timer läuft</string>
     <string name="a_timer_is_active">Ein Timer ist aktiv</string>

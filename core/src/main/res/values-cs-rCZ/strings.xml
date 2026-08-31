@@ -17,6 +17,7 @@
     <string name="timer_tile_label">Sanda Timers</string>
     <string name="paused">Pozastaveno</string>
     <string name="timer_finished">Časovač dokončen!</string>
+    <string name="tap_to_open">Klepnutím otevřete</string>
     <string name="add_new_timer">Přidat nový časovač</string>
     <string name="timer_running">Časovač běží</string>
     <string name="a_timer_is_active">Časovač je aktivní</string>
