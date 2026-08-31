@@ -11,7 +11,7 @@
     <string name="genericError">Fehler</string>
     <string name="offset_switch">-15 Minuten</string>
     <string name="confirmButton">Ok</string>
-    <string name="app_id">ca.ilianokokoro.sanda_timer</string>
+    <string name="cancelButton">Cancel</string>
     <string name="invalid_time_error">Die gewählte Zeit ist ungültig</string>
     <string name="select_time">Wählen Sie die Zielzeit</string>
     <string name="timer_tile_description">Lässt dich deine aktiven Timer schnell sehen und einen neuen erstellen</string>
