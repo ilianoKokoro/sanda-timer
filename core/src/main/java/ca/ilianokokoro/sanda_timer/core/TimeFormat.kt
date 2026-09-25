@@ -1,5 +1,6 @@
 package ca.ilianokokoro.sanda_timer.core
 
+import android.content.res.Resources
 import android.graphics.Rect
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -21,7 +22,11 @@ fun String.withCenteredColons(style: TextStyle): AnnotatedString {
         val fontSizePx = with(density) { style.fontSize.toPx() }
         val paint = android.graphics.Paint().apply {
             textSize = fontSizePx
-            ResourcesCompat.getFont(context, R.font.nunito_bold)?.let { typeface = it }
+            try {
+                ResourcesCompat.getFont(context, R.font.nunito_bold)?.let { typeface = it }
+            } catch (_: Resources.NotFoundException) {
+                // Keep the default typeface for metric estimation.
+            }
         }
 
         val metrics = paint.fontMetrics
