@@ -1,5 +1,2 @@
-• Added a done screen
-• Fixed adaptive icons
-• Fixed a button overflow on small screens
-• Added translations in a few languages
-• Migrated to the new time picker
+• Fixed 2 crashes
+• Updated dependencies
